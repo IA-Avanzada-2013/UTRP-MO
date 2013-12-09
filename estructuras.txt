@@ -1,0 +1,83 @@
+typedef struct _coordinate {
+    float x;    
+    float y;
+} coordinate_t
+
+Ruta
+
+class DataHandler
+{
+  public:
+      DataHandler(void);
+      ~DataHandler(void);
+      
+      error_t read_coords(char *filename, struct Ivan *result);
+      error_t read_demand(char *filename, struct Ivan *result);
+      error_t read_travel_times(char *filename, struct Ivan *result);
+      error_t read_route_type(char *filename, struct Ivan *result);
+      
+  private:
+};
+
+class BusStop
+{
+    string identifier;
+    float x,y;
+};
+
+class Route {
+    std::vector<BusStop> bus_stops;
+    //std::list<BusStop> bus_stops;
+
+    Bus bus_type; //o tipo de bus en esa ruta
+    void define_bus_type();
+};
+
+// bajo la suposición que no tratamos con un número definido de buses, se determina que bus apaña a cada ruta dependiendo de su demanda (cada tipo de bus tiene su costo asociado, al igual que la cantidad de pasajeros  a los que puede llevar).
+
+class Bus {
+    int capacity;
+    int fixed_cost;
+    int fuel_cost;
+int bus_type; //0: alimentador, 1: troncal, 2: oruga
+};
+
+
+
+class Problem {
+
+    public:
+      BusStop bus_stops[SIZE];
+  //coordinate_t coordinate_array[SIZE];
+
+            int demand[SIZE][SIZE];
+            int travel_time[SIZE][SIZE];//-1 if infinite?
+        Problem();
+        ~Problem();
+        int routes_min, routes_max;
+       
+        
+        int get_demand(); // calculates the total demand adding all demands
+        
+        
+    private:
+
+};
+
+class Solution {
+std::vector<Route> routes;
+ 
+    float fo1,fo2; // stores the result of the objective functions for efficiency
+
+    void quality();         //Calcula alterando el valor de fo1 y fo2
+boolean checkFeasability();
+    
+};
+
+class Set{ 
+  int id;
+  std::vector <Solution> solutions;
+
+};
+
+
