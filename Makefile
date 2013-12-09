@@ -3,10 +3,13 @@ OPTS := -DSOMEOPTION
 all: utrpmo
 
 utrpmo: main.o
-	g++ $(OPTS) -o utrpmo main.o DataHandler.o
+	g++ $(OPTS) -o utrpmo main.o DataHandler.o common.o
 
-main.o: main.cpp DataHandler.o
+main.o: main.cpp common.o DataHandler.o
 	g++ $(OPTS) -c main.cpp
+
+common.o: common.cpp common.h
+	g++ $(OPTS) -c common.cpp
 
 DataHandler.o: DataHandler.cpp DataHandler.h common.h
 	g++ $(OPTS) -c DataHandler.cpp
