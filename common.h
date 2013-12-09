@@ -1,10 +1,12 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-
+#include <iostream>
 #include <string>
 #include <sstream>
 #include <vector>
+
+#include <ctype.h>
 
 
 #define COORDS_FILENAME "coords.txt"

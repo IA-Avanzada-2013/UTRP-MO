@@ -17,9 +17,8 @@ class DataHandler
 	~DataHandler(void);
 	
 	errno_t read_coords(std::string filename, std::vector<coordinate_t>& result);
-
-	errno_t read_demand(std::string filename, struct Ivan *result);
-	errno_t read_travel_times(std::string filename, struct Ivan *result);
+	errno_t read_demand(std::string filename, int **&result, int &size);
+	errno_t read_travel_times(std::string filename, int **&result, int &size);
 	errno_t read_route_type(std::string filename, struct Ivan *result);
 };
 
