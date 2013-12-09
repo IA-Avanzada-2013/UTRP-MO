@@ -1,0 +1,24 @@
+*.o
+
+### vim ###
+.*.s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
+### Emacs ###
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+.\#*
+
+# GDB Debugging Symbols
+*.dSYM
+
+# specific binaries
+utrmpo
