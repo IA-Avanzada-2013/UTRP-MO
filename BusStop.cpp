@@ -6,3 +6,8 @@ BusStop::BusStop(std::string id, float x, float y)
 	this->x = x;
 	this->y = y;
 }
+
+bool BusStop::operator==(const BusStop& compare) 
+{ 
+	return compare.id == this->id; 
+}

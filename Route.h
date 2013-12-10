@@ -1,15 +1,22 @@
 #ifndef ROUTE_H
 #define ROUTE_H
 
+#include <iostream>
+#include "common.h"
+#include "BusStop.h"
+
+
 class Route {
-    
-    std::vector<BusStop> bus_stops;
-    Bus bus_type; //o tipo de bus en esa ruta
 
 public:
+
+    std::vector<BusStop> bus_stops;
+    // Bus bus_type; //o tipo de bus en esa ruta
 	
 	Route(void);
+	void set_bus_stops(std::vector<BusStop> &bus_stops);
     void define_bus_type();
+    bool check_cycles_and_backtracks();
 };
 
 #endif

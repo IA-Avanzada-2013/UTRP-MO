@@ -5,6 +5,7 @@
 #include "DataHandler.h"
 #include "Problem.h"
 #include "BusStop.h"
+#include "Route.h"
 
 
 std::string identifiers[] ={ "A","B","C","D","E","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",\
@@ -57,6 +58,20 @@ int main(int agrc, char **argv)
 		std::cout << "..." << std::endl;
 		p->show_travel_times();	
 	}
+
+
+
+	std::vector<BusStop> bs;
+	bs.push_back(bus_stops[0]);
+	bs.push_back(bus_stops[10]);
+	bs.push_back(bus_stops[12]);
+	bs.push_back(bus_stops[14]);
+	// bs.push_back(bus_stops[14]);
+	Route *r = new Route();
+	r->set_bus_stops(bs);
+	bool x = r->check_cycles_and_backtracks();
+	std::cout << "check_cycles_and_backtracks: " << x << std::endl;
+
 
 
 	// De-Allocate memory to prevent memory leak

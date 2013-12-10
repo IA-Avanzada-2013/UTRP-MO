@@ -13,6 +13,8 @@ public:
     float x,y;
 
 	BusStop(std::string id, float x, float y);
+    bool operator==(const BusStop& compare);
+
 };
 
 
