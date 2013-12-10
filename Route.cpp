@@ -1,7 +1,4 @@
-class Route {
-    std::vector<BusStop> bus_stops;
-    //std::list<BusStop> bus_stops;
+#include "Route.h"
 
-    Bus bus_type; //o tipo de bus en esa ruta
-    void define_bus_type();
-}
+Route::Route(void);
+void Route::define_bus_type();

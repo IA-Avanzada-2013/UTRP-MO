@@ -3,6 +3,7 @@
 
 #include "common.h"
 #include "DataHandler.h"
+#include "Problem.h"
 
 
 int main(int agrc, char **argv)
@@ -19,30 +20,31 @@ int main(int agrc, char **argv)
 	int **demand;
 	dh->read_demand("./instances/MandlDemand.txt", demand, size);
 
-	for (int i = 0; i < size; ++i)
-	{
-		for (int j = 0; j < size; ++j)
-		{
-			std::cout << demand[i][j] << " ";
-		}
-		std::cout << std::endl;
-	}
 
 	int **travel_times;
 	dh->read_travel_times("./instances/MandlTravelTimes.txt", travel_times, size);
+
+
+	Problem *p = new Problem();
+
+	p->set_size(size);
+	p->set_demand(demand);
+	p->set_travel_times(travel_times);
+
+	
+	p->show_demand();
+	std::cout << "..." << std::endl;
+	p->show_travel_times();
+
+
+	// De-Allocate memory to prevent memory leak
 	for (int i = 0; i < size; ++i)
 	{
-		for (int j = 0; j < size; ++j)
-		{
-			std::cout << travel_times[i][j] << " ";
-		}
-		std::cout << std::endl;
+		delete [] demand[i];
+		delete [] travel_times[i];
 	}
-
-
-	// for (std::vector<coordinate_t>::iterator it =  coords.begin(); it!= coords.end(); ++it) {
-	//     std::cout << it->x << std::endl;
-	// }
+	delete [] demand;
+	delete [] travel_times;
 
 	return 0;
 }

@@ -1,5 +1,4 @@
-class BusStop
-{
-    string identifier;
-    float x,y;
-}
+#include "BusStop.h"
+
+
+BusStop::BusStop();

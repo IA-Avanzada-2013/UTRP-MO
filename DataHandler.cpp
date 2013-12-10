@@ -72,6 +72,7 @@ errno_t DataHandler::read_demand(std::string filename, int **&result, int &rsize
 			for (int col = 0; col < size; col++)
 			{
 				// std::cout << "assigning to row " << row << " column " << col << " value " << x[col] << std::endl;
+				if(x[col].compare("Inf") == 0) x[col] = "-1";
 				result[row][col] = ::atoi(x[col].c_str());
 			}
 			row++;
@@ -88,51 +89,7 @@ errno_t DataHandler::read_demand(std::string filename, int **&result, int &rsize
 }
 errno_t DataHandler::read_travel_times(std::string filename, int **&result, int &rsize)
 {
-	std::string line;
-	std::ifstream myfile(filename);
-
-	int size = 0;
-	int row = 0;
-
-	if (myfile.is_open())
-	{
-		while (!myfile.eof())
-		{
-			getline(myfile,line);
-			if (line.empty() || line.size()<=1) // second condition is a dirty fix .. but works :P
-			{ 
-				// std::cout << "skipping empty line" << std::endl;
-				continue; 
-			}
-			std::vector<std::string> x = split(line, ' ');
-
-			if(size == 0) // first run, we need to allocate memory
-			{
-				
-				rsize = size = x.size();
-				// Allocate memory
-				result = new int*[size];
-				for (int i = 0; i < size; ++i)
-					result[i] = new int[size];
-			}
-			for (int col = 0; col < size; col++)
-			{
-				std::cout << "assigning to row " << row << " column " << col << " value " << x[col] << std::endl;
-
-				if(x[col].compare("Inf") == 0) x[col] = "-1";
-				result[row][col] = ::atoi(x[col].c_str());
-			}
-			row++;
-		}
-		myfile.close();
-	}
-	else
-	{ 
-		std::cout << "Unable to open file";
-		return -1;
-	}
-	
-	return 0;
+	return DataHandler::read_demand(filename, result, rsize);
 }
 
 errno_t DataHandler::read_route_type(std::string filename, struct Ivan *result)

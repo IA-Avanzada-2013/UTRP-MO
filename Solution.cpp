@@ -1,9 +1,5 @@
-class Solution {
-std::vector<Route> routes;
- 
-    float fo1,fo2; // stores the result of the objective functions for efficiency
+#include "Solution.h"
 
-    void quality();         //Calcula alterando el valor de fo1 y fo2
-boolean checkFeasability();
-    
-}
+Solution::Solution(void);
+void Solution::quality();         //Calcula alterando el valor de fo1 y fo2
+bool Solution::check_feasability();
