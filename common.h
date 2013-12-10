@@ -9,6 +9,8 @@
 #include <ctype.h>
 
 
+#define DEBUG 1
+
 #define COORDS_FILENAME "coords.txt"
 #define DEMAND_FILENAME "demand.txt"
 #define TRAVEL_FILENAME "travel.txt"
