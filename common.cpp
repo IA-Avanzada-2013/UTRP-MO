@@ -23,7 +23,7 @@ void show_matrix(int **&matrix, int size)
     {
         for (int j = 0; j < size; ++j)
         {
-            std::cout << matrix[i][j] << " ";
+            std::cout << std::setw(3) << matrix[i][j] << " ";
         }
         std::cout << std::endl;
     }
