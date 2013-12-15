@@ -10,7 +10,7 @@ DataHandler::~DataHandler(void)
 
 }
 
-errno_t DataHandler::read_coords(std::string filename, std::vector<coordinate_t>& result)
+int DataHandler::read_coords(std::string filename, std::vector<coordinate_t>& result)
 {
 	std::string line;
 	std::ifstream myfile(filename);
@@ -40,7 +40,7 @@ errno_t DataHandler::read_coords(std::string filename, std::vector<coordinate_t>
 	return 0;
 }
 
-errno_t DataHandler::read_demand(std::string filename, int **&result, int &rsize)
+int DataHandler::read_demand(std::string filename, int **&result, int &rsize)
 {
 	std::string line;
 	std::ifstream myfile(filename);
@@ -87,12 +87,12 @@ errno_t DataHandler::read_demand(std::string filename, int **&result, int &rsize
 	
 	return 0;
 }
-errno_t DataHandler::read_travel_times(std::string filename, int **&result, int &rsize)
+int DataHandler::read_travel_times(std::string filename, int **&result, int &rsize)
 {
 	return DataHandler::read_demand(filename, result, rsize);
 }
 
-errno_t DataHandler::read_route_type(std::string filename, struct Ivan *result)
+int DataHandler::read_route_type(std::string filename, struct Ivan *result)
 {
 	return 0;
 }
