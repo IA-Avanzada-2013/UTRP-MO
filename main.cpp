@@ -1,12 +1,13 @@
 #include <iostream>
 #include <vector>
 
-
 #include <getopt.h>
+#include <cstdlib>
 
 #include "common.h"
 #include "DataHandler.h"
 #include "Problem.h"
+#include "Solution.h"
 #include "BusStop.h"
 #include "Route.h"
 #include "RouteInfo.h"
@@ -39,7 +40,7 @@ void intro(void)
 
 void usage(void)
 {
-	std::string s = 	"Usage: ./utrmp -i INSTANCE_PREFIX -s SEED -r ROUTE_INFO\n"
+	std::string s = 	"Usage: ./utrpmo -i INSTANCE_PREFIX -s SEED -r ROUTE_INFO\n"
 						"For example: ./utrpmo -i instances/Mandl -s 12345 -r \"10:2:7;12:3:8\" \n";
 
 	std::cout << s << std::endl;
@@ -51,8 +52,6 @@ int main(int argc, char **argv)
 	intro();
 
 	int size;
-	
-
     char c;
 
     int opt_seed = -1;
@@ -163,19 +162,63 @@ int main(int argc, char **argv)
 	}
 
 
-
+	Solution *s = new Solution();
+	Route *r = new Route();
+	Route *r1 = new Route();
+	Route *r2 = new Route();
+	Route *r3 = new Route();
+	
+	std::vector<Route> rts;
 	std::vector<BusStop> bs;
+	std::vector<BusStop> bs1;
+	std::vector<BusStop> bs2;
+	std::vector<BusStop> bs3;
+	
 	bs.push_back(bus_stops[0]);
 	bs.push_back(bus_stops[10]);
 	bs.push_back(bus_stops[12]);
-	bs.push_back(bus_stops[14]);
-	// bs.push_back(bus_stops[14]);
-	Route *r = new Route();
+	bs.push_back(bus_stops[0]);
+	
+	bs1.push_back(bus_stops[2]);
+	bs1.push_back(bus_stops[3]);
+	bs1.push_back(bus_stops[5]);
+	bs1.push_back(bus_stops[10]);
+	bs1.push_back(bus_stops[12]);
+	
+	bs2.push_back(bus_stops[0]);
+	bs2.push_back(bus_stops[4]);
+	bs2.push_back(bus_stops[9]);
+	bs2.push_back(bus_stops[11]);
+	
+	bs3.push_back(bus_stops[1]);
+	bs3.push_back(bus_stops[6]);
+	bs3.push_back(bus_stops[9]);
+	bs3.push_back(bus_stops[8]);
+	bs3.push_back(bus_stops[13]);
+	
 	r->set_bus_stops(bs);
-	bool x = r->check_cycles_and_backtracks();
-	std::cout << "check_cycles_and_backtracks: " << x << std::endl;
+	r1->set_bus_stops(bs1);
+	r2->set_bus_stops(bs2);
+	r3->set_bus_stops(bs3);
 
-
+	rts.push_back(r[0]);
+	rts.push_back(r1[0]);
+	rts.push_back(r2[0]);
+	rts.push_back(r3[0]);
+	
+	s->set_routes(rts);
+	
+	std::cout << "Routes:" << std::endl;
+	s->routes[0].print_route();
+	s->routes[1].print_route();
+	s->routes[2].print_route();
+	s->routes[3].print_route();
+	
+	bool y = s->check_connectivity();
+	std::cout << "check_connectivity: " << y << std::endl;
+	
+	bool x = s->routes[0].check_cycles_and_backtracks();
+	std::cout << "check_cycles_and_backtracks (route: 0): " << x << std::endl;
 
 	// De-Allocate memory to prevent memory leak
 	for (int i = 0; i < size; ++i)

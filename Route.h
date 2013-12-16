@@ -15,6 +15,8 @@ public:
 	
 	Route(void);
 	void set_bus_stops(std::vector<BusStop> &bus_stops);
+	void add_bus_stops(std::vector<BusStop> &bus_stops);
+	void print_route();
     void define_bus_type();
     bool check_cycles_and_backtracks(void);
 };

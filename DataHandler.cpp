@@ -1,5 +1,7 @@
 #include "DataHandler.h"
 
+#include <cstdlib>
+
 DataHandler::DataHandler(void)
 {
 
@@ -13,7 +15,7 @@ DataHandler::~DataHandler(void)
 int DataHandler::read_coords(std::string filename, std::vector<coordinate_t>& result)
 {
 	std::string line;
-	std::ifstream myfile(filename);
+	std::ifstream myfile(filename.c_str());
 
 	coordinate_t aux_coord;
 
@@ -43,7 +45,7 @@ int DataHandler::read_coords(std::string filename, std::vector<coordinate_t>& re
 int DataHandler::read_demand(std::string filename, int **&result, int &rsize)
 {
 	std::string line;
-	std::ifstream myfile(filename);
+	std::ifstream myfile(filename.c_str());
 
 	int size = 0;
 	int row = 0;

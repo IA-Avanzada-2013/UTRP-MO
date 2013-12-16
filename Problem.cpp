@@ -3,7 +3,7 @@
 
 Problem::Problem(void) {};
 Problem::~Problem(void) {};
-int Problem::get_demand(void) {}; // calculates the total demand adding all demands
+int Problem::get_demand(void) { return 0;}; // calculates the total demand adding all demands
 
 void Problem::set_size(int size)
 {
