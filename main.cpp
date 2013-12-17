@@ -11,6 +11,7 @@
 #include "BusStop.h"
 #include "Route.h"
 #include "RouteInfo.h"
+#include "ShortestRoute.h"
 
 
 
@@ -139,7 +140,7 @@ int main(int argc, char **argv)
 	int i=0;
 	for (std::vector<coordinate_t>::iterator it =  coords.begin(); it!= coords.end(); ++it)
 	{
-		bus_stops.push_back(BusStop(identifiers[i], it->x, it->y));
+		bus_stops.push_back(BusStop(identifiers[i], it->x, it->y, i));
 		i++;
     }
 
@@ -214,11 +215,17 @@ int main(int argc, char **argv)
 	s->routes[2].print_route();
 	s->routes[3].print_route();
 	
+	ShortestRoute *sr = new ShortestRoute(size);
+	sr->calcDist(travel_times,rts);
+
 	bool y = s->check_connectivity();
 	std::cout << "check_connectivity: " << y << std::endl;
 	
 	bool x = s->routes[0].check_cycles_and_backtracks();
 	std::cout << "check_cycles_and_backtracks (route: 0): " << x << std::endl;
+
+	float fo1 = s->setFO1(sr,demand);
+	std::cout << "FO1 ruta 0: " << fo1 << std::endl;
 
 	// De-Allocate memory to prevent memory leak
 	for (int i = 0; i < size; ++i)

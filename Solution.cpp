@@ -1,5 +1,6 @@
 #include "Solution.h"
 #include "Route.h"
+#include "ShortestRoute.h"
 
 Solution::Solution(void) {};
 void Solution::set_routes(std::vector<Route> &routes)
@@ -8,7 +9,25 @@ void Solution::set_routes(std::vector<Route> &routes)
 }
 void Solution::quality(){};         //Calcula alterando el valor de fo1 y fo2
 bool Solution::check_feasability(){};
+int Solution::setFO1(ShortestRoute *sr, int **&demand){
+    float numerador=0.0;
+    float denominador=0.0;
 
+    for (int i = 0; i < sr->getSize(); i++)
+    {
+        for (int j = 0; j < sr->getSize(); j++)
+        {
+            
+                numerador+=demand[i][j]*sr->distance(i,j);
+                denominador+=demand[i][j];
+            
+        }
+    }
+    
+    //std::cout << "\nFO:" << numerador/denominador << "\n";
+    this->fo1 = numerador/denominador;
+    return numerador/denominador;
+};
 bool Solution::check_connectivity(){
 
 	Route *set = new Route();

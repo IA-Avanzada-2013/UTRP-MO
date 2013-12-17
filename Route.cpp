@@ -40,3 +40,31 @@ bool Route::check_cycles_and_backtracks()
 	}
     return false;
 };
+
+
+bool Route::check_edge(int id_a, int id_b){
+    for(std::vector<BusStop>::iterator it = bus_stops.begin() ; it != bus_stops.end() - 1 ; ++it   ){
+        if( (*it).idi == id_a && (*(it+1)).idi == id_b ){
+            return true;
+        }
+
+        if( (*it).idi == id_b && (*(it+1)).idi == id_a ){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Route::find_node(int id_a){
+    for(std::vector<BusStop>::iterator it = bus_stops.begin() ; it != bus_stops.end()  ; ++it   ){
+        if( (*it).idi == id_a){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Route::find_nodes(int id_a, int id_b){
+    return find_node(id_a) && find_node(id_b);
+}
+

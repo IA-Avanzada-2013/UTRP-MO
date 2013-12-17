@@ -4,6 +4,7 @@
 #include <iostream>
 #include "common.h"
 #include "Route.h"
+#include "ShortestRoute.h"
 
 class Solution {
 	
@@ -18,6 +19,7 @@ public:
     void quality();         //Calcula alterando el valor de fo1 y fo2
 	bool check_feasability();
 	bool check_connectivity();
+	int setFO1(ShortestRoute *sr, int **&demand);
     
 };
 
