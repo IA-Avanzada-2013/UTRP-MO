@@ -15,7 +15,7 @@
 
 
 
-std::string identifiers[] ={ "A","B","C","D","E","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",\
+std::string identifiers[] ={ "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",\
 					  "AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AL","AM","AN","AO","AP","AQ","AR","AS","AT","AU","AV","AW","AX","AY","AZ", \
 					  "BA","BB","BC","BD","BE","BG","BH","BI","BJ","BK","BL","BM","BN","BO","BP","BQ","BR","BS","BT","BU","BV","BW","BX","BY","BZ", \
 					  "CA","CB","CC","CD","CE","CG","CH","CI","CJ","CK","CL","CM","CN","CO","CP","CQ","CR","CS","CT","CU","CV","CW","CX","CY","CZ", \
@@ -175,27 +175,50 @@ int main(int argc, char **argv)
 	std::vector<BusStop> bs2;
 	std::vector<BusStop> bs3;
 	
-	bs.push_back(bus_stops[0]);
-	bs.push_back(bus_stops[10]);
-	bs.push_back(bus_stops[12]);
-	bs.push_back(bus_stops[0]);
+// 	bs.push_back(bus_stops[0]);
+// 	bs.push_back(bus_stops[10]);
+// 	bs.push_back(bus_stops[12]);
+// 	bs.push_back(bus_stops[0]);
+// 	
+// 	bs1.push_back(bus_stops[2]);
+// 	bs1.push_back(bus_stops[3]);
+// 	bs1.push_back(bus_stops[5]);
+// 	bs1.push_back(bus_stops[10]);
+// 	bs1.push_back(bus_stops[12]);
+// 	
+// 	bs2.push_back(bus_stops[0]);
+// 	bs2.push_back(bus_stops[4]);
+// 	bs2.push_back(bus_stops[9]);
+// 	bs2.push_back(bus_stops[11]);
+// 	
+// 	bs3.push_back(bus_stops[1]);
+// 	bs3.push_back(bus_stops[6]);
+// 	bs3.push_back(bus_stops[9]);
+// 	bs3.push_back(bus_stops[8]);
+// 	bs3.push_back(bus_stops[13]);
 	
-	bs1.push_back(bus_stops[2]);
-	bs1.push_back(bus_stops[3]);
+	bs.push_back(bus_stops[0]);
+	bs.push_back(bus_stops[1]);
+	bs.push_back(bus_stops[2]);
+	bs.push_back(bus_stops[5]);
+	bs.push_back(bus_stops[14]);
+	bs.push_back(bus_stops[8]);
+		
 	bs1.push_back(bus_stops[5]);
-	bs1.push_back(bus_stops[10]);
-	bs1.push_back(bus_stops[12]);
+	bs1.push_back(bus_stops[7]);
+	bs1.push_back(bus_stops[9]);
+	bs1.push_back(bus_stops[6]);
 	
-	bs2.push_back(bus_stops[0]);
 	bs2.push_back(bus_stops[4]);
-	bs2.push_back(bus_stops[9]);
+	bs2.push_back(bus_stops[3]);
 	bs2.push_back(bus_stops[11]);
+	bs2.push_back(bus_stops[10]);
+	bs2.push_back(bus_stops[12]);
+	bs2.push_back(bus_stops[13]);
 	
 	bs3.push_back(bus_stops[1]);
-	bs3.push_back(bus_stops[6]);
-	bs3.push_back(bus_stops[9]);
-	bs3.push_back(bus_stops[8]);
-	bs3.push_back(bus_stops[13]);
+	bs3.push_back(bus_stops[3]);
+	bs3.push_back(bus_stops[5]);
 	
 	r->set_bus_stops(bs);
 	r1->set_bus_stops(bs1);
