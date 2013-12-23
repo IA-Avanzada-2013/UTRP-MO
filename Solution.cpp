@@ -22,7 +22,7 @@ int Solution::setFO1(ShortestRoute *sr, int **&demand){
             
                 numerador+=demand[i][j]*sr->distance(i,j);
                 denominador+=demand[i][j];
-                transferencias+=sr->getTransfers(i,j,this->routes);
+                transferencias+=5*sr->getTransfers(i,j,this->routes);
 
         }
     }    
