@@ -11,6 +11,7 @@ class SolutionSet {
 
 public:
 	SolutionSet(void){};
+	bool print_solution_set();
 };
 
 #endif

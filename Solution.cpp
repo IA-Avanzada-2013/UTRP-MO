@@ -65,3 +65,20 @@ bool Solution::check_connectivity(){
 
 	return false;
 };
+
+bool Solution::print_solution_routes(){
+	std::string filename;
+	filename = "Results/SolutionRoutes.txt";
+	std::ofstream sol(filename.c_str());
+
+	for (int i = 0; i < this->routes.size() ; i++){
+		for( int j = 0; j < this->routes[i].bus_stops.size(); j++){
+			sol << this->routes[i].bus_stops[j].id;
+			if(j < this->routes[i].bus_stops.size()-1){
+				sol << ", ";
+			}
+		}
+		sol << std::endl;
+	}  
+  	sol.close();
+  };

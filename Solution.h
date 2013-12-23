@@ -2,6 +2,7 @@
 #define SOLUTION_H
 
 #include <iostream>
+#include <fstream>
 #include "common.h"
 #include "Route.h"
 #include "ShortestRoute.h"
@@ -20,6 +21,7 @@ public:
 	bool check_feasability();
 	bool check_connectivity();
 	int setFO1(ShortestRoute *sr, int **&demand);
+	bool print_solution_routes();
     
 };
 
