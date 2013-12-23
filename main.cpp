@@ -248,7 +248,7 @@ int main(int argc, char **argv)
 	std::cout << "check_cycles_and_backtracks (route: 0): " << x << std::endl;
 
 	float fo1 = s->setFO1(sr,demand);
-
+	float fo2 = s->setF02(size,rts,travel_times);
 
 	s->print_solution_routes();
 	

@@ -28,6 +28,25 @@ int Solution::setFO1(ShortestRoute *sr, int **&demand){
     this->fo1 = numerador/denominador;
     return numerador/denominador;
 };
+int Solution::setF02(int size,std::vector<Route> RouteSet, int **&travel_times) {
+	float time=0.0;
+	int it_ruta;
+	
+	//iteracion sobre todas las rutas
+	for(it_ruta=0;it_ruta<=RouteSet.size();it_ruta++) {
+		for(int i=0;i<size;i++) {
+			for(int j=i;j<size;j++) {
+				if(RouteSet[it_ruta].check_edge(i,j)) {
+					time+=travel_times[i][j];
+				}
+			}
+		}
+	}
+	
+	this->fo2=time;
+	return time;
+}
+
 bool Solution::check_connectivity(){
 
 	Route *set = new Route();
