@@ -23,6 +23,7 @@ public:
 	bool check_connectivity();
 	int setFO1(ShortestRoute *sr, int **&demand);
 	int setF02(int size, int **&travel_times);
+
 	bool print_solution_routes();
     
 };
