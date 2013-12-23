@@ -248,11 +248,12 @@ int main(int argc, char **argv)
 	std::cout << "check_cycles_and_backtracks (route: 0): " << x << std::endl;
 
 	float fo1 = s->setFO1(sr,demand);
-	float fo2 = s->setF02(size,rts,travel_times);
+	float fo2 = s->setF02(size,travel_times);
 
 	s->print_solution_routes();
 	
-	std::cout << "FO1 ruta 0: " << fo1 << std::endl;
+	std::cout << "FO1: " << fo1 << std::endl;
+	std::cout << "FO2: " << fo2 << std::endl;
 
 	// De-Allocate memory to prevent memory leak
 	for (int i = 0; i < size; ++i)

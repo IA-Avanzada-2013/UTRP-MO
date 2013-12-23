@@ -6,6 +6,7 @@
 #include "common.h"
 #include "Route.h"
 #include "ShortestRoute.h"
+#include <vector>
 
 class Solution {
 	
@@ -21,7 +22,7 @@ public:
 	bool check_feasability();
 	bool check_connectivity();
 	int setFO1(ShortestRoute *sr, int **&demand);
-	int setF02(int size,std:vector<Route> RouteSet,int**&travel_times);
+	int setF02(int size, int **&travel_times);
 	bool print_solution_routes();
     
 };

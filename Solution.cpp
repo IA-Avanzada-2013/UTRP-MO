@@ -2,6 +2,7 @@
 #include "Route.h"
 #include "ShortestRoute.h"
 
+
 Solution::Solution(void) {};
 void Solution::set_routes(std::vector<Route> &routes)
 {
@@ -12,6 +13,7 @@ bool Solution::check_feasability(){};
 int Solution::setFO1(ShortestRoute *sr, int **&demand){
     float numerador=0.0;
     float denominador=0.0;
+    float transferencias=0.0;
 
     for (int i = 0; i < sr->getSize(); i++)
     {
@@ -20,25 +22,28 @@ int Solution::setFO1(ShortestRoute *sr, int **&demand){
             
                 numerador+=demand[i][j]*sr->distance(i,j);
                 denominador+=demand[i][j];
-            
+                transferencias+=sr->getTransfers(i,j,this->routes);
+
         }
-    }
-    
+    }    
     //std::cout << "\nFO:" << numerador/denominador << "\n";
-    this->fo1 = numerador/denominador;
-    return numerador/denominador;
+    this->fo1 = (numerador/denominador)+transferencias;
+    return (numerador/denominador)+transferencias;
+    //this->fo1 = (numerador/denominador);
+    //return (numerador/denominador);
 };
-int Solution::setF02(int size,std::vector<Route> RouteSet, int **&travel_times) {
+
+int Solution::setF02(int size, int **&travel_times) {
 	float time=0.0;
 	int it_ruta;
 	
 	//iteracion sobre todas las rutas
-	for(it_ruta=0;it_ruta<=RouteSet.size();it_ruta++) {
+	for(it_ruta=0;it_ruta<this->routes.size();it_ruta++) {
 		for(int i=0;i<size;i++) {
 			for(int j=i;j<size;j++) {
-				if(RouteSet[it_ruta].check_edge(i,j)) {
+				//if(this->routes[it_ruta].check_edge(i,j)) {
 					time+=travel_times[i][j];
-				}
+				//}
 			}
 		}
 	}
