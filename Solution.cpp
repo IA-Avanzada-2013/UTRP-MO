@@ -57,15 +57,14 @@ bool Solution::check_connectivity(){
 	Route *set = new Route();
 	set->set_bus_stops(this->routes[0].bus_stops);
 	
-	int sum = this->routes[0].bus_stops.size();
-	int flag = 0, added_sum = 1, added_sum_old = 0;
+	int sum, i, flag = 0, added_sum = 1, added_sum_old = 0;
 	int added [this->routes.size()];
 	std::fill_n(added,this->routes.size(),0);
 	added [0] = 1;
 	
 	while(added_sum_old < added_sum){
 		added_sum_old = added_sum;
-		for (int i = 1; i < this->routes.size() ; i++){
+		for (i = 1; i < this->routes.size() ; i++){
 			//std::cout << "revisando ruta: " << i << std::endl;
 			flag = 0;
 			if(added[i] == 0){
@@ -74,7 +73,6 @@ bool Solution::check_connectivity(){
 						//std::cout << "comparando paradas " << this->routes[i].bus_stops[j].id << " y " << set->bus_stops[k].id << std::endl;
 						if(this->routes[i].bus_stops[j] == set->bus_stops[k]){
 							set->add_bus_stops(this->routes[i].bus_stops);
-							sum += this->routes[i].bus_stops.size();
 							added [i] = 1;
 							added_sum +=1;
 							flag = 1;
@@ -89,6 +87,10 @@ bool Solution::check_connectivity(){
 		}
 	}
 	
+	for (i = 0; i < this->routes.size() ;i++){
+		sum += this->routes[i].bus_stops.size();
+	}
+
 	// std::cout << "sum: " << sum << std::endl;
 	// std::cout << "set size: " << set->bus_stops.size() << std::endl;
 	// std::cout << "Connected Bus Stops: " << std::endl;
