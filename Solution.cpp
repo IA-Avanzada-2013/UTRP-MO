@@ -58,34 +58,44 @@ bool Solution::check_connectivity(){
 	set->set_bus_stops(this->routes[0].bus_stops);
 	
 	int sum = this->routes[0].bus_stops.size();
-	int flag = 0;
+	int flag = 0, added_sum = 1, added_sum_old = 0;
+	int added [this->routes.size()];
+	std::fill_n(added,this->routes.size(),0);
+	added [0] = 1;
 	
-	for (int i = 1; i < this->routes.size() ; i++){
-		//std::cout << "revisando ruta: " << i << std::endl;
-		flag = 0;
-		for (int j= 0; j < this->routes[i].bus_stops.size();j++){
-			for (int k = 0; k < set->bus_stops.size(); k++){
-				//std::cout << "comparando paradas " << this->routes[i].bus_stops[j].id << " y " << set->bus_stops[k].id << std::endl;
-				if(this->routes[i].bus_stops[j] == set->bus_stops[k]){
-					set->add_bus_stops(this->routes[i].bus_stops);
-					flag = 1;
-					break;
+	while(added_sum_old < added_sum){
+		added_sum_old = added_sum;
+		for (int i = 1; i < this->routes.size() ; i++){
+			//std::cout << "revisando ruta: " << i << std::endl;
+			flag = 0;
+			if(added[i] == 0){
+				for (int j= 0; j < this->routes[i].bus_stops.size();j++){
+					for (int k = 0; k < set->bus_stops.size(); k++){
+						//std::cout << "comparando paradas " << this->routes[i].bus_stops[j].id << " y " << set->bus_stops[k].id << std::endl;
+						if(this->routes[i].bus_stops[j] == set->bus_stops[k]){
+							set->add_bus_stops(this->routes[i].bus_stops);
+							sum += this->routes[i].bus_stops.size();
+							added [i] = 1;
+							added_sum +=1;
+							flag = 1;
+							break;
+						}
+					}
+					if(flag == 1){
+						break;
 					}
 				}
-				if(flag == 1){
-					break;
-				}
 			}
-		sum = sum+ this->routes[i].bus_stops.size();
 		}
+	}
 	
-	//std::cout << "sum: " << sum << std::endl;
-	//std::cout << "set size: " << set->bus_stops.size() << std::endl;
+	// std::cout << "sum: " << sum << std::endl;
+	// std::cout << "set size: " << set->bus_stops.size() << std::endl;
+	// std::cout << "Connected Bus Stops: " << std::endl;
+	// set->print_route();
 	if(sum == set->bus_stops.size()){
-		//std::cout << "Connected Bus Stops: " << std::endl;
-		//set->print_route();
 		return true;
-		}
+	}
 
 	return false;
 };
