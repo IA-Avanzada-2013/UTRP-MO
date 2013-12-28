@@ -197,28 +197,31 @@ int main(int argc, char **argv)
 // 	bs3.push_back(bus_stops[8]);
 // 	bs3.push_back(bus_stops[13]);
 	
-	bs.push_back(bus_stops[0]);
-	bs.push_back(bus_stops[1]);
-	bs.push_back(bus_stops[2]);
-	bs.push_back(bus_stops[5]);
-	bs.push_back(bus_stops[14]);
 	bs.push_back(bus_stops[8]);
+	bs.push_back(bus_stops[14]);
+	// bs.push_back(bus_stops[2]);
+	// bs.push_back(bus_stops[5]);
+	// bs.push_back(bus_stops[14]);
+	// bs.push_back(bus_stops[8]);
 		
-	bs1.push_back(bus_stops[5]);
-	bs1.push_back(bus_stops[7]);
-	bs1.push_back(bus_stops[9]);
-	bs1.push_back(bus_stops[6]);
+	bs1.push_back(bus_stops[0]);
+	bs1.push_back(bus_stops[1]);
+	bs1.push_back(bus_stops[3]);
+	bs1.push_back(bus_stops[4]);
 	
-	bs2.push_back(bus_stops[4]);
-	bs2.push_back(bus_stops[3]);
-	bs2.push_back(bus_stops[11]);
 	bs2.push_back(bus_stops[10]);
-	bs2.push_back(bus_stops[12]);
-	bs2.push_back(bus_stops[13]);
+	bs2.push_back(bus_stops[9]);
+	bs2.push_back(bus_stops[6]);
+	bs2.push_back(bus_stops[14]);
+	bs2.push_back(bus_stops[7]);
+	bs2.push_back(bus_stops[5]);
+	bs2.push_back(bus_stops[2]);
+	bs2.push_back(bus_stops[1]);
 	
-	bs3.push_back(bus_stops[1]);
-	bs3.push_back(bus_stops[3]);
-	bs3.push_back(bus_stops[5]);
+	bs3.push_back(bus_stops[13]);
+	bs3.push_back(bus_stops[12]);
+	bs3.push_back(bus_stops[10]);
+	bs3.push_back(bus_stops[11]);
 	
 	r->set_bus_stops(bs);
 	r1->set_bus_stops(bs1);
