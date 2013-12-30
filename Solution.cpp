@@ -20,15 +20,14 @@ int Solution::setFO1(ShortestRoute *sr, int **&demand){
         for (int j = 0; j < sr->getSize(); j++)
         {
             
-                numerador+=demand[i][j]*sr->distance(i,j);
+                numerador+=demand[i][j]*sr->distance(i,j)+5*sr->getTransfers(i,j,this->routes);
                 denominador+=demand[i][j];
-                transferencias+=5*sr->getTransfers(i,j,this->routes);
 
         }
     }    
     //std::cout << "\nFO:" << numerador/denominador << "\n";
-    this->fo1 = (numerador/denominador)+transferencias;
-    return (numerador/denominador)+transferencias;
+    this->fo1 = (numerador/denominador);
+    return (numerador/denominador);
     //this->fo1 = (numerador/denominador);
     //return (numerador/denominador);
 };
