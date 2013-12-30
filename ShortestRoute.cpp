@@ -119,56 +119,67 @@ Llamar a calcDist() antes de usar con un grafo o set de rutas distinto.
     int a,b: los nodos a los que se calculara las transferencias.
     std::vector<Route> routes: el set de rutas respecto del cual se veran las transferencias.
 */
-int ShortestRoute::getTransfers(int a, int b, std::vector<Route> routes){
-    Route * initial = &routes[0];
-    int k=-1;
-    //Si no hay nodo intermedio retornar cero transferencias.
-    if( next[a][b] == -1 ) return 0;
-    k = next[a][b];
 
-    //Buscamos una ruta en que se encuentren ambos nodos.
-    for(unsigned int i=0; i<routes.size(); i++){
-        //Si estan nodos a,b,k.
-          if( routes[i].find_nodes(a,b) && routes[i].find_node(k) ){ initial = &routes[i]; break; }
-        //Si no, si estan nodos a,k o b,k
-          if( routes[i].find_nodes(a,k) ||  routes[i].find_nodes(b,k) ){ initial = &routes[i] ; break; }
+int ShortestRoute::getTransfers(int a, int b, std::vector<Route> routes){
+    int transfers = 0;
+    std::list<Route*> rutas_del_camino;
+    std::list<int> recorrido;
+
+    if( next[a][b] == -1 ){
+            return transfers;
     }
 
-    return transfer(a,b, routes,  initial );
+    for(unsigned int i=0;i<routes.size();i++){
+        rutas_del_camino.push_back(&routes[i] );
+    }
+
+    recorrido.push_back(a);
+    recorrido.push_back(b);
+    construct_road(a,b, &recorrido);
+
+    std::list<int>::iterator next = recorrido.begin();
+    next++;
+
+    for(std::list<int>::iterator it = recorrido.begin(); it != recorrido.end(); it++){
+
+        for(std::list<Route*>::iterator it2 = rutas_del_camino.begin(); it2 != rutas_del_camino.end(); ){
+            if( !(**it2).check_edge(*it,*next)  ){
+                it2 = rutas_del_camino.erase(it2);
+            }else{
+                it2++;
+            }
+        }
+        if(rutas_del_camino.empty() ){
+            transfers++;
+            for(unsigned int i=0;i<routes.size();i++){
+                rutas_del_camino.push_back(&routes[i]);
+            }
+        }
+
+        next++;
+        if( next == recorrido.end() ) break;
+    }
+
+    return transfers;
 }
 
-/*ShortestRoute::transfers
-Función auxiliar. Retorna el número de transferencias entre dos nodos usando recursividad.
-Ve si es que es necesaria una transferencia o no.
+/*ShortestRoute::construct_road
+Retorna el camino m�s corto entre dos nodos. Lo construye en la variable road.
 @args:
-    int a,b: los nodos a los que se calculara las transferencias.
-    std::vector<Route> routes: el set de rutas respecto del cual se veran las transferencias.
-    Route *actual: la ruta por la que se va moviendo.
+    int a, int b: los nodos
+    list<int> *road: el camino que va construye recursivamente
 */
-int ShortestRoute::transfer(int a, int b, std::vector<Route> routes, Route *actual){
-    Route *ruta_a = actual, *ruta_b = actual;
-    int t=0, k=-1;
+void ShortestRoute::construct_road(int a, int b, std::list<int> *road){
+    int k = next[a][b];
+    if( k == -1) return;
 
-    //Caso base. Si no hay nodo intermedio retornar cero transferencias.
-    if(next[a][b] == -1) return 0;
-    //Si no, significa que se debe pasar por el nodo k antes.
-    k = next[a][b];
-
-    //Vemos si en la ruta estan ambos nodos k y a.
-    if( !(*actual).find_nodes(a,k) ){
-        //De no estar debemos buscar otra ruta en que esten
-        for(unsigned int i=0; i<routes.size(); i++){
-            if( routes[i].find_nodes(a,k) ){ ruta_a = &routes[i]; t++ ; break; }
+    for( std::list<int>::iterator it = (*road).begin(); it != (*road).end() ; it++ ){
+        if( *it == b ){
+            it = (*road).insert ( it , k);
+            break;
         }
     }
 
-    //Vemos si en la ruta estan ambos nodos k y b.
-    if( !(*actual).find_nodes(b,k) ){
-        //De no estar debemos buscar otra ruta en que esten
-        for(unsigned int i=0; i<routes.size(); i++){
-            if( routes[i].find_nodes(b,k) ){ ruta_b = &routes[i]; t++ ; break; }
-        }
-    }
-
-    return transfer(a,k,routes,ruta_a) + t + transfer(k,a,routes,ruta_b) ;
+    construct_road(a,k, road);
+    construct_road(k,b, road);
 }

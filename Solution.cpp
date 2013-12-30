@@ -15,17 +15,18 @@ int Solution::setFO1(ShortestRoute *sr, int **&demand){
     float denominador=0.0;
     float transferencias=0.0;
 
-    for (int i = 0; i < sr->getSize(); i++)
+    for (int i = 0; i < (sr->getSize()-1); i++)
     {
-        for (int j = 0; j < sr->getSize(); j++)
-        {
-            
-                numerador+=demand[i][j]*sr->distance(i,j)+5*sr->getTransfers(i,j,this->routes);
+        for (int j = i+1; j < sr->getSize(); j++)
+	{
+		//std::cout<<"Transferencias ("<<i+1<<","<<j+1<<"):"<< sr->getTransfers(i,j,this->routes)<<std::endl;
+		//getchar();
+                numerador+=demand[i][j]*(sr->distance(i,j) + 5*sr->getTransfers(i,j,this->routes));
                 denominador+=demand[i][j];
 
         }
     }    
-    //std::cout << "\nFO:" << numerador/denominador << "\n";
+    std::cout << "\nFO:" << numerador/denominador << "\n";
     this->fo1 = (numerador/denominador);
     return (numerador/denominador);
     //this->fo1 = (numerador/denominador);
@@ -40,9 +41,9 @@ int Solution::setF02(int size, int **&travel_times) {
 	for(it_ruta=0;it_ruta<this->routes.size();it_ruta++) {
 		for(int i=0;i<size;i++) {
 			for(int j=i;j<size;j++) {
-				//if(this->routes[it_ruta].check_edge(i,j)) {
+				if(this->routes[it_ruta].check_edge(i,j)) {
 					time+=travel_times[i][j];
-				//}
+				}
 			}
 		}
 	}

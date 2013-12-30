@@ -4,6 +4,7 @@
 #include "Route.h"
 #include <iostream>
 #include <vector>
+#include <list>
 
 class ShortestRoute{
     //Distancias más cortas entre los nodos. dist[a][b] indica la distancia más corta.
@@ -17,7 +18,7 @@ class ShortestRoute{
 
     ShortestRoute(int _size);
     ~ShortestRoute();
-
+    
     int getSize();
     //Calcula la distancias más cortas entre los nodos
     void calcDist(int **&travel_time, std::vector<Route> routes);
@@ -30,8 +31,8 @@ class ShortestRoute{
     int getTransfers(int a, int b, std::vector<Route> routes);
     private:
     //Funcion auxiliar, usada en la recursión al calcular las transferencias.
-    int transfer(int a, int b, std::vector<Route> routes, Route *route);
-
-
+    //void transfer(int a, int b, std::vector<Route> *routes, Route *actual, std::vector<Route*> *recorridos);
+     void construct_road(int a, int b, std::list<int> *road);
+    
 };
 #endif
