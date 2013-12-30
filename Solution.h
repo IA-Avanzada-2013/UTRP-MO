@@ -20,7 +20,7 @@ public:
 	void set_routes(std::vector<Route> &routes);
     void quality();         //Calcula alterando el valor de fo1 y fo2
 	bool check_feasability();
-	bool check_connectivity();
+	bool check_connectivity(int size);
 	int setFO1(ShortestRoute *sr, int **&demand);
 	int setF02(int size, int **&travel_times);
 

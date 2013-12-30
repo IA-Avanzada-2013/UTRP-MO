@@ -215,7 +215,7 @@ int main(int argc, char **argv)
 	bs2.push_back(bus_stops[14]);
 	bs2.push_back(bus_stops[7]);
 	bs2.push_back(bus_stops[5]);
-	bs2.push_back(bus_stops[2]);
+	//bs2.push_back(bus_stops[2]);
 	bs2.push_back(bus_stops[1]);
 	
 	bs3.push_back(bus_stops[13]);
@@ -244,7 +244,7 @@ int main(int argc, char **argv)
 	ShortestRoute *sr = new ShortestRoute(size);
 	sr->calcDist(travel_times,rts);
 
-	bool y = s->check_connectivity();
+	bool y = s->check_connectivity(size);
 	std::cout << "check_connectivity: " << y << std::endl;
 	
 	bool x = s->routes[0].check_cycles_and_backtracks();
