@@ -241,8 +241,6 @@ void ShortestRoute::construct_route(int a, int b, Route *route, std::vector<BusS
 	road.push_back(b);
 
 	construct_road(a,b,&road);
-		
-	std::cout << road.size();
 
 	(*route).bus_stops.clear();
 	for(std::list<int>::iterator it = road.begin(); it != road.end(); it++){
