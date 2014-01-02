@@ -47,7 +47,7 @@ int main(int argc, char **argv)
     int opt_seed = -1;
     std::string opt_route_type;
     std::string opt_instance_prefix;
-    std::vector<RouteInfo *> routes_info;
+    std::vector<RouteInfo> routes_info;
 
 
     while ((c = getopt(argc, argv, "i:s:r:")) != -1)
@@ -66,7 +66,8 @@ int main(int argc, char **argv)
 			for (int i = 0; i < x.size(); ++i)
 			{
 				std::vector<std::string> y = split(x[i], ':');
-				routes_info.push_back(new RouteInfo(atoi(y[0].c_str()), atoi(y[1].c_str()), atoi(y[2].c_str())));
+				RouteInfo rt (i,atoi(y[0].c_str()), atoi(y[1].c_str()), atoi(y[2].c_str()));
+				routes_info.push_back(rt);
 			}
 	        break;
 	    }
@@ -108,7 +109,8 @@ int main(int argc, char **argv)
     std::cout << "The passed parameters are:" << std::endl;
     for (int i = 0; i < routes_info.size(); ++i)
     {
-    	std::cout << "\t" << routes_info[i]->quantity << ":" << routes_info[i]->min_length << ":" << routes_info[i]->max_length << std::endl;
+    	std::cout << "\t" << routes_info[i].tipo_ruta <<  ":";
+	std::cout << routes_info[i].quantity << ":" << routes_info[i].min_length << ":" << routes_info[i].max_length << std::endl;
     }
 
 
@@ -231,6 +233,18 @@ int main(int argc, char **argv)
 	s->routes[3].print_route();
 	
 	ShortestRoute *sr = new ShortestRoute(size);
+	
+	sr->calcDistNoRoutes(travel_times);
+	Route rti;
+	std::cout << "Ruta más corta (0,10):\n";
+	sr->construct_route(0,10,&rti,bus_stops);	
+	for(int i=0; i < rti.bus_stops.size();i++){
+		std::cout << rti.bus_stops[i].idi;
+		if( i < rti.bus_stops.size() - 1) std::cout << ", ";
+	}
+	std::cout << "\n";
+
+
 	sr->calcDist(travel_times,rts);
 
 	bool y = s->check_connectivity(size);
@@ -254,7 +268,14 @@ int main(int argc, char **argv)
         float hypervolume = hv(st, p);
 	std::cout<<hypervolume<<std::endl;
 
-	
+
+	delete p;
+	delete s;
+	delete r;
+	delete r1;
+	delete r2;
+	delete r3;
+	delete sr;
 	
 	// De-Allocate memory to prevent memory leak
 	for (int i = 0; i < size; ++i)

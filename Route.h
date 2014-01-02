@@ -11,6 +11,7 @@ class Route {
 public:
 
     std::vector<BusStop> bus_stops;
+    int tipo_ruta;
     // Bus bus_type; //o tipo de bus en esa ruta
 	
 	Route(void);

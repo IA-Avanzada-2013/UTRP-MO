@@ -22,6 +22,8 @@ class ShortestRoute{
     int getSize();
     //Calcula la distancias más cortas entre los nodos
     void calcDist(int **&travel_time, std::vector<Route> routes);
+    //Calcula la distancia más corta entre los nodos del problema
+    void calcDistNoRoutes(int **&travel_time);
     //Muestra las matrices
     void showDist();
 
@@ -29,10 +31,11 @@ class ShortestRoute{
     int distance(int a, int b);
     //Numero de transferencias entre los nodos.
     int getTransfers(int a, int b, std::vector<Route> routes);
-    private:
     //Funcion auxiliar, usada en la recursión al calcular las transferencias.
     //void transfer(int a, int b, std::vector<Route> *routes, Route *actual, std::vector<Route*> *recorridos);
      void construct_road(int a, int b, std::list<int> *road);
+    //Funcion auxiliar que permite pasar un camino desde list a vector Route usando construct_road
+     void construct_route(int a, int b, Route *route, std::vector<BusStop> bss  );
     
 };
 #endif

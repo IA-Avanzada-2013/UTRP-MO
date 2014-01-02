@@ -78,6 +78,49 @@ void ShortestRoute::calcDist(int **&travel_time, std::vector<Route> routes ){
     }
 }
 
+/* ShortestRoute::calcDist
+Aplica el algoritmo de Floyd para encontrar las distancias más cortas respecto del problema
+@args:
+    int **&travel_times: matriz de costos
+*/
+void ShortestRoute::calcDistNoRoutes(int **&travel_time){
+
+    //Distancia de un nodo asi mismo es cero
+    for(int i=0;i<size;i++){
+        dist[i][i] = 0;
+    }
+
+    //Inicializamos la matriz con las distancias entre los nodos.
+    for(int i=0;i<size;i++){
+        for(int j=0;j<size;j++){
+
+            //Si los nodos son iguales no se hace nada
+            if(i == j) continue;
+
+            //Si hay un arco entonces se agrega
+            if(travel_time[i][j] >= 0) dist[i][j] = travel_time[i][j];
+            //Si no la distancia es infinita
+            else dist[i][j] = INFINITY;
+
+            //Se asume que para llegar de un nodo a otro no se debe pasar por ninguno intermedio
+            next[i][j] = -1;
+
+        }
+    }
+
+    //Algoritmo de Floyd.
+    for(int k=0;k<size;k++){
+        for(int i=0;i<size;i++){
+            for(int j=0;j<size;j++){
+                if(dist[i][j] > dist[i][k] + dist[k][j] ){
+                    dist[i][j] = dist[i][k] + dist[k][j];
+                    next[i][j] = k;
+                }
+            }
+        }
+    }
+}
+
 void ShortestRoute::showDist(){
     std::cout << "\nShortest Distances" << "\n";
 
@@ -183,3 +226,27 @@ void ShortestRoute::construct_road(int a, int b, std::list<int> *road){
     construct_road(a,k, road);
     construct_road(k,b, road);
 }
+
+/*ShortestRoute::construct_route
+Retorna el camino mas corto entre dos nodos, construyendo en *route las rutas con las
+paradas del problema pasadas en el vector bss
+@args:
+	int a, int b: los nodos
+	Route *route: la ruta más corta entre los nodos
+	std::vector<BusStop> bss: el vector con las paradas de buses del problema
+*/
+void ShortestRoute::construct_route(int a, int b, Route *route, std::vector<BusStop> bss ){
+	std::list<int> road;
+	road.push_back(a);
+	road.push_back(b);
+
+	construct_road(a,b,&road);
+		
+	std::cout << road.size();
+
+	(*route).bus_stops.clear();
+	for(std::list<int>::iterator it = road.begin(); it != road.end(); it++){
+		(*route).bus_stops.push_back( bss[*it] );
+	}
+}
+
