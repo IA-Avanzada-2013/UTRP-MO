@@ -105,7 +105,7 @@ bool Solution::print_solution_routes(){
 
 	for (int i = 0; i < this->routes.size() ; i++){
 		for( int j = 0; j < this->routes[i].bus_stops.size(); j++){
-			sol << this->routes[i].bus_stops[j].id;
+			sol << this->routes[i].bus_stops[j].idi+1;
 			if(j < this->routes[i].bus_stops.size()-1){
 				sol << ", ";
 			}

@@ -6,9 +6,9 @@
 
 class Problem {
 
-
     //coordinate_t coordinate_array[SIZE];
-
+    std::string name;
+    
     int size;
     int **demand;
     int **travel_times; //-1 if infinite?
@@ -26,6 +26,8 @@ public:
     int get_demand(void); // calculates the total demand adding all demands
 
     void set_size(int size);
+    void set_name(std::string name);
+    std::string get_name(void);
     void set_demand(int **&demand);
     void set_travel_times(int **&travel_times);
     void set_bus_stops(std::vector<BusStop> &bus_stops);

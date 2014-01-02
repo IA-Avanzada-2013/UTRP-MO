@@ -12,19 +12,8 @@
 #include "Route.h"
 #include "RouteInfo.h"
 #include "ShortestRoute.h"
-
-
-
-std::string identifiers[] ={ "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",\
-					  "AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AL","AM","AN","AO","AP","AQ","AR","AS","AT","AU","AV","AW","AX","AY","AZ", \
-					  "BA","BB","BC","BD","BE","BG","BH","BI","BJ","BK","BL","BM","BN","BO","BP","BQ","BR","BS","BT","BU","BV","BW","BX","BY","BZ", \
-					  "CA","CB","CC","CD","CE","CG","CH","CI","CJ","CK","CL","CM","CN","CO","CP","CQ","CR","CS","CT","CU","CV","CW","CX","CY","CZ", \
-					  "DA","DB","DC","DD","DE","DG","DH","DI","DJ","DK","DL","DM","DN","DO","DP","DQ","DR","DS","DT","DU","DV","DW","DX","DY","DZ"  \
-					};
-
-
-
-
+#include "SolutionSet.h"
+#include "Utils.h"
 
 void intro(void)
 {
@@ -140,13 +129,13 @@ int main(int argc, char **argv)
 	int i=0;
 	for (std::vector<coordinate_t>::iterator it =  coords.begin(); it!= coords.end(); ++it)
 	{
-		bus_stops.push_back(BusStop(identifiers[i], it->x, it->y, i));
+		bus_stops.push_back(BusStop(i, it->x, it->y));
 		i++;
     }
 
 	// Initialize problem
 	Problem *p = new Problem();
-
+	p->set_name(opt_instance_prefix);
 	p->set_size(size);
 	p->set_demand(demand);
 	p->set_travel_times(travel_times);
@@ -215,7 +204,7 @@ int main(int argc, char **argv)
 	bs2.push_back(bus_stops[14]);
 	bs2.push_back(bus_stops[7]);
 	bs2.push_back(bus_stops[5]);
-	//bs2.push_back(bus_stops[2]);
+	bs2.push_back(bus_stops[2]);
 	bs2.push_back(bus_stops[1]);
 	
 	bs3.push_back(bus_stops[13]);
@@ -258,6 +247,15 @@ int main(int argc, char **argv)
 	std::cout << "FO1: " << fo1 << std::endl;
 	std::cout << "FO2: " << fo2 << std::endl;
 
+	SolutionSet *st = new SolutionSet();
+	st->solutions.push_back(*s);
+	
+	st->print_solution_set();	
+        float hypervolume = hv(st, p);
+	std::cout<<hypervolume<<std::endl;
+
+	
+	
 	// De-Allocate memory to prevent memory leak
 	for (int i = 0; i < size; ++i)
 	{

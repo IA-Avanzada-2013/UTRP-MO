@@ -34,7 +34,7 @@ void Route::add_distinct_bus_stops(std::vector<BusStop>& bus_stops){
 
 void Route::print_route(){
 	for( int i = 0; i < this->bus_stops.size(); i++){
-		std::cout << this->bus_stops[i].id;
+		std::cout << this->bus_stops[i].idi+1;
 		if(i < this->bus_stops.size()-1){
 			std::cout << ", ";
 			}

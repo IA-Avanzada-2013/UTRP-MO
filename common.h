@@ -1,14 +1,20 @@
 #ifndef COMMON_H
 #define COMMON_H
 
+#ifdef __cplusplus
 #include <iostream>
 #include <iomanip>
 #include <string>
 #include <sstream>
 #include <vector>
-
 #include <ctype.h>
-
+#include <cstdlib>
+#include <fstream>
+#include <vector>
+#include <list>
+#include <getopt.h>
+#else
+#endif
 
 #define DEBUG 1
 
@@ -26,6 +32,7 @@ typedef struct _coordinate {
 
 
 // http://stackoverflow.com/a/236803
+
 std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems);
 std::vector<std::string> split(const std::string &s, char delim);
 

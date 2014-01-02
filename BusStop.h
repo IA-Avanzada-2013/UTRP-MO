@@ -9,11 +9,10 @@ class BusStop
 {
     
 public:
-	std::string id;
-	int idi;
+    int idi;
     float x,y;
 
-	BusStop(std::string id, float x, float y, int idi);
+    BusStop(int idi, float x, float y);
     bool operator==(const BusStop& compare);
 
 };
