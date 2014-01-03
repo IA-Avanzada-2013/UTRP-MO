@@ -12,6 +12,7 @@
 #include "Route.h"
 #include "RouteInfo.h"
 #include "ShortestRoute.h"
+#include "Ants.h"
 
 
 
@@ -257,6 +258,8 @@ int main(int argc, char **argv)
 	
 	std::cout << "FO1: " << fo1 << std::endl;
 	std::cout << "FO2: " << fo2 << std::endl;
+
+	Ants *a=new Ants(bus_stops,demand,10,100);
 
 	// De-Allocate memory to prevent memory leak
 	for (int i = 0; i < size; ++i)
