@@ -39,7 +39,7 @@ Utils.o: Utils.cpp Utils.h SolutionSet.h Problem.h common.h
 	g++ $(OPTS) -c Utils.cpp
 
 Ants.o: Ants.cpp Ants.h common.h
-	g++ $(OPTS) -c Utils.cpp
+	g++ $(OPTS) -c Ants.cpp
 
 hv.o: hv/hv.c hv/hv.h hv/avl.h
 	gcc $(OPTS) -c hv/hv.c

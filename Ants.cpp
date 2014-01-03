@@ -35,7 +35,7 @@ void Ants::initializePheromoneMatrix(int size){
 void Ants::printBusStops(std::vector<BusStop> bus_stops){
 	for (int i = 0; i < bus_stops.size(); i++)
 	{
-		std::cout << std::setw(3)<< bus_stops[i].id <<"\t"<< bus_stops[i].x <<"\t"<< bus_stops[i].y << std::endl;
+		std::cout << std::setw(3)<< bus_stops[i].idi <<"\t"<< bus_stops[i].x <<"\t"<< bus_stops[i].y << std::endl;
 	}
 		std::cout << std::endl;
 }
@@ -44,12 +44,12 @@ void Ants::printPheromone(){
 	std::cout<<"  ";
 	for (int j = 0; j < this->size; j++)
 	{
-		std::cout << std::setw(4) << this->bus_stops[j].id<<" ";
+		std::cout << std::setw(4) << this->bus_stops[j].idi<<" ";
 	}
 	std::cout << std::endl;
 	for (int i = 0; i < this->size; i++)
 	{
-		std::cout<< this->bus_stops[i].id <<" ";
+		std::cout<< this->bus_stops[i].idi <<" ";
 		for (int j = 0; j < this->size; j++)
 		{
 			std::cout << std::setw(4) << this->feromonas[i][j] <<" ";
@@ -85,7 +85,7 @@ int Ants::getPositionInBusStops(BusStop bus){
 	int pos=0;
 	for (int i = 0;  i < this->bus_stops.size()  ; i++)
 	{
-		if(bus.id.compare(this->bus_stops[i].id)==0)
+		if(bus.idi==this->bus_stops[i].idi)
 		{
 			pos=i;
 		}

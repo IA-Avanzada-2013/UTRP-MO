@@ -18,7 +18,7 @@ public:
     int nAnts;
     int nIterations;
 
-	Ants(std::vector<BusStop> &bus_stops, int **&demand, int nAnts);
+	Ants(std::vector<BusStop> &bus_stops, int **&demand, int nAnts, int nIterations);
 	void initializePheromoneMatrix(int size);
 	void printBusStops(std::vector<BusStop> bus_stops);
 	void printPheromone();
