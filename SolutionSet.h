@@ -7,9 +7,8 @@
 
 class SolutionSet { 
   int id;
-  std::vector <Solution> solutions;
-
 public:
+	std::vector <Solution> solutions;
 	SolutionSet(void){};
 	bool print_solution_set();
 };

@@ -25,11 +25,17 @@ void Problem::set_bus_stops(std::vector<BusStop> &bus_stops)
 	this->bus_stops = bus_stops;
 }
 
+void Problem::set_name(std::string name)
+{
+	std::vector<std::string> x = split(name, '/');
+	this->name = x[x.size()-1];
+}
+
 void Problem::show_bus_stops(void)
 {
 	for (std::vector<BusStop>::iterator it =  this->bus_stops.begin(); it!= this->bus_stops.end(); ++it)
 	{
-		std::cout << "BusStop \"" << it->id << "\": (" << it->x << ", " << it->y << ")" << std::endl;
+		std::cout << "BusStop:" << it->idi+1 << " (" << it->x << ", " << it->y << ")" << std::endl;
     }
 }
 
@@ -41,4 +47,8 @@ void Problem::show_demand(void)
 void Problem::show_travel_times(void)
 {
 	::show_matrix(this->travel_times, this->size);
+}
+
+std::string Problem::get_name(void){
+	return this->name;
 }

@@ -3,9 +3,9 @@ OPTS := -DSOMEOPTION
 all: utrpmo
 
 utrpmo: main.o
-	g++ $(OPTS) -o utrpmo main.o common.o DataHandler.o Problem.o Solution.o BusStop.o Route.o RouteInfo.o ShortestRoute.o Ants.o
+	g++ $(OPTS) -o utrpmo main.o common.o DataHandler.o Problem.o Solution.o BusStop.o Route.o RouteInfo.o ShortestRoute.o SolutionSet.o Utils.o hv.o avl.o Ants.o
 
-main.o: main.cpp common.o DataHandler.o Problem.o Solution.o BusStop.o Route.o RouteInfo.o ShortestRoute.o Ants.o
+main.o: main.cpp common.o DataHandler.o Problem.o Solution.o BusStop.o Route.o RouteInfo.o ShortestRoute.o SolutionSet.o Utils.o hv.o avl.o Ants.o
 	g++ $(OPTS) -c main.cpp
 
 common.o: common.cpp common.h
@@ -32,17 +32,30 @@ RouteInfo.o: RouteInfo.cpp RouteInfo.h common.h
 ShortestRoute.o: ShortestRoute.cpp ShortestRoute.h common.h
 	g++ $(OPTS) -c ShortestRoute.cpp
 
-Ants.o: Ants.cpp Ants.h common.h
-	g++ $(OPTS) -c Ants.cpp
+SolutionSet.o: SolutionSet.cpp SolutionSet.h common.h
+	g++ $(OPTS) -c SolutionSet.cpp
 
+Utils.o: Utils.cpp Utils.h SolutionSet.h Problem.h common.h
+	g++ $(OPTS) -c Utils.cpp
+
+Ants.o: Ants.cpp Ants.h common.h
+	g++ $(OPTS) -c Utils.cpp
+
+hv.o: hv/hv.c hv/hv.h hv/avl.h
+	gcc $(OPTS) -c hv/hv.c
+	
+avl.o: hv/avl.c hv/avl.h 
+	gcc $(OPTS) -c hv/avl.c
+	
+
+
+	
 # Item.o: Item.cpp Item.h Utils.o
 # 	g++ $(OPTS) -c Item.cpp
 
 # Strip.o: Strip.cpp Strip.h Utils.o
 # 	g++ $(OPTS) -c Strip.cpp
 
-# Utils.o: Utils.cpp Utils.h
-# 	g++ $(OPTS) -c Utils.cpp
 
 clean:
 	rm -rf *.o utrpmo

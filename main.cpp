@@ -12,20 +12,9 @@
 #include "Route.h"
 #include "RouteInfo.h"
 #include "ShortestRoute.h"
+#include "SolutionSet.h"
+#include "Utils.h"
 #include "Ants.h"
-
-
-
-std::string identifiers[] ={ "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",\
-					  "AA","AB","AC","AD","AE","AG","AH","AI","AJ","AK","AL","AM","AN","AO","AP","AQ","AR","AS","AT","AU","AV","AW","AX","AY","AZ", \
-					  "BA","BB","BC","BD","BE","BG","BH","BI","BJ","BK","BL","BM","BN","BO","BP","BQ","BR","BS","BT","BU","BV","BW","BX","BY","BZ", \
-					  "CA","CB","CC","CD","CE","CG","CH","CI","CJ","CK","CL","CM","CN","CO","CP","CQ","CR","CS","CT","CU","CV","CW","CX","CY","CZ", \
-					  "DA","DB","DC","DD","DE","DG","DH","DI","DJ","DK","DL","DM","DN","DO","DP","DQ","DR","DS","DT","DU","DV","DW","DX","DY","DZ"  \
-					};
-
-
-
-
 
 void intro(void)
 {
@@ -59,7 +48,7 @@ int main(int argc, char **argv)
     int opt_seed = -1;
     std::string opt_route_type;
     std::string opt_instance_prefix;
-    std::vector<RouteInfo *> routes_info;
+    std::vector<RouteInfo> routes_info;
 
 
     while ((c = getopt(argc, argv, "i:s:r:")) != -1)
@@ -78,7 +67,8 @@ int main(int argc, char **argv)
 			for (int i = 0; i < x.size(); ++i)
 			{
 				std::vector<std::string> y = split(x[i], ':');
-				routes_info.push_back(new RouteInfo(atoi(y[0].c_str()), atoi(y[1].c_str()), atoi(y[2].c_str())));
+				RouteInfo rt (i,atoi(y[0].c_str()), atoi(y[1].c_str()), atoi(y[2].c_str()));
+				routes_info.push_back(rt);
 			}
 	        break;
 	    }
@@ -120,7 +110,8 @@ int main(int argc, char **argv)
     std::cout << "The passed parameters are:" << std::endl;
     for (int i = 0; i < routes_info.size(); ++i)
     {
-    	std::cout << "\t" << routes_info[i]->quantity << ":" << routes_info[i]->min_length << ":" << routes_info[i]->max_length << std::endl;
+    	std::cout << "\t" << routes_info[i].tipo_ruta <<  ":";
+	std::cout << routes_info[i].quantity << ":" << routes_info[i].min_length << ":" << routes_info[i].max_length << std::endl;
     }
 
 
@@ -141,13 +132,13 @@ int main(int argc, char **argv)
 	int i=0;
 	for (std::vector<coordinate_t>::iterator it =  coords.begin(); it!= coords.end(); ++it)
 	{
-		bus_stops.push_back(BusStop(identifiers[i], it->x, it->y, i));
+		bus_stops.push_back(BusStop(i, it->x, it->y));
 		i++;
     }
 
 	// Initialize problem
 	Problem *p = new Problem();
-
+	p->set_name(opt_instance_prefix);
 	p->set_size(size);
 	p->set_demand(demand);
 	p->set_travel_times(travel_times);
@@ -243,9 +234,21 @@ int main(int argc, char **argv)
 	s->routes[3].print_route();
 	
 	ShortestRoute *sr = new ShortestRoute(size);
+	
+	sr->calcDistNoRoutes(travel_times);
+	Route rti;
+	std::cout << "Ruta más corta (0,10):\n";
+	sr->construct_route(0,10,&rti,bus_stops);	
+	for(int i=0; i < rti.bus_stops.size();i++){
+		std::cout << rti.bus_stops[i].idi;
+		if( i < rti.bus_stops.size() - 1) std::cout << ", ";
+	}
+	std::cout << "\n";
+
+
 	sr->calcDist(travel_times,rts);
 
-	bool y = s->check_connectivity();
+	bool y = s->check_connectivity(size);
 	std::cout << "check_connectivity: " << y << std::endl;
 	
 	bool x = s->routes[0].check_cycles_and_backtracks();
@@ -259,8 +262,23 @@ int main(int argc, char **argv)
 	std::cout << "FO1: " << fo1 << std::endl;
 	std::cout << "FO2: " << fo2 << std::endl;
 
+	SolutionSet *st = new SolutionSet();
+	st->solutions.push_back(*s);
+	
+	st->print_solution_set();	
+        float hypervolume = hv(st, p);
+	std::cout<<hypervolume<<std::endl;
+
 	Ants *a=new Ants(bus_stops,demand,10,100);
 
+	delete p;
+	delete s;
+	delete r;
+	delete r1;
+	delete r2;
+	delete r3;
+	delete sr;
+	
 	// De-Allocate memory to prevent memory leak
 	for (int i = 0; i < size; ++i)
 	{

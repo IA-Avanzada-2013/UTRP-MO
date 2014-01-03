@@ -15,17 +15,18 @@ int Solution::setFO1(ShortestRoute *sr, int **&demand){
     float denominador=0.0;
     float transferencias=0.0;
 
-    for (int i = 0; i < sr->getSize(); i++)
+    for (int i = 0; i < (sr->getSize()-1); i++)
     {
-        for (int j = 0; j < sr->getSize(); j++)
-        {
-            
-                numerador+=demand[i][j]*sr->distance(i,j)+5*sr->getTransfers(i,j,this->routes);
+        for (int j = i+1; j < sr->getSize(); j++)
+	{
+		//std::cout<<"Transferencias ("<<i+1<<","<<j+1<<"):"<< sr->getTransfers(i,j,this->routes)<<std::endl;
+		//getchar();
+                numerador+=demand[i][j]*(sr->distance(i,j) + 5*sr->getTransfers(i,j,this->routes));
                 denominador+=demand[i][j];
 
         }
     }    
-    //std::cout << "\nFO:" << numerador/denominador << "\n";
+    std::cout << "\nFO:" << numerador/denominador << "\n";
     this->fo1 = (numerador/denominador);
     return (numerador/denominador);
     //this->fo1 = (numerador/denominador);
@@ -40,9 +41,9 @@ int Solution::setF02(int size, int **&travel_times) {
 	for(it_ruta=0;it_ruta<this->routes.size();it_ruta++) {
 		for(int i=0;i<size;i++) {
 			for(int j=i;j<size;j++) {
-				//if(this->routes[it_ruta].check_edge(i,j)) {
+				if(this->routes[it_ruta].check_edge(i,j)) {
 					time+=travel_times[i][j];
-				//}
+				}
 			}
 		}
 	}
@@ -51,12 +52,12 @@ int Solution::setF02(int size, int **&travel_times) {
 	return time;
 }
 
-bool Solution::check_connectivity(){
+bool Solution::check_connectivity(int size){
 
 	Route *set = new Route();
 	set->set_bus_stops(this->routes[0].bus_stops);
 	
-	int sum, i, flag = 0, added_sum = 1, added_sum_old = 0;
+	int i, flag = 0, added_sum = 1, added_sum_old = 0;
 	int added [this->routes.size()];
 	std::fill_n(added,this->routes.size(),0);
 	added [0] = 1;
@@ -71,7 +72,7 @@ bool Solution::check_connectivity(){
 					for (int k = 0; k < set->bus_stops.size(); k++){
 						//std::cout << "comparando paradas " << this->routes[i].bus_stops[j].id << " y " << set->bus_stops[k].id << std::endl;
 						if(this->routes[i].bus_stops[j] == set->bus_stops[k]){
-							set->add_bus_stops(this->routes[i].bus_stops);
+							set->add_distinct_bus_stops(this->routes[i].bus_stops);
 							added [i] = 1;
 							added_sum +=1;
 							flag = 1;
@@ -85,16 +86,12 @@ bool Solution::check_connectivity(){
 			}
 		}
 	}
-	
-	for (i = 0; i < this->routes.size() ;i++){
-		sum += this->routes[i].bus_stops.size();
-	}
 
-	// std::cout << "sum: " << sum << std::endl;
+	// std::cout << "p->size: " << size << std::endl;
 	// std::cout << "set size: " << set->bus_stops.size() << std::endl;
 	// std::cout << "Connected Bus Stops: " << std::endl;
 	// set->print_route();
-	if(sum == set->bus_stops.size()){
+	if(size == set->bus_stops.size()){
 		return true;
 	}
 
@@ -108,7 +105,7 @@ bool Solution::print_solution_routes(){
 
 	for (int i = 0; i < this->routes.size() ; i++){
 		for( int j = 0; j < this->routes[i].bus_stops.size(); j++){
-			sol << this->routes[i].bus_stops[j].id;
+			sol << this->routes[i].bus_stops[j].idi+1;
 			if(j < this->routes[i].bus_stops.size()-1){
 				sol << ", ";
 			}

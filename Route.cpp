@@ -15,9 +15,26 @@ void Route::add_bus_stops(std::vector<BusStop> &bus_stops){
 		}
 	} 
 
+void Route::add_distinct_bus_stops(std::vector<BusStop>& bus_stops){
+
+	int flag = 0;
+	for (int i = 0; i < bus_stops.size();i++){
+		flag = 0;
+		for(int j = 0;j<this->bus_stops.size();j++){
+			if(this->bus_stops[j] == bus_stops[i]){
+				flag = 1;
+				break;
+			}
+		}
+		if(flag == 0){
+			this->bus_stops.push_back(bus_stops[i]);
+		}
+	}
+}
+
 void Route::print_route(){
 	for( int i = 0; i < this->bus_stops.size(); i++){
-		std::cout << this->bus_stops[i].id;
+		std::cout << this->bus_stops[i].idi+1;
 		if(i < this->bus_stops.size()-1){
 			std::cout << ", ";
 			}
