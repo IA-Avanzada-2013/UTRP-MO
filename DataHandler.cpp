@@ -73,8 +73,16 @@ int DataHandler::read_demand(std::string filename, int **&result, int &rsize)
 			}
 			for (int col = 0; col < size; col++)
 			{
-				// std::cout << "assigning to row " << row << " column " << col << " value " << x[col] << std::endl;
-				if(x[col].find("Inf")!=std::string::npos) x[col] = "-1";
+				// trim trailing spaces
+				
+				size_t endpos = x[col].find_last_not_of("\r\n");
+				if( std::string::npos != endpos )
+				{
+				    x[col] = x[col].substr( 0, endpos+1 );
+				}
+
+				std::cout << "assigning to row " << row << " column " << col << " value " << x[col] << " compare: " << x[col].compare("Inf") << std::endl;	
+				if(x[col].compare("Inf") == 0) x[col] = "-1";
 				result[row][col] = ::atoi(x[col].c_str());
 			}
 			row++;
