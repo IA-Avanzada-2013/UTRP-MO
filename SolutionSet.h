@@ -9,7 +9,7 @@ class SolutionSet {
   int id;
 public:
 	std::vector <Solution> solutions;
-	SolutionSet(void){};
+	SolutionSet(void);
 	bool print_solution_set();
 };
 
