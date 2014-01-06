@@ -166,35 +166,11 @@ int main(int argc, char **argv)
 	std::vector<BusStop> bs1;
 	std::vector<BusStop> bs2;
 	std::vector<BusStop> bs3;
-	
-// 	bs.push_back(bus_stops[0]);
-// 	bs.push_back(bus_stops[10]);
-// 	bs.push_back(bus_stops[12]);
-// 	bs.push_back(bus_stops[0]);
-// 	
-// 	bs1.push_back(bus_stops[2]);
-// 	bs1.push_back(bus_stops[3]);
-// 	bs1.push_back(bus_stops[5]);
-// 	bs1.push_back(bus_stops[10]);
-// 	bs1.push_back(bus_stops[12]);
-// 	
-// 	bs2.push_back(bus_stops[0]);
-// 	bs2.push_back(bus_stops[4]);
-// 	bs2.push_back(bus_stops[9]);
-// 	bs2.push_back(bus_stops[11]);
-// 	
-// 	bs3.push_back(bus_stops[1]);
-// 	bs3.push_back(bus_stops[6]);
-// 	bs3.push_back(bus_stops[9]);
-// 	bs3.push_back(bus_stops[8]);
-// 	bs3.push_back(bus_stops[13]);
+
 	
 	bs.push_back(bus_stops[8]);
 	bs.push_back(bus_stops[14]);
-	// bs.push_back(bus_stops[2]);
-	// bs.push_back(bus_stops[5]);
-	// bs.push_back(bus_stops[14]);
-	// bs.push_back(bus_stops[8]);
+
 		
 	bs1.push_back(bus_stops[0]);
 	bs1.push_back(bus_stops[1]);
@@ -269,7 +245,7 @@ int main(int argc, char **argv)
         float hypervolume = hv(st, p);
 	std::cout<<hypervolume<<std::endl;
 
-	Ants *a=new Ants(bus_stops,demand,10,100);
+	Ants *a=new Ants(bus_stops,demand,travel_times,10,10,routes_info);
 
 	delete p;
 	delete s;

@@ -26,7 +26,7 @@ int Solution::setFO1(ShortestRoute *sr, int **&demand){
 
         }
     }    
-    std::cout << "\nFO:" << numerador/denominador << "\n";
+    //std::cout << "\nFO:" << numerador/denominador << "\n";
     this->fo1 = (numerador/denominador);
     return (numerador/denominador);
     //this->fo1 = (numerador/denominador);
