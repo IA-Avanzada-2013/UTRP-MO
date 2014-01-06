@@ -15,6 +15,7 @@ public:
     std::vector<std::vector<int> > feromonas;
     std::vector<Route> bestSolution;
     int size;
+    int seed;
     int **demand;
     int **travel_times;
     int nAnts;
@@ -24,7 +25,7 @@ public:
     int q;
     float calidad;
 
-    Ants(std::vector<BusStop> &bus_stops, int **&demand,int **&travel_times, int nAnts, int nIterations,std::vector<RouteInfo> routes_info);
+    Ants(std::vector<BusStop> &bus_stops, int **&demand,int **&travel_times, int nAnts, int nIterations, int seed,std::vector<RouteInfo> routes_info);
 	void initializePheromoneMatrix(int size);
 	void printBusStops(std::vector<BusStop> bus_stops);
 	void printPheromone();

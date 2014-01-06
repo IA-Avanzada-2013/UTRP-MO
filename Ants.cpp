@@ -12,7 +12,9 @@
 
 #include "Ants.h"
 
-Ants::Ants(std::vector<BusStop> &bus_stops, int **&demand,int **&travel_times, int nAnts, int nIterations,std::vector<RouteInfo> routes_info) {
+Ants::Ants(std::vector<BusStop> &bus_stops, int **&demand,int **&travel_times, int nAnts, int nIterations,int seed,std::vector<RouteInfo> routes_info) {
+	this->seed=seed;
+	srand ( this->seed );
 	this->bus_stops = bus_stops;
 	this->demand=demand;
 	this->travel_times=travel_times;
@@ -24,7 +26,6 @@ Ants::Ants(std::vector<BusStop> &bus_stops, int **&demand,int **&travel_times, i
 	this->q=routes_info[0].quantity;
 	this->calidad=9999999.9;
 	this->getSolutions();
-	srand ( time(NULL) );
 };
 
 
@@ -125,6 +126,7 @@ void Ants::getSolutions(){
 		sr->calcDist(this->travel_times,rts);
 		s->set_routes(rts);
 		int calidad= s->setFO1(sr,demand) + s->setF02(this->size,travel_times);
+		std::cout<<"FO1: "<<s->setFO1(sr,demand)<<" FO2: "<<s->setF02(this->size,travel_times)<<std::endl;
 		if(calidad<=this->calidad)
 		{
 			this->setBestSolution(rts);
@@ -145,6 +147,7 @@ void Ants::getSolutions(){
 		bool x = s->routes[i].check_cycles_and_backtracks();
 		std::cout << "check_cycles_and_backtracks: " << x << std::endl;
 	}	
+	s->print_solution_routes();
 	bool y = s->check_connectivity(this->size);
 	std::cout << "check_connectivity: " << y << std::endl;
 }
