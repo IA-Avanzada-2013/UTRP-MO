@@ -52,3 +52,11 @@ void Problem::show_travel_times(void)
 std::string Problem::get_name(void){
 	return this->name;
 }
+
+int **Problem::get_travel_times(void){
+	return this->travel_times;
+}
+
+std::vector<BusStop> Problem::get_bus_stops(void){
+	return this->bus_stops;
+}

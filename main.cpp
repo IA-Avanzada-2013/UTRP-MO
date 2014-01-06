@@ -110,7 +110,7 @@ int main(int argc, char **argv)
     for (int i = 0; i < routes_info.size(); ++i)
     {
     	std::cout << "\t" << routes_info[i].tipo_ruta <<  ":";
-	std::cout << routes_info[i].quantity << ":" << routes_info[i].min_length << ":" << routes_info[i].max_length << std::endl;
+		std::cout << routes_info[i].quantity << ":" << routes_info[i].min_length << ":" << routes_info[i].max_length << std::endl;
     }
 
 
