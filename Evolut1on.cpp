@@ -110,70 +110,35 @@
 			}
 			
 		}
-
 /*
-Parameters: number of routes, minimum and maximum number of
-nodes for routes
-Begin
-Main loop
-repeat
-	Route length selection:
-	Choose a length for the route between minimum and maximum
-	number of nodes at random
-	Inner Loop
-	repeat
-		Start node selection:
-			If this is the first iteration of the loop, then randomly choose
-				any node as the start node,
-			Else Randomly choose a node from the previous route as a start
-				node
-			label this node as the “previous node”
-		Next node selection:
-			Construct a node set consisting of all nodes directly connected
-			to “previous node” that have not been selected so far for any
-			route.
-		If this node set is not empty, choose a node from this set at
-		random
-		Else construct a node set consisting of all nodes directly con-
-		nected to “previous node” that have not been selected for the
-		current route.
-		If this node set is not empty, choose a node from this set at
-		random
-			
-
-
-										Else invert the order of the route and repeat the Next node
-										selection
-										If such route can not reach the route length, then delete this
-										route and repeat Start node selection
-	until route length is reached
-until number of routes is reached
-Output an initialization route set
-
-++++
-
-Input the route set, S
-Input N, the number of nodes in the transit network
-Initialize found-node[1...N] = 0 {records nodes that have been
-found}
-Initialize explored-node[1...N] = 0 {records nodes that have been
-explored}
-Select an arbitrary node, i, present in at least one route
-Set feasibility = False
-while {feasibility == False} AND {there are unexplored nodes in
-found-node} do
-Set explored-node[i] = found-node[i] = 1
-Find all routes containing node i
-Set flags in found-node to record all the nodes found in those
-routes
-Select any node from found-node that is absent from explored-
-node
-That node becomes node i
-if all N nodes have been found and entered in found-node then
-feasibility = True
-return feasibility
-
-
+1: {n = number of nodes; r = number of routes, MAX, MIN = maximum, minimum number of routes in route set, ADJ(i) = adjacency list for node i in transit network}
+2: Initialize set Chosen ← ∅ {Nodes used so far in least one route}
+3: for count ← 1 to r do
+4:Determine the length of current route l at random from ∈{M IN, ..M AX}
+5:if count = 1 then
+6:Choose a node, i, at random ∈ {1, .., n} {Seed the first route}
+7:Initialize route, route(1)(1) ← i
+8:else
+9:Choose a node, i, at random ∈ Chosen {Seed the next route,ensuring connectivity}
+10:Chosen ← Chosen ∪ {i}
+11:Initialize route, route(count)(1) ← i
+12:length ← 1
+13:while {Current route length less than l} AND {route has not been reversed more than once} do
+14:U nused ← ADJ(i) \ route(count){Unused contains nodes adjacent to i, but currently absent from route(count)}
+15:if U nused = ∅ then
+16:length ← length + 1
+17:Select a node, j adjacent to i ∈ U nused at random
+18:route(count)(length) ← j {Add it to the end of the currentroute}
+19:i ← j
+20:Chosen ← Chosen ∪ {j}
+21:else
+22:Reverse the route, so that i ← route(1) {Finally, if not all nodes are yet present in the routeset, add them here}
+23: if |Chosen| < n then
+24:Call Repair{routeset, Chosen, n, r, M AX, M IN }
+25:if routeset successfully repaired then
+26:return routeset feasible
+27:else
+28:return routeset infeasible
 */
 
 	}
