@@ -13,15 +13,19 @@
 class Evolut1on
 {
 public:
-	Evolut1on(Problem p);
+	Evolut1on(const Problem &p,int seed,const RouteInfo &route_info);
 	~Evolut1on();
 
 	Problem p;
-	Solution route_set;
+	SolutionSet Result;
+	RouteInfo route_info;
+	int seed;
+
+
 	int best_route_so_far_o1, best_route_so_far_o2;
-	void generate_feasible_route_set();
+	std::vector<Route> generate_feasible_route_set();
 	bool find_node(std::vector<BusStop>actual, int idx);
-	void get_distinct_neighbour_bus_stops(int previous_node,std::vector<BusStop> actual,std::vector<BusStop> left, std::vector<BusStop> *out);
+	std::vector<BusStop> get_distinct_neighbour_bus_stops(int previous_node,std::vector<BusStop> actual,std::vector<BusStop> left);
 	bool is_neighbour(BusStop a, int b);
 	void make_small_change();
 	bool check_duplicates();

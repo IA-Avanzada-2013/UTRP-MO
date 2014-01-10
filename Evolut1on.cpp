@@ -2,8 +2,33 @@
 #include <math.h>
 #include <algorithm>
 
-	Evolut1on::Evolut1on(Problem p){
+	Evolut1on::Evolut1on(const Problem &p, int seed,const RouteInfo &route_info):route_info(route_info){
 		this->p = p;
+        this->seed=seed;
+        srand ( this->seed );
+        this->route_info = route_info;
+        
+
+        //debug1
+        std::cout << "Seed:" << std::endl;
+        std::cout << this->seed << std::endl;
+
+        std::cout << "Problem:" << std::endl;
+        this->p.show_bus_stops();
+		std::cout << "..." << std::endl;
+		this->p.show_demand();
+		std::cout << "..." << std::endl;
+		this->p.show_travel_times();	
+
+		std::cout << "RouteInfo:" << std::endl;
+		std::cout << "\t" << this->route_info.tipo_ruta <<  ":";
+		std::cout << this->route_info.quantity << ":" << this->route_info.min_length << ":" << this->route_info.max_length << std::endl;
+
+
+        //generate feasible routes sets
+        //exec the algorithm
+
+
 	};
 
 	bool Evolut1on::find_node(std::vector<BusStop>actual, int idx){
@@ -15,15 +40,16 @@
 		return result;
 	}
 
-	void Evolut1on::get_distinct_neighbour_bus_stops(int previous_node,std::vector<BusStop> actual,std::vector<BusStop> left, std::vector<BusStop> *out){
+	std::vector<BusStop>  Evolut1on::get_distinct_neighbour_bus_stops(int previous_node,std::vector<BusStop> route_in_creation,std::vector<BusStop> bus_stops_left){
+		std::vector<BusStop> out;
 		int flag = 0;
-		for (int i = 0; i < left.size();i++){
+		for (int i = 0; i < bus_stops_left.size();i++){
 			flag = 0;
-			if(previous_node == left[i].idi || !this->is_neighbour(left[i],previous_node) || this->find_node(actual,left[i].idi)){
+			if(previous_node == bus_stops_left[i].idi || !this->is_neighbour(bus_stops_left[i],previous_node) || this->find_node(route_in_creation,bus_stops_left[i].idi)){
 				flag = 1;
 			}
 			if(flag == 0){
-				(*out).push_back(left[i]);
+				out.push_back(bus_stops_left[i]);
 			}
 		}
 	}
@@ -32,7 +58,7 @@
 		return(this->p.get_travel_times()[a.idi][b]>0);
 	}
 
-	void Evolut1on::generate_feasible_route_set(){
+	std::vector<Route> Evolut1on::generate_feasible_route_set(){
 		std::vector<BusStop> bus_stops = this->p.get_bus_stops();
 		std::vector<Route> route_set;
 		int number_of_routes = ceil(log(bus_stops.size())); //seemed appropiate for small-size instances
@@ -43,12 +69,12 @@
 		bool reversed;
 		Route *tmp_route,*previous_route;
 		std::vector<BusStop> tmp_bus_stop_route;
-		std::vector<BusStop> tmp_bus_stops(bus_stops); //clones de bus stop vector
+		std::vector<BusStop> left_bus_stops(bus_stops); //clones the bus stop vector
 		std::vector<BusStop> neighbours;
 		while(route_set.size()<number_of_routes+1){
 			tmp_route = new Route();
 			tmp_route_size = rand() % (margin*2) + min_nodes_per_route;
-			while (tmp_bus_stops.size()>0){
+			while (left_bus_stops.size()>0){
 				//while there are bus stops left, create route
 				reversed=false;
 				while(tmp_bus_stop_route.size()<tmp_route_size){
@@ -56,28 +82,28 @@
 					if(tmp_bus_stop_route.size()==0){
 						//if its the first route
 						if(route_set.size()==0){
-							tmp_route_start = rand() % tmp_bus_stops.size();
+							tmp_route_start = rand() % left_bus_stops.size();
 							previous_node=tmp_route_start;
-							tmp_bus_stop_route.push_back(tmp_bus_stops[tmp_route_start]);
+							tmp_bus_stop_route.push_back(left_bus_stops[tmp_route_start]);
 						}
 						else{
 							//random node from previous route
 							tmp_route_start = previous_route->bus_stops[rand() % previous_route->bus_stops.size()].idi;
 							previous_node=tmp_route_start;
-							tmp_bus_stop_route.push_back(tmp_bus_stops[tmp_route_start]);
+							tmp_bus_stop_route.push_back(left_bus_stops[tmp_route_start]);
 						}
 					}
 					//if there are no bus stops left					
-					if(tmp_bus_stops.size()==0){
+					if(left_bus_stops.size()==0){
 						tmp_route_size=tmp_bus_stop_route.size();
 					}
 					else{
-						this->get_distinct_neighbour_bus_stops(previous_node,tmp_bus_stop_route,tmp_bus_stops,&neighbours);
+						neighbours = this->get_distinct_neighbour_bus_stops(previous_node,tmp_bus_stop_route,left_bus_stops);
 						if (neighbours.size() != 0){
 							tmp_bus_stop_route.push_back(neighbours[rand() % neighbours.size()]);
 						}
 						else{
-							this->get_distinct_neighbour_bus_stops(previous_node,tmp_bus_stop_route,bus_stops,&neighbours);
+							neighbours = this->get_distinct_neighbour_bus_stops(previous_node,tmp_bus_stop_route,bus_stops);
 							if (neighbours.size() != 0){
 								tmp_bus_stop_route.push_back(neighbours[rand() % neighbours.size()]);
 							}
@@ -97,18 +123,18 @@
 				if (tmp_route->bus_stops.size()==tmp_route_size){
 					route_set.push_back(tmp_route[0]);
 					previous_route = tmp_route;
-					//remove selected bus stops from tmp_bus_stops
+					//remove selected bus stops from left_bus_stops
 					for( int j = 0; j < tmp_route->bus_stops.size(); j++){
-						for (int k = 0; k < tmp_bus_stops.size(); ++k)
+						for (int k = 0; k < left_bus_stops.size(); ++k)
 						{
-							if(tmp_bus_stops[k].idi==tmp_route->bus_stops[j].idi)
-								tmp_bus_stops.erase(tmp_bus_stops.begin()+k);
+							if(left_bus_stops[k].idi==tmp_route->bus_stops[j].idi)
+								left_bus_stops.erase(left_bus_stops.begin()+k);
 						}
 					}
 				}
 
 			}
-			
+			return route_set;
 		}
 /*
 1: {n = number of nodes; r = number of routes, MAX, MIN = maximum, minimum number of routes in route set, ADJ(i) = adjacency list for node i in transit network}

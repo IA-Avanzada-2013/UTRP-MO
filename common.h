@@ -16,7 +16,7 @@
 #else
 #endif
 
-#define DEBUG 1
+#define DEBUG 0
 
 #define COORDS_FILENAME "coords.txt"
 #define DEMAND_FILENAME "demand.txt"
