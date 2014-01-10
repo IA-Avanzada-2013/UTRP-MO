@@ -1,14 +1,27 @@
+#include "DataHandler.h"
+#include "Problem.h"
+#include "Solution.h"
+#include "RouteInfo.h"
+#include "ShortestRoute.h"
+#include "SolutionSet.h"
+#include "Utils.h"
 #include "Evolut1on.h"
+
 #include <math.h>
 #include <algorithm>
 
-	Evolut1on::Evolut1on(const Problem &p, int seed,const RouteInfo &route_info):route_info(route_info){
+	Evolut1on::Evolut1on(Problem p, int seed, std::vector<RouteInfo> routes_info){
 		this->p = p;
         this->seed=seed;
         srand ( this->seed );
-        this->route_info = route_info;
-        
-
+        //routes_info row=id, col1=quantity, col2=min, col3=max
+        this->routes_info = new int[routes_info.size()][3];
+        for (int i = 0; i < routes_info.size(); ++i)
+	    {
+			this->routes_info[i][0]=routes_info[i].quantity;
+			this->routes_info[i][1]=routes_info[i].min_length; 
+			this->routes_info[i][2]=routes_info[i].max_length;
+	    }
         //debug1
         std::cout << "Seed:" << std::endl;
         std::cout << this->seed << std::endl;
@@ -21,8 +34,8 @@
 		this->p.show_travel_times();	
 
 		std::cout << "RouteInfo:" << std::endl;
-		std::cout << "\t" << this->route_info.tipo_ruta <<  ":";
-		std::cout << this->route_info.quantity << ":" << this->route_info.min_length << ":" << this->route_info.max_length << std::endl;
+		std::cout << "\t" << this->route_type <<  ":";
+		std::cout << this->total_routes << ":" << this->route_min_length << ":" << this->route_max_length << std::endl;
 
 
         //generate feasible routes sets

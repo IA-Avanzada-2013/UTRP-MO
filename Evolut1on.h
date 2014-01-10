@@ -1,26 +1,19 @@
 #include "common.h"
-#include "DataHandler.h"
-#include "Problem.h"
-#include "Solution.h"
 #include "BusStop.h"
 #include "Route.h"
-#include "RouteInfo.h"
-#include "ShortestRoute.h"
 #include "SolutionSet.h"
-#include "Utils.h"
 
 
 class Evolut1on
 {
 public:
-	Evolut1on(const Problem &p,int seed,const RouteInfo &route_info);
+	Evolut1on(Problem p, int seed,std::vector<RouteInfo> routes_info); 
 	~Evolut1on();
 
 	Problem p;
 	SolutionSet Result;
-	RouteInfo route_info;
-	int seed;
-
+	int seed,total_routes,route_min_length,route_max_length,route_type;
+	int** routes_info;
 
 	int best_route_so_far_o1, best_route_so_far_o2;
 	std::vector<Route> generate_feasible_route_set();
