@@ -9,7 +9,34 @@ void Solution::set_routes(std::vector<Route> &routes)
 	this->routes = routes;
 }
 void Solution::quality(){};         //Calcula alterando el valor de fo1 y fo2
-bool Solution::check_feasability(){};
+
+
+bool Solution::check_feasability(std::vector<RouteInfo> *info, int size){
+        //Si hay un número mayor de rutas
+        for(unsigned int i=0;i<(*info).size();i++){
+                int count = 0;
+                for(int r=0; r<routes.size(); r++){
+                        if( routes[r].tipo_ruta == i) count++; 
+                }
+                if( count != ((*info)[i]).quantity){std::cout << "Feasibility Error: Quantity" << std::endl; return false;}
+        }
+        //Chequear si las rutas tienen más nodos que el máximo o el mínimo.
+        //Chequear si las rutas tienen ciclos
+        for( unsigned int i=0;i<routes.size();i++){
+                               
+               
+                if( routes[i].bus_stops.size() < ((*info)[routes[i].tipo_ruta]).min_length ){ std::cout << "Feasibility Error:  Min Length"<< std::endl; return false;}
+                if( routes[i].bus_stops.size() > ((*info)[routes[i].tipo_ruta]).max_length ){ std::cout << "Feasibility Error:  Max Length"<< std::endl; return false;}
+               
+                //Si hay ciclos, no es factible
+                if( routes[i].check_cycles_and_backtracks() ){ std::cout << "cyc" ; return false;}
+        }
+       
+        //Si no es conexo, no es factible
+        if( !check_connectivity(size) ){ std::cout << "Feasibility Error: Connectivity" << std::endl; return false;}
+ 
+        return true;
+};
 int Solution::setFO1(ShortestRoute *sr, int **&demand){
     float numerador=0.0;
     float denominador=0.0;

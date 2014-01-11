@@ -27,6 +27,7 @@ public:
     int **get_travel_times(void); //returns travel times
     std::vector<BusStop> get_bus_stops(void); //returns bus stops
     void set_size(int size);
+    int get_size();
     void set_name(std::string name);
     std::string get_name(void);
     void set_demand(int **&demand);
