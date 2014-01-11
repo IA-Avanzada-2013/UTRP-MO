@@ -17,7 +17,7 @@ public:
 
 	int best_route_so_far_o1, best_route_so_far_o2;
 	Solution *generate_feasible_route_set();
-	Route *generate_route(int tmp_route_size,Route *previous_route, std::vector<BusStop>left_bus_stops);
+	Route *generate_route(int tmp_route_size,Route *previous_route, std::vector<BusStop>&left_bus_stops);
 	bool find_node(std::vector<BusStop>actual, int idx);
 	std::vector<BusStop> get_neighbour_bus_stops(int previous_node,std::vector<BusStop> route_in_creation,std::vector<BusStop> bus_stops_left);
 	bool is_neighbour(BusStop a, int b);

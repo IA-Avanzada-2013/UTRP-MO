@@ -41,6 +41,7 @@
 
         //generate feasible routes sets
 		this->result.solutions.push_back(generate_feasible_route_set()[0]);
+		std::cout << "Solution Generated!"<< this->result.solutions.size()<<  std::endl;
 		this->result.solutions[0].print_solution_routes();
 
         //exec the algorithm
@@ -60,6 +61,7 @@
 
 	//returns a neighbour bus stop that is in the final vector but isnt in the actual created route
 	std::vector<BusStop>  Evolut1on::get_neighbour_bus_stops(int previous_node,std::vector<BusStop> route_in_creation,std::vector<BusStop> bus_stops_left){
+		std::cout << "Total BusStop Left Size: " <<  bus_stops_left.size() << std::endl;
 		std::vector<BusStop> out;
 		int flag = 0;
 		for (int i = 0; i < bus_stops_left.size();i++){
@@ -82,7 +84,9 @@
 		return result;
 	}
 
-	Route *Evolut1on::generate_route(int tmp_route_size,Route *previous_route, std::vector<BusStop>left_bus_stops){
+	Route *Evolut1on::generate_route(int tmp_route_size,Route *previous_route, std::vector<BusStop> &left_bus_stops){
+		std::cin.get();
+
 		std::cout << "Route Generator Started"<< std::endl;
 		//Actual route that is going to get returned
 		Route *tmp_route = new Route();
@@ -98,6 +102,7 @@
 		while(tmp_bus_stop_route.size()<tmp_route_size){
 			//if its the first node of the route
 			if(tmp_bus_stop_route.size()==0){
+				std::cout << "Adding First Node"<< std::endl;
 				//if its the first route
 				if(previous_route==NULL){
 					tmp_route_start = rand() % left_bus_stops.size();
@@ -112,31 +117,36 @@
 				}
 			}
 			//if there are no bus stops left					
-			if(left_bus_stops.size()==0){
+			if(left_bus_stops.size()==tmp_bus_stop_route.size()){
 				std::cout << "No left_bus_stops :D"<< std::endl;
 				neighbours = this->get_neighbour_bus_stops(previous_node,tmp_bus_stop_route,this->p.get_bus_stops());
 				if (neighbours.size() != 0)
 					tmp_bus_stop_route.push_back(neighbours[rand() % neighbours.size()]);
 			}
 			else{
-				//std::cout << "Finding neighbours"<< std::endl;
+				std::cout << "Finding neighbours"<< std::endl;
 				neighbours = this->get_neighbour_bus_stops(previous_node,tmp_bus_stop_route,left_bus_stops);
 				if (neighbours.size() != 0){
 					tmp_bus_stop_route.push_back(neighbours[rand() % neighbours.size()]);
-					//std::cout << "Adding Found neighbour"<< std::endl;
+					std::cout << "Adding Found neighbour"<< std::endl;
 				}
 				else{
-					//std::cout << "No neighbours found"<< std::endl;
+					std::cout << "No neighbours found"<< std::endl;
 					neighbours = this->get_neighbour_bus_stops(previous_node,tmp_bus_stop_route,this->p.get_bus_stops());
 					if (neighbours.size() != 0){
 						tmp_bus_stop_route.push_back(neighbours[rand() % neighbours.size()]);
-						//std::cout << "Adding Found neighbour in full set"<< std::endl;
+						std::cout << "Adding Found neighbour in full set"<< std::endl;
 					}
 					else{
+						std::cout << "No neighbours found in full set"<< std::endl;
 						if(reversed){
 							//route has been reversed and still cant grow
-							tmp_bus_stop_route.clear();
+							
 							std::cout << "Route will be cleared"<< std::endl;
+							std::cout << "Unused Bus Stops:"<< left_bus_stops.size() << std::endl;
+							std::cout << "Actual Route Size:"<< tmp_bus_stop_route.size() << std::endl;
+							std::cout << "Problem Node:"<< previous_node << std::endl;
+							tmp_bus_stop_route.clear();
 						}
 						else{
 							//std::cout << "Reversing Route"<< std::endl;
@@ -159,7 +169,8 @@
 				if(left_bus_stops[k].idi==tmp_route->bus_stops[j].idi)
 					left_bus_stops.erase(left_bus_stops.begin()+k);
 			}
-		}		
+		}
+		std::cout << "Free Nodes Left: " << left_bus_stops.size()<< std::endl;		
 		return tmp_route;
 	}
 
