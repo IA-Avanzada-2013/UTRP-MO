@@ -12,14 +12,15 @@ class Solution {
 	    
 public:
 	float fo1,fo2; // stores the result of the objective functions for efficiency
+	float quality;
 	std::vector<Route> routes;
 	Solution(void);
 	void set_routes(std::vector<Route> &routes);
-	void quality();         //Calcula alterando el valor de fo1 y fo2
+	void setQuality(float,float);         //Calcula alterando el valor de fo1 y fo2
 	bool check_feasability();
 	bool check_connectivity(int size);
-	int setFO1(ShortestRoute *sr, int **&demand);
-	int setF02(int size, int **&travel_times);
+	float setFO1(ShortestRoute *sr, int **&demand);
+	float setF02(int size, int **&travel_times);
 
 	bool print_solution_routes();
     

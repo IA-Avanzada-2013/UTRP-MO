@@ -3,6 +3,7 @@
 
 #include <getopt.h>
 #include <cstdlib>
+#include <ctime>
 
 #include "common.h"
 #include "DataHandler.h"
@@ -14,6 +15,11 @@
 #include "ShortestRoute.h"
 #include "SolutionSet.h"
 #include "Utils.h"
+#include "inmune.h"
+
+
+
+using namespace std;
 
 void intro(void)
 {
@@ -38,7 +44,11 @@ void usage(void)
 
 int main(int argc, char **argv)
 {
-
+	time_t inicio;
+	time_t fin;
+	double segundos;
+	time(&inicio);
+	
 	intro();
 
 	int size;
@@ -153,88 +163,114 @@ int main(int argc, char **argv)
 		p->show_travel_times();	
 	}
 
-
-	Solution *s = new Solution();
-	Route *r = new Route();
-	Route *r1 = new Route();
-	Route *r2 = new Route();
-	Route *r3 = new Route();
+	//inicializacion del algoritmo
+	Inmune *algoritmo = new Inmune(POP_SIZE,routes_info);
 	
-	std::vector<Route> rts;
-	std::vector<BusStop> bs;
-	std::vector<BusStop> bs1;
-	std::vector<BusStop> bs2;
-	std::vector<BusStop> bs3;
+	//inicializacion de la poblacionvector bad_alloc c++
+	SolutionSet *poblacion = new SolutionSet();
 	
-// 	bs.push_back(bus_stops[0]);
-// 	bs.push_back(bus_stops[10]);
-// 	bs.push_back(bus_stops[12]);
-// 	bs.push_back(bus_stops[0]);
-// 	
-// 	bs1.push_back(bus_stops[2]);
-// 	bs1.push_back(bus_stops[3]);
-// 	bs1.push_back(bus_stops[5]);
-// 	bs1.push_back(bus_stops[10]);
-// 	bs1.push_back(bus_stops[12]);
-// 	
-// 	bs2.push_back(bus_stops[0]);
-// 	bs2.push_back(bus_stops[4]);
-// 	bs2.push_back(bus_stops[9]);
-// 	bs2.push_back(bus_stops[11]);
-// 	
-// 	bs3.push_back(bus_stops[1]);
-// 	bs3.push_back(bus_stops[6]);
-// 	bs3.push_back(bus_stops[9]);
-// 	bs3.push_back(bus_stops[8]);
-// 	bs3.push_back(bus_stops[13]);
+	vector<Solution> sol;
+	poblacion->solutions=sol;
 	
-	bs.push_back(bus_stops[8]);
-	bs.push_back(bus_stops[14]);
-	// bs.push_back(bus_stops[2]);
-	// bs.push_back(bus_stops[5]);
-	// bs.push_back(bus_stops[14]);
-	// bs.push_back(bus_stops[8]);
-		
-	bs1.push_back(bus_stops[0]);
-	bs1.push_back(bus_stops[1]);
-	bs1.push_back(bus_stops[3]);
-	bs1.push_back(bus_stops[4]);
+	//se genera la poblacion aleatoriamente
+	algoritmo->generar_poblacion(*poblacion,POP_SIZE,bus_stops,travel_times);
 	
-	bs2.push_back(bus_stops[10]);
-	bs2.push_back(bus_stops[9]);
-	bs2.push_back(bus_stops[6]);
-	bs2.push_back(bus_stops[14]);
-	bs2.push_back(bus_stops[7]);
-	bs2.push_back(bus_stops[5]);
-	bs2.push_back(bus_stops[2]);
-	bs2.push_back(bus_stops[1]);
-	
-	bs3.push_back(bus_stops[13]);
-	bs3.push_back(bus_stops[12]);
-	bs3.push_back(bus_stops[10]);
-	bs3.push_back(bus_stops[11]);
-	
-	r->set_bus_stops(bs);
-	r1->set_bus_stops(bs1);
-	r2->set_bus_stops(bs2);
-	r3->set_bus_stops(bs3);
-
-	rts.push_back(r[0]);
-	rts.push_back(r1[0]);
-	rts.push_back(r2[0]);
-	rts.push_back(r3[0]);
-	
-	s->set_routes(rts);
-	
-	std::cout << "Routes:" << std::endl;
-	s->routes[0].print_route();
-	s->routes[1].print_route();
-	s->routes[2].print_route();
-	s->routes[3].print_route();
+	//mostrar la poblacion
+	for(int i=0;i<POP_SIZE;i++)
+	{
+		cout << "Solucion " << i << endl;
+		for(int j=0;j<poblacion->solutions[i].routes.size();j++)
+		{
+			poblacion->solutions[i].routes[j].print_route();
+		}
+		cout << endl;
+	}
 	
 	ShortestRoute *sr = new ShortestRoute(size);
-	
 	sr->calcDistNoRoutes(travel_times);
+	
+	//empieza el ciclo
+	
+	int generacion = 1;
+	
+	while(generacion<GENERACIONES)
+	{
+		
+		//evaluacion de las funciones objetivo de las soluciones
+		algoritmo->evaluar_fo(poblacion,travel_times,demand,sr,size);
+		
+		//calculo de afinidad
+		algoritmo->afinidad(poblacion,ALPHA,BETA);
+		
+		//se consideran solo las soluciones no dominadas del problema
+		algoritmo->eliminar_dominados(poblacion);
+				
+		//seleccion de los mejores individuos
+		vector<Solution> clones = algoritmo->seleccionar_mejores_anticuerpos(poblacion,AFINIDAD);
+		
+		//seleccion clonal
+		algoritmo->clonar_anticuerpos(clones,CLON_SIZE);
+		
+		//mutacion
+		algoritmo->mutacion(clones,opt_seed,PROBMUTACION,bus_stops,travel_times);
+		
+		//se elimina el exceso de anticuerpos
+		algoritmo->eliminar_exceso(clones,POP_SIZE,CLONES,travel_times,demand,sr,size,ALPHA,BETA);
+		
+		//se incorporan nuevos anticuerpos a la nueva generacion
+		algoritmo->nueva_generacion(poblacion,clones,POP_SIZE,REEMPLAZO,bus_stops,travel_times,demand,sr,size,ALPHA,BETA);
+		
+		cout << poblacion->solutions.size() << endl;
+		
+		//se guardan los optimos de pareto para la generacion
+		stringstream sstr;
+		sstr << "results/pareto_" << generacion << ".txt";
+		string nombre = sstr.str();
+		
+		ofstream archivo(nombre.c_str());
+		
+		for(int i=1;i<poblacion->solutions.size();i++)
+		{
+			if(!algoritmo->es_dominado_de_Pareto(poblacion->solutions[i],*poblacion))
+			{
+				archivo << poblacion->solutions[i].fo1 << " " << poblacion->solutions[i].fo2 << endl;
+			}
+		}
+		archivo.close();
+		
+		
+		//se aumenta en uno la generacion
+		generacion++;
+		
+		//se repite el proceso hasta cumplir con la condicion de termino
+	}
+	
+	//st->print_solution_set();	
+    float hypervolume = hv(poblacion, p);
+	std::cout<<hypervolume<<std::endl;
+	
+	/*
+	
+	
+	for(int i=0;i<poblacion->solutions.size();i++)
+	{
+		cout << i << " es dominado " << algoritmo->es_dominado_de_Pareto(poblacion->solutions[i],*poblacion) << endl;
+		cout << poblacion->solutions[i].fo1 << " " << poblacion->solutions[i].fo2 << endl;
+		cout << poblacion->solutions[i].quality << endl;
+	}
+	
+	
+	*/
+	
+	/*
+	Solution *s = algoritmo->generar_anticuerpo(bus_stops,travel_times,1245);
+	
+	
+	for(unsigned int i=0;i<s->routes.size();i++)
+	{
+		s->routes[i].print_route();
+	}
+	
 	Route rti;
 	std::cout << "Ruta más corta (0,10):\n";
 	sr->construct_route(0,10,&rti,bus_stops);	
@@ -245,14 +281,19 @@ int main(int argc, char **argv)
 	std::cout << "\n";
 
 
-	sr->calcDist(travel_times,rts);
+	//sr->calcDist(travel_times,rts);
 
 	bool y = s->check_connectivity(size);
 	std::cout << "check_connectivity: " << y << std::endl;
 	
-	bool x = s->routes[0].check_cycles_and_backtracks();
-	std::cout << "check_cycles_and_backtracks (route: 0): " << x << std::endl;
-
+	bool x;
+	
+	for (int i=0;i<s->routes.size();i++)
+	{
+		x = s->routes[i].check_cycles_and_backtracks();
+		std::cout << "check_cycles_and_backtracks (route: " << i << " ):" << x << std::endl;
+	}
+	
 	float fo1 = s->setFO1(sr,demand);
 	float fo2 = s->setF02(size,travel_times);
 
@@ -260,21 +301,21 @@ int main(int argc, char **argv)
 	
 	std::cout << "FO1: " << fo1 << std::endl;
 	std::cout << "FO2: " << fo2 << std::endl;
-
-	SolutionSet *st = new SolutionSet();
-	st->solutions.push_back(*s);
+	*/
+	//SolutionSet *st = new SolutionSet();
+	//st->solutions.push_back(*s);
 	
-	st->print_solution_set();	
-        float hypervolume = hv(st, p);
-	std::cout<<hypervolume<<std::endl;
+	//st->print_solution_set();	
+    //    float hypervolume = hv(st, p);
+	//std::cout<<hypervolume<<std::endl;
 
 
 	delete p;
-	delete s;
-	delete r;
-	delete r1;
-	delete r2;
-	delete r3;
+	//delete s;
+	//delete r;
+	//delete r1;
+	//delete r2;
+	//delete r3;
 	delete sr;
 	
 	// De-Allocate memory to prevent memory leak
@@ -286,5 +327,10 @@ int main(int argc, char **argv)
 	delete [] demand;
 	delete [] travel_times;
 
+	time(&fin);
+	segundos = difftime(fin,inicio);
+	
+	cout << segundos << " segundos transcurridos" << endl;
+	
 	return 0;
 }

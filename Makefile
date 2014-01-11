@@ -3,9 +3,9 @@ OPTS := -DSOMEOPTION
 all: utrpmo
 
 utrpmo: main.o
-	g++ $(OPTS) -o utrpmo main.o common.o DataHandler.o Problem.o Solution.o BusStop.o Route.o RouteInfo.o ShortestRoute.o SolutionSet.o Utils.o hv.o avl.o
+	g++ $(OPTS) -o utrpmo main.o common.o DataHandler.o Problem.o Solution.o BusStop.o Route.o RouteInfo.o ShortestRoute.o SolutionSet.o Utils.o hv.o avl.o inmune.o
 
-main.o: main.cpp common.o DataHandler.o Problem.o Solution.o BusStop.o Route.o RouteInfo.o ShortestRoute.o SolutionSet.o Utils.o hv.o avl.o 
+main.o: main.cpp common.o DataHandler.o Problem.o Solution.o BusStop.o Route.o RouteInfo.o ShortestRoute.o SolutionSet.o Utils.o hv.o avl.o inmune.o
 	g++ $(OPTS) -c main.cpp
 
 common.o: common.cpp common.h
@@ -44,7 +44,8 @@ hv.o: hv/hv.c hv/hv.h hv/avl.h
 avl.o: hv/avl.c hv/avl.h 
 	gcc $(OPTS) -c hv/avl.c
 	
-
+inmune.o: inmune.cpp inmune.h 
+	gcc $(OPTS) -c inmune.cpp
 
 	
 # Item.o: Item.cpp Item.h Utils.o

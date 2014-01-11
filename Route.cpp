@@ -1,7 +1,10 @@
 #include "Route.h"
 
 Route::Route(void) {};
-void Route::define_bus_type() {};
+void Route::define_bus_type(int tipo) 
+{
+	this->tipo_ruta = tipo;
+}
 
 void Route::set_bus_stops(std::vector<BusStop> &bus_stops)
 {
