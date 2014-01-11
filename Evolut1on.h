@@ -11,14 +11,15 @@ public:
 	~Evolut1on();
 
 	Problem p;
-	SolutionSet Result;
-	int seed,total_routes,route_min_length,route_max_length,route_type;
+	SolutionSet result;
+	int seed,route_types,total_routes,route_min_length,route_max_length,route_type;
 	int** routes_info;
 
 	int best_route_so_far_o1, best_route_so_far_o2;
-	std::vector<Route> generate_feasible_route_set();
+	Solution *generate_feasible_route_set();
+	Route *generate_route(int tmp_route_size,Route *previous_route, std::vector<BusStop>left_bus_stops);
 	bool find_node(std::vector<BusStop>actual, int idx);
-	std::vector<BusStop> get_distinct_neighbour_bus_stops(int previous_node,std::vector<BusStop> actual,std::vector<BusStop> left);
+	std::vector<BusStop> get_neighbour_bus_stops(int previous_node,std::vector<BusStop> route_in_creation,std::vector<BusStop> bus_stops_left);
 	bool is_neighbour(BusStop a, int b);
 	void make_small_change();
 	bool check_duplicates();
