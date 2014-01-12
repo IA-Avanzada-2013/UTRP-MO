@@ -4,12 +4,12 @@
 
 
 Solution::Solution(void) {};
-void Solution::set_routes(std::vector<Route> &routes)
-{
+
+void Solution::set_routes(std::vector<Route> &routes){
 	this->routes = routes;
 }
-void Solution::quality(){};         //Calcula alterando el valor de fo1 y fo2
 
+void Solution::quality(){};         //Calcula alterando el valor de fo1 y fo2
 
 bool Solution::check_feasability(std::vector<RouteInfo> *info, int size){
         //Si hay un número mayor de rutas
@@ -37,6 +37,7 @@ bool Solution::check_feasability(std::vector<RouteInfo> *info, int size){
  
         return true;
 };
+
 int Solution::setFO1(ShortestRoute *sr, int **&demand){
     float numerador=0.0;
     float denominador=0.0;

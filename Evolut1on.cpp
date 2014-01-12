@@ -50,6 +50,8 @@ Evolut1on::Evolut1on(Problem p, int seed, std::vector<RouteInfo> routes_info){
     //exec the algorithm
 };
 
+Evolut1on::~Evolut1on(void){
+}
 //returns true if BusStop ID belongs to first route
 bool Evolut1on::find_node(std::vector<BusStop>actual, int idx){
 	bool result=false;
@@ -104,17 +106,17 @@ int Evolut1on::nice_neighbour(std::vector<BusStop> used_nodes, std::vector<BusSt
 }
 
 Route *Evolut1on::generate_route(int tmp_route_size,std::vector<Route> routes_so_far, int tmp_route_type){
-	std::cin.get();
+	//std::cin.get();
 	Solution actual_routeset;
 	actual_routeset.set_routes(routes_so_far);
 	std::vector<BusStop> used_nodes = this->get_specific_nodes(&actual_routeset,true);
 	std::vector<BusStop> left_bus_stops= this->get_specific_nodes(&actual_routeset,false);
 
-	std::cout << "Nodes Used So Far: " << used_nodes.size();
-	this->print_temp_route(used_nodes);
+	//std::cout << "Nodes Used So Far: " << used_nodes.size();
+	//this->print_temp_route(used_nodes);
 	
-	std::cout << "Free Nodes Left: " << left_bus_stops.size();	
-	this->print_temp_route(left_bus_stops);
+	//std::cout << "Free Nodes Left: " << left_bus_stops.size();	
+	//this->print_temp_route(left_bus_stops);
 
 
 	//std::cout << "Route Generator Started"<< std::endl;
@@ -179,12 +181,12 @@ Route *Evolut1on::generate_route(int tmp_route_size,std::vector<Route> routes_so
 				}
 				else{
 
-					std::cout << "Route will be reversed: " << tmp_bus_stop_route.size();	
-					this->print_temp_route(tmp_bus_stop_route);
+					//std::cout << "Route will be reversed: " << tmp_bus_stop_route.size();	
+					//this->print_temp_route(tmp_bus_stop_route);
 					previous_node=tmp_bus_stop_route[0].idi;
 					reverse(tmp_bus_stop_route.begin(),tmp_bus_stop_route.end());
-					std::cout << "Route SHOULD be reversed: " << tmp_bus_stop_route.size();	
-					this->print_temp_route(tmp_bus_stop_route);
+					//std::cout << "Route SHOULD be reversed: " << tmp_bus_stop_route.size();	
+					//this->print_temp_route(tmp_bus_stop_route);
 					reversed = true;
 				}
 			}
@@ -206,8 +208,8 @@ Route *Evolut1on::generate_route(int tmp_route_size,std::vector<Route> routes_so
 			}
 		}
 	}
-	std::cout << "New Route: ";
-	tmp_route->print_route();
+	//std::cout << "New Route: ";
+	//tmp_route->print_route();
 
 	return tmp_route;
 }
@@ -222,7 +224,6 @@ void Evolut1on::print_temp_route(std::vector<BusStop> ruta){
 		std::cout << ruta[ruta.size()-1].idi<< ")"<< std::endl;
 	}
 }
-
 
 Solution *Evolut1on::generate_feasible_route_set(std::vector<RouteInfo> routes_info){
 	Solution *sol = new Solution();
@@ -240,9 +241,7 @@ Solution *Evolut1on::generate_feasible_route_set(std::vector<RouteInfo> routes_i
 	
 	Route *tmp_route;
 
-
-	for (int i = 0; i < number_of_routes; ++i)
-	{
+	for (int i = 0; i < number_of_routes; ++i){
 		//std::cout << "Generating route nº:" << i << std::endl;
 		//get the route type assigned to de i'th route
 		routes_so_far=0;
@@ -274,6 +273,7 @@ Solution *Evolut1on::generate_feasible_route_set(std::vector<RouteInfo> routes_i
 	sol->set_routes(route_set);
 	//check feasibility
     if(sol->check_feasability(&routes_info, this->p.get_size())){
+    	sol->setF01;
     	std::cout << "Its Feasible:" << std::endl;
     }
     else{
@@ -287,6 +287,10 @@ Solution *Evolut1on::generate_feasible_route_set(std::vector<RouteInfo> routes_i
     	else
     		std::cout << "Repair Failed =(" << std::endl;
     }
+	ShortestRoute *sr = new ShortestRoute(this->p.get_size());
+    sr->calcDistNoRoutes(this->p.get_travel_times());
+    sol->setFO1(sr,this->p.get_demand2());
+    sol->setF02(this->p.get_size(),this->p.get_travel_times());
 
 	return sol;
 }
@@ -333,8 +337,7 @@ bool Evolut1on::repair_routeset(Solution *unfeasible_routeset){
 
 	bool possibilities_exhausted = false;
 	Route chosen_route;
-	while(!possibilities_exhausted){
-
+	while((used_nodes.size()<this->p.get_size()) && !possibilities_exhausted){
 		std::cout << "Starting repair attempt" << std::endl;
 		chosen_route=unfeasible_routeset->routes[rand() % unfeasible_routeset->routes.size()];
 		chosen_route.print_route();
@@ -358,7 +361,7 @@ bool Evolut1on::repair_routeset(Solution *unfeasible_routeset){
 					break;
 				}
 				else{
-					std::cout << "Node "  << left_bus_stops[i].idi << " isn neighbour of route" << std::endl;
+					std::cout << "Node "  << left_bus_stops[i].idi << " is not neighbour of route" << std::endl;
 					attempts_timeout--;
 					std::cout << "timeout: " << attempts_timeout << std::endl;
 					if(attempts_timeout<0)
@@ -366,13 +369,9 @@ bool Evolut1on::repair_routeset(Solution *unfeasible_routeset){
 				}
 			}
 		}
-
-		if(used_nodes.size()==this->p.get_size()||(used_nodes.size() < this->p.get_size()))
-			possibilities_exhausted=true;
-
 	}
 
-	if(possibilities_exhausted)
+	if(!possibilities_exhausted)
 		result=true;
 	return result;
 }

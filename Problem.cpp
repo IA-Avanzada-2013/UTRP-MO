@@ -57,6 +57,10 @@ int **Problem::get_travel_times(void){
 	return this->travel_times;
 }
 
+int **Problem::get_demand2(void){
+	return this->demand;
+}
+
 std::vector<BusStop> Problem::get_bus_stops(void){
 	return this->bus_stops;
 }

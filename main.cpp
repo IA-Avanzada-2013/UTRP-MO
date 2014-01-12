@@ -261,7 +261,8 @@ int main(int argc, char **argv)
 		delete [] travel_times;
 	}
 
-	Evolut1on *evo = new Evolut1on(*p,opt_seed,routes_info);//,routes_info
+	Evolut1on *evo = new Evolut1on(*p,opt_seed,routes_info);
+	delete evo;
 
 	return 0;
 }

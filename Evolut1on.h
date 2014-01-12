@@ -8,7 +8,7 @@ class Evolut1on
 {
 public:
 	Evolut1on(Problem p, int seed,std::vector<RouteInfo> routes_info); 
-	~Evolut1on();
+	~Evolut1on(void);
 
 	Problem p;
 	SolutionSet result;

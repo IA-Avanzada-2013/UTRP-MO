@@ -24,6 +24,7 @@ public:
     ~Problem(void);
     
     int get_demand(void); // calculates the total demand adding all demands
+    int **get_demand2(void);
     int **get_travel_times(void); //returns travel times
     std::vector<BusStop> get_bus_stops(void); //returns bus stops
     void set_size(int size);
