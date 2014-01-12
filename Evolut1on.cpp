@@ -74,6 +74,8 @@ std::vector<BusStop>  Evolut1on::get_neighbour_bus_stops(int previous_node,std::
 			out.push_back(bus_stops_left[i]);
 		}
 	}
+	//std::cout << "neighbeours found for: " << previous_node;
+	//this->print_temp_route(out);
 	return out;
 }
 
@@ -88,21 +90,32 @@ bool Evolut1on::is_neighbour(BusStop a, int b){
 //selects a node which is actually in a route, neighbour to an unused node
 int Evolut1on::nice_neighbour(std::vector<BusStop> used_nodes, std::vector<BusStop> left_bus_stops){
 	int nice_neighbour =-1;
-	for (int i = 0; i < used_nodes.size(); ++i){
-		for (int j = 0; j < left_bus_stops.size(); ++j){
-			//std::cout << "comparando vecinidad " << used_nodes[i].idi <<"," << left_bus_stops[j].idi<< std::endl;
-			if(this->is_neighbour(used_nodes[i],left_bus_stops[j].idi)){
-				nice_neighbour =  used_nodes[i].idi;
-				//std::cout<<"Nice neighbour found: "<< nice_neighbour<<std::endl;
-				return nice_neighbour;
-			}
+	int i = rand() % used_nodes.size();
+	for (int j = 0; j < left_bus_stops.size(); ++j){
+		//std::cout << "comparando vecinidad " << used_nodes[i].idi <<"," << left_bus_stops[j].idi<< std::endl;
+		if(this->is_neighbour(used_nodes[i],left_bus_stops[j].idi)){
+			nice_neighbour =  used_nodes[i].idi;
+			//std::cout<<"Nice neighbour found: "<< nice_neighbour<<std::endl;
+			return nice_neighbour;
 		}
-	}		
+	}
+		
 	return nice_neighbour;
 }
 
-Route *Evolut1on::generate_route(int tmp_route_size,std::vector<BusStop> used_nodes, std::vector<BusStop> &left_bus_stops, int tmp_route_type){
-	//std::cin.get();
+Route *Evolut1on::generate_route(int tmp_route_size,std::vector<Route> routes_so_far, int tmp_route_type){
+	std::cin.get();
+	Solution actual_routeset;
+	actual_routeset.set_routes(routes_so_far);
+	std::vector<BusStop> used_nodes = this->get_specific_nodes(&actual_routeset,true);
+	std::vector<BusStop> left_bus_stops= this->get_specific_nodes(&actual_routeset,false);
+
+	std::cout << "Nodes Used So Far: " << used_nodes.size();
+	this->print_temp_route(used_nodes);
+	
+	std::cout << "Free Nodes Left: " << left_bus_stops.size();	
+	this->print_temp_route(left_bus_stops);
+
 
 	//std::cout << "Route Generator Started"<< std::endl;
 	//Actual route that is going to get returned
@@ -114,7 +127,7 @@ Route *Evolut1on::generate_route(int tmp_route_size,std::vector<BusStop> used_no
 	//bool indicated if end of possible nodes was reached
 	bool reversed;
 	//BusStop which indicates the first node
-	int tmp_route_start,previous_node;
+	int tmp_route_start,previous_node, tmp_neighbour;
 	reversed=false;
 	while(tmp_bus_stop_route.size()<tmp_route_size){
 		//if its the first node of the route
@@ -139,30 +152,39 @@ Route *Evolut1on::generate_route(int tmp_route_size,std::vector<BusStop> used_no
 		//std::cout << "Finding neighbours"<< std::endl;
 		neighbours = this->get_neighbour_bus_stops(previous_node,tmp_bus_stop_route,left_bus_stops);
 		if (neighbours.size() != 0){
-			tmp_bus_stop_route.push_back(neighbours[rand() % neighbours.size()]);
-			//std::cout << "Adding Found neighbour"<< std::endl;
+			tmp_neighbour = rand() % neighbours.size();
+			previous_node = neighbours[tmp_neighbour].idi;
+			tmp_bus_stop_route.push_back(neighbours[tmp_neighbour]);
+			//std::cout << "Adding Found neighbour: "<< previous_node<<std::endl;
 		}
 		else{
 			//std::cout << "No neighbours found"<< std::endl;
 			neighbours = this->get_neighbour_bus_stops(previous_node,tmp_bus_stop_route,this->p.get_bus_stops());
 			if (neighbours.size() != 0){
-				tmp_bus_stop_route.push_back(neighbours[rand() % neighbours.size()]);
-				//std::cout << "Adding Found neighbour in full set"<< std::endl;
+				tmp_neighbour = rand() % neighbours.size();
+				previous_node = neighbours[tmp_neighbour].idi;
+				tmp_bus_stop_route.push_back(neighbours[tmp_neighbour]);
+				//std::cout << "Adding Found neighbour in full set: "<< previous_node<<std::endl;
 			}
 			else{
 				//std::cout << "No neighbours found in full set"<< std::endl;
 				if(reversed){
 					//route has been reversed and still cant grow
-					
-					//std::cout << "Route will be cleared "<< tmp_bus_stop_route.size() <<"/"<< tmp_route_size << " achieved w/ " << left_bus_stops.size() << " bus stops left" << std::endl;
-					//std::cout << "Problem Node:"<< previous_node << std::endl;
+
+					//std::cout << "Route will be cleared: " << tmp_bus_stop_route.size();	
+					this->print_temp_route(tmp_bus_stop_route);
+
 					tmp_bus_stop_route.clear();
 					reversed = false;
 				}
 				else{
-					//std::cout << "Reversing Route, Problem Node:"<< previous_node << std::endl;
+
+					std::cout << "Route will be reversed: " << tmp_bus_stop_route.size();	
+					this->print_temp_route(tmp_bus_stop_route);
 					previous_node=tmp_bus_stop_route[0].idi;
 					reverse(tmp_bus_stop_route.begin(),tmp_bus_stop_route.end());
+					std::cout << "Route SHOULD be reversed: " << tmp_bus_stop_route.size();	
+					this->print_temp_route(tmp_bus_stop_route);
 					reversed = true;
 				}
 			}
@@ -184,13 +206,26 @@ Route *Evolut1on::generate_route(int tmp_route_size,std::vector<BusStop> used_no
 			}
 		}
 	}
+	std::cout << "New Route: ";
+	tmp_route->print_route();
+
 	return tmp_route;
 }
 
+void Evolut1on::print_temp_route(std::vector<BusStop> ruta){
+	if(ruta.size()==0)
+		std::cout << " ( )"<< std::endl;
+	else{
+			std::cout << " (";
+		for (int i = 0; i < ruta.size()-1; ++i)
+			std::cout << ruta[i].idi << ",";
+		std::cout << ruta[ruta.size()-1].idi<< ")"<< std::endl;
+	}
+}
+
+
 Solution *Evolut1on::generate_feasible_route_set(std::vector<RouteInfo> routes_info){
 	Solution *sol = new Solution();
-	std::vector<BusStop> bus_stops = this->p.get_bus_stops();
-	std::vector<BusStop> left_bus_stops(bus_stops); //clones the bus stop vector
 	std::vector<BusStop> used_nodes;
 	std::vector<Route> route_set;
 
@@ -221,7 +256,7 @@ Solution *Evolut1on::generate_feasible_route_set(std::vector<RouteInfo> routes_i
 				break;
 			}
 		}
-		tmp_route=this->generate_route(tmp_route_size,used_nodes,left_bus_stops,tmp_route_type);
+		tmp_route=this->generate_route(tmp_route_size,route_set,tmp_route_type);
 		//check if route is not a duplicate
 
 		route_set.push_back(tmp_route[0]);
@@ -235,12 +270,6 @@ Solution *Evolut1on::generate_feasible_route_set(std::vector<RouteInfo> routes_i
 			if(!used)
 				used_nodes.push_back(route_set[i].bus_stops[k]);	
 		}
-		//std::cout << "New Route: ";
-		//route_set[i].print_route();
-		//std::cout << "Free Nodes Left: " << left_bus_stops.size() << " (";	
-		//for (int i = 0; i < left_bus_stops.size(); ++i)
-		//	std::cout << left_bus_stops[i].idi << ",";
-		//std::cout << ")"<< std::endl;
 	}
 	sol->set_routes(route_set);
 	//check feasibility
@@ -263,21 +292,25 @@ Solution *Evolut1on::generate_feasible_route_set(std::vector<RouteInfo> routes_i
 }
 //statos = true if they are used nodes, false if not
 std::vector<BusStop> Evolut1on::get_specific_nodes(Solution *routeset,bool status){
-	std::vector<BusStop> result;
-	bool flag=false;
+	std::vector<BusStop> result,tmp_bus_stops;
+	bool flag;
 	if(status){
-		for (int i = 0; i < routeset->routes.size(); ++i)
-			for (int j = 0; j < routeset->routes[i].bus_stops.size(); ++j){
-				for (int k = 0; k < result.size(); ++k){
-					if(result[k].idi==routeset->routes[i].bus_stops[j].idi)
+		result = this->p.get_bus_stops();
+		tmp_bus_stops = this->p.get_bus_stops();
+		for (int i = 0; i < tmp_bus_stops.size(); ++i)
+		{
+			flag=false;
+			for (int j = 0; j < routeset->routes.size(); ++j)
+				for (int k = 0; k < routeset->routes[j].bus_stops.size(); ++k)
+					if(tmp_bus_stops[i].idi==routeset->routes[j].bus_stops[k].idi)
 						flag=true;
-				}
-				if(!flag){
-					result.push_back(routeset->routes[i].bus_stops[j]);
-					flag=false;
-				}
+			if(!flag){
+				flag=false;
+				for (int j = 0; j < result.size(); ++j)
+					if(result[j].idi==tmp_bus_stops[i].idi)
+						result.erase(result.begin()+j);
 			}
-				
+		}				
 	}
 	else{
 		result = this->p.get_bus_stops();
@@ -347,6 +380,42 @@ bool Evolut1on::repair_routeset(Solution *unfeasible_routeset){
 void Evolut1on::make_small_change(){
 
 }
-bool Evolut1on::check_duplicates(){
-
+bool Evolut1on::check_duplicate_routes(Solution *routeset, Route *route){
+	bool result;
+	for (int i = 0; i < routeset->routes.size(); ++i){
+		if(routeset->routes[i].bus_stops.size() == route->bus_stops.size()){
+			result=true;
+			for (int j = 0; j < routeset->routes[i].bus_stops.size(); ++j){
+				if(routeset->routes[i].bus_stops[j].idi != route->bus_stops[j].idi)
+					result=false;
+			}
+		}	
+	}
+	return result;
 }
+
+
+/*
+Algorithm 1 Simple Multi-Objective Optimization (SMO)
+Generate initial population of feasible route sets.
+Calculate passenger and operator costs for each route set.
+Record the best-route-set-so-far for both objectives.
+repeat
+for each route set in the population
+Apply the Make-Small-Change procedure to produce a
+feasible offspring
+if offspring is a duplicate
+then delete offspring
+elseif offspring improves on either best-so-far
+then offspring replaces parent and best-so-far updated
+elseif offspring dominates parent
+then offspring replaces parent
+elseif offspring and parent are mutually non-dominated
+then find an individual in the population that is dominated
+by the offspring and replace it with the offspring.
+endif
+endfor
+until the stopping condition is satisfied
+print all non-dominated solutions in the final population.
+
+*/
