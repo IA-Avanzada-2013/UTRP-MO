@@ -6,6 +6,7 @@
 #include "Route.h"
 #include "RouteInfo.h"
 #include "ShortestRoute.h"
+#include "opciones.h"
 #include <iostream>
 #include <algorithm>
 #include <vector>
@@ -15,7 +16,7 @@ using namespace std;
 
 class Inmune{
 	public:
-		Inmune(int,vector<RouteInfo>);
+		Inmune(int,vector<RouteInfo>,Opciones*&);
 		Route* generar_ruta_factible(int,vector<BusStop>&,int**&);
 		Solution* generar_anticuerpo(vector<BusStop>&,int**&,int);
 		void generar_poblacion(SolutionSet&,int,vector<BusStop>&,int**&);
@@ -35,5 +36,6 @@ class Inmune{
 	private:
 		int tam_poblacion;
 		vector<RouteInfo> informacion;
+		Opciones opciones;
 };
 #endif

@@ -1,5 +1,10 @@
 #include "opciones.h"
 
+Opciones::Opciones()
+{
+	
+}
+
 //getters
 int Opciones::get_popsize()
 {
@@ -52,7 +57,7 @@ void Opciones::set_popsize(int valor)
 	this->pop_size = valor;
 }
 
-void Opciones::set_alpha(float valor);
+void Opciones::set_alpha(float valor)
 {
 	this->alpha = valor;
 }
@@ -90,4 +95,17 @@ void Opciones::set_porcentajeclones(float valor)
 void Opciones::set_porcentajereemplazo(float valor)
 {
 	this->porcentaje_reemplazo = valor;
+}
+
+Opciones& Opciones::operator = (Opciones *opc)
+{
+	this->set_popsize(opc->get_popsize());
+	this->set_alpha(opc->get_alpha());
+	this->set_beta(opc->get_beta());
+	this->set_clonsize(opc->get_clonsize());
+	this->set_probmutacion(opc->get_probmutacion());
+	this->set_afinidad(opc->get_afinidad());
+	this->set_generaciones(opc->get_generaciones());
+	this->set_porcentajeclones(opc->get_porcentajeclones());
+	this->set_porcentajereemplazo(opc->get_porcentajereemplazo());
 }

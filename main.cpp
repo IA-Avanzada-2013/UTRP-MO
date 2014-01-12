@@ -16,7 +16,17 @@
 #include "SolutionSet.h"
 #include "Utils.h"
 #include "inmune.h"
+#include "opciones.h"
 
+#define POP_SIZE 1000
+#define ALPHA 0.4
+#define BETA 0.6
+#define CLON_SIZE 150
+#define PROBMUTACION 0.1
+#define AFINIDAD 1
+#define GENERACIONES 10
+#define CLONES 0.5
+#define REEMPLAZO 0.3
 
 
 using namespace std;
@@ -162,9 +172,22 @@ int main(int argc, char **argv)
 		std::cout << "..." << std::endl;
 		p->show_travel_times();	
 	}
+		
+	//parametros del algoritmo
+	Opciones* o = new Opciones();
+	
+	o->set_popsize(100);
+	o->set_alpha(0.5);
+	o->set_beta(0.5);
+	o->set_clonsize(150);
+	o->set_probmutacion(0.1);
+	o->set_afinidad(1);
+	o->set_generaciones(10);
+	o->set_porcentajeclones(0.5);
+	o->set_porcentajereemplazo(0.3);
 
 	//inicializacion del algoritmo
-	Inmune *algoritmo = new Inmune(POP_SIZE,routes_info);
+	Inmune *algoritmo = new Inmune(POP_SIZE,routes_info,o);
 	
 	//inicializacion de la poblacionvector bad_alloc c++
 	SolutionSet *poblacion = new SolutionSet();

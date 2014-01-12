@@ -2,10 +2,11 @@
 
 using namespace std;
 
-Inmune::Inmune(int poblacion,vector<RouteInfo> info)
+Inmune::Inmune(int poblacion,vector<RouteInfo> info,Opciones* &opc)
 {
 	this->tam_poblacion = poblacion;
 	this->informacion = info;
+	this->opciones = opc;
 }	
 
 Route* Inmune::generar_ruta_factible(int tipo,vector<BusStop> &bus_stops,int** &travel_times)

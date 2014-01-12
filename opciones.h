@@ -27,6 +27,8 @@ public:
 	void set_porcentajeclones(float);
 	void set_porcentajereemplazo(float);
 	
+	Opciones& operator=(Opciones*);
+	
 private:
 	int pop_size;
 	float alpha;
