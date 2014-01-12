@@ -187,7 +187,7 @@ int main(int argc, char **argv)
 	o->set_porcentajereemplazo(0.3);
 
 	//inicializacion del algoritmo
-	Inmune *algoritmo = new Inmune(POP_SIZE,routes_info,o);
+	Inmune *algoritmo = new Inmune(routes_info,o);
 	
 	//inicializacion de la poblacionvector bad_alloc c++
 	SolutionSet *poblacion = new SolutionSet();

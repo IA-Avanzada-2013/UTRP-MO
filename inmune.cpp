@@ -2,9 +2,8 @@
 
 using namespace std;
 
-Inmune::Inmune(int poblacion,vector<RouteInfo> info,Opciones* &opc)
+Inmune::Inmune(vector<RouteInfo> info,Opciones* &opc)
 {
-	this->tam_poblacion = poblacion;
 	this->informacion = info;
 	this->opciones = opc;
 }	

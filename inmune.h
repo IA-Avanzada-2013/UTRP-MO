@@ -16,7 +16,7 @@ using namespace std;
 
 class Inmune{
 	public:
-		Inmune(int,vector<RouteInfo>,Opciones*&);
+		Inmune(vector<RouteInfo>,Opciones*&);
 		Route* generar_ruta_factible(int,vector<BusStop>&,int**&);
 		Solution* generar_anticuerpo(vector<BusStop>&,int**&,int);
 		void generar_poblacion(SolutionSet&,int,vector<BusStop>&,int**&);
@@ -34,7 +34,6 @@ class Inmune{
 		void nueva_generacion(SolutionSet*&,vector<Solution>&,int,int,vector<BusStop>&,int**&,int**&,ShortestRoute*&,int,float,float);
 
 	private:
-		int tam_poblacion;
 		vector<RouteInfo> informacion;
 		Opciones opciones;
 };
