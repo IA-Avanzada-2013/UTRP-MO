@@ -250,7 +250,7 @@ Solution *Evolut1on::generate_feasible_route_set(std::vector<RouteInfo> routes_i
     else{
     	std::cout << "Its NOT Feasible:" << std::endl;
 
-    	if(this->repair_routeset(sol,&used_nodes,&left_bus_stops)){
+    	if(this->repair_routeset(sol)){
     		std::cout << "Route Repaired!" << std::endl;
     		if(sol->check_feasability(&routes_info, this->p.get_size()))	
 				std::cout << "Now Its Feasible =)" << std::endl;
@@ -261,8 +261,38 @@ Solution *Evolut1on::generate_feasible_route_set(std::vector<RouteInfo> routes_i
 
 	return sol;
 }
+//statos = true if they are used nodes, false if not
+std::vector<BusStop> Evolut1on::get_specific_nodes(Solution *routeset,bool status){
+	std::vector<BusStop> result;
+	bool flag=false;
+	if(status){
+		for (int i = 0; i < routeset->routes.size(); ++i)
+			for (int j = 0; j < routeset->routes[i].bus_stops.size(); ++j){
+				for (int k = 0; k < result.size(); ++k){
+					if(result[k].idi==routeset->routes[i].bus_stops[j].idi)
+						flag=true;
+				}
+				if(!flag){
+					result.push_back(routeset->routes[i].bus_stops[j]);
+					flag=false;
+				}
+			}
+				
+	}
+	else{
+		result = this->p.get_bus_stops();
+		for (int i = 0; i < routeset->routes.size(); ++i)
+			for (int j = 0; j < routeset->routes[i].bus_stops.size(); ++j)
+				for (int k = 0; k < result.size(); ++k)
+					if(result[k].idi==routeset->routes[i].bus_stops[j].idi)
+						result.erase(result.begin()+k);
+	}
+	return result;
+}
 
-bool Evolut1on::repair_routeset(Solution *unfeasible_routeset,std::vector<BusStop> *used_nodes,std::vector<BusStop> *left_bus_stops){
+bool Evolut1on::repair_routeset(Solution *unfeasible_routeset){
+	std::vector<BusStop> used_nodes = this->get_specific_nodes(unfeasible_routeset,true);
+	std::vector<BusStop> left_bus_stops= this->get_specific_nodes(unfeasible_routeset,false);
 	bool result=false;
 	int attempts_timeout=0;
 	for (int i = 0; i < this->route_types; ++i)
@@ -277,25 +307,25 @@ bool Evolut1on::repair_routeset(Solution *unfeasible_routeset,std::vector<BusSto
 		chosen_route.print_route();
 		if(chosen_route.bus_stops.size()<this->routes_info[chosen_route.tipo_ruta][2]){
 			std::cout << "Route can accept extra nodes" << std::endl;
-			for (int i = 0; i < (*left_bus_stops).size(); ++i)	{
-				std::cout << "There is/are " << (*left_bus_stops).size() << " bus stop(s) left" <<std::endl; 
-				std::cout << "Checking left node "<< (*left_bus_stops)[i].idi << std::endl;
-				if(this->is_neighbour(chosen_route.bus_stops[0],(*left_bus_stops)[i].idi) ){
+			for (int i = 0; i < left_bus_stops.size(); ++i)	{
+				std::cout << "There is/are " << left_bus_stops.size() << " bus stop(s) left" <<std::endl; 
+				std::cout << "Checking left node "<< left_bus_stops[i].idi << std::endl;
+				if(this->is_neighbour(chosen_route.bus_stops[0],left_bus_stops[i].idi) ){
 					std::cout << "Node is Neighbour of the beginning" << std::endl;
-					chosen_route.bus_stops.insert(chosen_route.bus_stops.begin(), (*left_bus_stops)[i]);
-					(*used_nodes).push_back((*left_bus_stops)[i]);
-					(*left_bus_stops).erase((*left_bus_stops).begin()+i);
+					chosen_route.bus_stops.insert(chosen_route.bus_stops.begin(), left_bus_stops[i]);
+					used_nodes.push_back(left_bus_stops[i]);
+					left_bus_stops.erase(left_bus_stops.begin()+i);
 					break;
 				}
-				else if(this->is_neighbour(chosen_route.bus_stops[chosen_route.bus_stops.size()-1],(*left_bus_stops)[i].idi) ){
+				else if(this->is_neighbour(chosen_route.bus_stops[chosen_route.bus_stops.size()-1],left_bus_stops[i].idi) ){
 					std::cout << "Node is neighbour of end" << std::endl;
-					chosen_route.bus_stops.push_back((*left_bus_stops)[i]);
-					(*used_nodes).push_back((*left_bus_stops)[i]);
-					(*left_bus_stops).erase((*left_bus_stops).begin()+i);
+					chosen_route.bus_stops.push_back(left_bus_stops[i]);
+					used_nodes.push_back(left_bus_stops[i]);
+					left_bus_stops.erase(left_bus_stops.begin()+i);
 					break;
 				}
 				else{
-					std::cout << "Node "  << (*left_bus_stops)[i].idi << " isn neighbour of route" << std::endl;
+					std::cout << "Node "  << left_bus_stops[i].idi << " isn neighbour of route" << std::endl;
 					attempts_timeout--;
 					std::cout << "timeout: " << attempts_timeout << std::endl;
 					if(attempts_timeout<0)
@@ -304,7 +334,7 @@ bool Evolut1on::repair_routeset(Solution *unfeasible_routeset,std::vector<BusSto
 			}
 		}
 
-		if((*used_nodes).size()==this->p.get_size()||((*used_nodes).size() < this->p.get_size()))
+		if(used_nodes.size()==this->p.get_size()||(used_nodes.size() < this->p.get_size()))
 			possibilities_exhausted=true;
 
 	}

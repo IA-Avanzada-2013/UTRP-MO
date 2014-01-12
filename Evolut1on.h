@@ -21,10 +21,11 @@ public:
 	bool find_node(std::vector<BusStop>actual, int idx);
 	std::vector<BusStop> get_neighbour_bus_stops(int previous_node,std::vector<BusStop> route_in_creation,std::vector<BusStop> bus_stops_left);
 	bool is_neighbour(BusStop a, int b);
-	bool repair_routeset(Solution *unfeasible_routeset,std::vector<BusStop> *used_nodes,std::vector<BusStop> *left_bus_stops);
+	bool repair_routeset(Solution *unfeasible_routeset);
 	void make_small_change();
 	bool check_duplicates();
 	int nice_neighbour(std::vector<BusStop> used_nodes, std::vector<BusStop> left_bus_stops);
+	std::vector<BusStop> get_specific_nodes(Solution *routeset,bool status);
 };
 /*
 Generate initial population of feasible route sets.
