@@ -181,9 +181,10 @@ int ShortestRoute::getTransfers(int a, int b, std::vector<Route> routes){
     construct_road(a,b, &recorrido);
 
     std::list<int>::iterator next = recorrido.begin();
-    
+    next++;
+
     for(std::list<int>::iterator it = recorrido.begin(); it != recorrido.end(); it++){
-	next++;
+
         for(std::list<Route*>::iterator it2 = rutas_del_camino.begin(); it2 != rutas_del_camino.end(); ){
             if( !(**it2).check_edge(*it,*next)  ){
                 it2 = rutas_del_camino.erase(it2);
@@ -192,15 +193,16 @@ int ShortestRoute::getTransfers(int a, int b, std::vector<Route> routes){
             }
         }
         if(rutas_del_camino.empty() ){
-            if( next == recorrido.end() ) return transfers;//break;
-	    transfers++;
-	    std::advance (it,-1);
-	    std::advance (next, -1);
-	    for(unsigned int i=0;i<routes.size();i++){
-               rutas_del_camino.push_back(&routes[i]);
+            transfers++;
+            for(unsigned int i=0;i<routes.size();i++){
+                rutas_del_camino.push_back(&routes[i]);
             }
         }
+
+        next++;
+        if( next == recorrido.end() ) break;
     }
+
     return transfers;
 }
 

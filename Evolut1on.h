@@ -15,18 +15,24 @@ public:
 	int seed,route_types,total_routes,route_min_length,route_max_length,route_type;
 	int** routes_info;
 
-	int best_route_so_far_o1, best_route_so_far_o2;
+	int best_routeset_so_far_o1, best_routeset_so_far_o2;
 	Solution *generate_feasible_route_set(std::vector<RouteInfo> routes_info);
 	Route *generate_route(int tmp_route_size,std::vector<Route> routes_so_far, int tmp_route_type);
 	bool find_node(std::vector<BusStop>actual, int idx);
 	std::vector<BusStop> get_neighbour_bus_stops(int previous_node,std::vector<BusStop> route_in_creation,std::vector<BusStop> bus_stops_left);
 	bool is_neighbour(BusStop a, int b);
 	bool repair_routeset(Solution *unfeasible_routeset);
-	void make_small_change();
+	void make_small_change(Solution *offspring);
 	bool check_duplicate_routes(Solution *routeset, Route *route);
 	int nice_neighbour(std::vector<BusStop> used_nodes, std::vector<BusStop> left_bus_stops);
 	std::vector<BusStop> get_specific_nodes(Solution *routeset,bool status);
 	void print_temp_route(std::vector<BusStop> ruta);
+	void seamo2(void);
+	void set_best_routes(void);
+	Solution *crossover(Solution P1, Solution P2);
+	int nice_route(std::vector<Route> route_set,std::vector<BusStop> used_nodes, std::vector<BusStop> left_bus_stops);
+	bool check_feasability2(Solution *sol);
+	void set_fs(Solution *sol);
 };
 /*
 Generate initial population of feasible route sets.

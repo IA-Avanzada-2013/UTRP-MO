@@ -19,10 +19,11 @@ public:
 	void quality();         //Calcula alterando el valor de fo1 y fo2
 	bool check_feasability(std::vector<RouteInfo> *info, int size);
 	bool check_connectivity(int size);
-	int setFO1(ShortestRoute *sr, int **&demand);
+	int setF01(ShortestRoute *sr, int **&demand);
 	int setF02(int size, int **&travel_times);
 
 	bool print_solution_routes();
+	bool show_solution_routes();
     
 };
 

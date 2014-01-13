@@ -38,7 +38,7 @@ bool Solution::check_feasability(std::vector<RouteInfo> *info, int size){
         return true;
 };
 
-int Solution::setFO1(ShortestRoute *sr, int **&demand){
+int Solution::setF01(ShortestRoute *sr, int **&demand){
     float numerador=0.0;
     float denominador=0.0;
     float transferencias=0.0;
@@ -54,7 +54,7 @@ int Solution::setFO1(ShortestRoute *sr, int **&demand){
 
         }
     }    
-    std::cout << "\nFO:" << numerador/denominador << "\n";
+    //std::cout << "\nFO:" << numerador/denominador << "\n";
     this->fo1 = (numerador/denominador);
     return (numerador/denominador);
     //this->fo1 = (numerador/denominador);
@@ -141,4 +141,18 @@ bool Solution::print_solution_routes(){
 		sol << std::endl;
 	}  
   	sol.close();
+};
+
+bool Solution::show_solution_routes(){
+	
+	for (int i = 0; i < this->routes.size() ; i++){
+		std::cout << "(";
+		for( int j = 0; j < this->routes[i].bus_stops.size(); j++){
+			std::cout << this->routes[i].bus_stops[j].idi+1;
+			if(j < this->routes[i].bus_stops.size()-1){
+				std::cout << ",";
+			}
+		}
+		std::cout << ")"<< std::endl;
+	} 
 };
