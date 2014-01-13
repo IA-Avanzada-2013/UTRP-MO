@@ -1,7 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-
+#include <fstream>
+#include <string>
+#include <sstream>
 #include <getopt.h>
 #include <cstdlib>
 #include "BusStop.h"
@@ -9,22 +11,35 @@
 #include "ShortestRoute.h"
 #include "Solution.h"
 #include "Route.h"
-
+#include "SolutionSet.h"
 #include "Ants.h"
+#include "Problem.h"
+#include "common.h"
+#include "BusStop.h"
+#include "RouteInfo.h"
+#include "Utils.h"
+#include <time.h>
 
-Ants::Ants(std::vector<BusStop> &bus_stops, int **&demand,int **&travel_times, int nAnts, int nIterations,int seed,std::vector<RouteInfo> routes_info) {
+
+using namespace std;
+
+Ants::Ants(std::vector<BusStop> &bus_stops, int **&demand,int **&travel_times, int nAnts, int nIterations,int seed,std::vector<RouteInfo> routes_info, Problem *problem,std::string instancia) {
 	this->seed=seed;
 	srand ( this->seed );
+	this->start=time(NULL);
 	this->bus_stops = bus_stops;
 	this->demand=demand;
+	this->problem=problem;
 	this->travel_times=travel_times;
 	initializePheromoneMatrix(this->bus_stops.size());
 	this->nAnts=nAnts;
 	this->nIterations=nIterations;
+	this->instancia=instancia.substr(10);
 	this->minL=routes_info[0].min_length;
 	this->maxL=routes_info[0].max_length;
 	this->q=routes_info[0].quantity;
 	this->calidad=9999999.9;
+	this->st=new SolutionSet();
 	this->getSolutions();
 };
 
@@ -142,10 +157,11 @@ void Ants::getSolutions(){
 		sr->calcDist(this->travel_times,rts);
 		s->set_routes(rts);
 		int calidad= s->setFO1(sr,demand) + s->setF02(this->size,travel_times);
-		if(calidad<=this->calidad)
+		if(calidad<this->calidad)
 		{
 			this->calidad=calidad;
 			this->setBestSolution(rts);
+			this->st->solutions.push_back(*s);
 			for (int i = 0; i < rts.size(); i++)
 			{
 				this->fillPheromone(rts[i].bus_stops, 10);
@@ -167,9 +183,53 @@ void Ants::getSolutions(){
 		//bool x = s->routes[i].check_cycles_and_backtracks();
 	}	
 	std::cout<<"FO1: "<<s->setFO1(sr,demand)<<" FO2: "<<s->setF02(this->size,travel_times)<<std::endl;
+	float hypervolume = hv(this->st, this->problem);
+	std::cout<<"hipervolumen: "<<hypervolume<<std::endl;
+	std::cout<<"cuantas: "<<this->st->solutions.size()<<std::endl;
 	s->print_solution_routes();
 	bool y = s->check_connectivity(this->size);
 	std::cout << "check_connectivity: " << y << std::endl;
+	this->st->print_solution_set();
+	
+
+	time_t fin = time(NULL);
+	ofstream file;
+	std::string fileName = "./Results/hormigas -i "+this->instancia+" -s "+static_cast<ostringstream*>( &(ostringstream() << this->seed) )->str()+" -r "+static_cast<ostringstream*>( &(ostringstream() << this->q) )->str()+":"+static_cast<ostringstream*>( &(ostringstream() << this->minL) )->str()+":"+static_cast<ostringstream*>( &(ostringstream() << this->maxL) )->str()+".txt";
+	std::cout << fileName<<std::endl;
+	file.open (fileName.c_str());
+	file << "#Rutas: "<<this->q<<"\tLMin: "<<this->minL<<"\tLMax: "<<this->maxL<<"\tSemilla: "<<this->seed<<"\n";
+	file << "hipervolumen: "<<hypervolume<<"\tTiempo de Ejecucion: "<<difftime(fin,this->start)<<"\n\n";
+	file <<"-Mejor Solucion\tFO1: "<<s->setFO1(sr,demand)<<"\tFO2: "<<s->setF02(this->size,travel_times)<<"\t Conectividad: "<<y<<"------------------------------------------------------\n";
+	for (int i = 0; i < this->bestSolution.size(); i++)
+	{
+		for (int j = 0; j < this->bestSolution[i].bus_stops.size(); j++)
+		{
+			file << this->bestSolution[i].bus_stops[j].idi+1;
+			if(j < this->bestSolution[i].bus_stops.size()-1){
+				file << ", ";
+			}
+		}
+		file <<"\n";
+	}
+	file << "\n\n";
+
+	for (int i = 0; i < this->st->solutions.size(); ++i)
+	{
+		file <<"-Solucion "<< i <<"\tFO1: "<<this->st->solutions[i].fo1<<"\tFO2: "<<this->st->solutions[i].fo2<<"\t Conectividad: "<< this->st->solutions[i].check_connectivity(this->size)<<"------------------------------------------------------\n";
+		for (int j = 0; j < this->st->solutions[i].routes.size(); j++)
+		{
+			for (int k = 0; k < this->st->solutions[i].routes[j].bus_stops.size(); k++)
+			{
+				file << this->st->solutions[i].routes[j].bus_stops[k].idi+1;
+				if(k < this->st->solutions[i].routes[j].bus_stops.size()-1){
+					file << ", ";
+				}
+			}
+			file << "\n";
+		}
+		file << "\n\n";
+	}
+	file.close();
 }
 
 int Ants::getPositionInBusStops(BusStop bus){

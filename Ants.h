@@ -1,10 +1,13 @@
 #include "common.h"
 #include "BusStop.h"
+#include "Problem.h"
+#include "SolutionSet.h"
 #include <vector>
 #include <iostream>
 #include <vector>
 #include <getopt.h>
 #include <cstdlib>
+#include <time.h>
 class Ants {
 	
     
@@ -15,6 +18,9 @@ public:
     std::vector<std::vector<double> > feromonas;
     std::vector<Route> bestSolution;
     std::vector<Route> actualSolution;
+    Problem *problem;
+    SolutionSet *st;
+    time_t start;
     int size;
     int seed;
     int **demand;
@@ -24,9 +30,10 @@ public:
     int maxL;
     int minL;
     int q;
+    std::string instancia;
     float calidad;
 
-    Ants(std::vector<BusStop> &bus_stops, int **&demand,int **&travel_times, int nAnts, int nIterations, int seed,std::vector<RouteInfo> routes_info);
+    Ants(std::vector<BusStop> &bus_stops, int **&demand,int **&travel_times, int nAnts, int nIterations, int seed,std::vector<RouteInfo> routes_info,Problem *problem,std::string instancia);
 	void initializePheromoneMatrix(int size);
 	void printBusStops(std::vector<BusStop> bus_stops);
 	void printPheromone();

@@ -155,105 +155,105 @@ int main(int argc, char **argv)
 	}
 
 
-	Solution *s = new Solution();
-	Route *r = new Route();
-	Route *r1 = new Route();
-	Route *r2 = new Route();
-	Route *r3 = new Route();
+	// Solution *s = new Solution();
+	// Route *r = new Route();
+	// Route *r1 = new Route();
+	// Route *r2 = new Route();
+	// Route *r3 = new Route();
 	
-	std::vector<Route> rts;
-	std::vector<BusStop> bs;
-	std::vector<BusStop> bs1;
-	std::vector<BusStop> bs2;
-	std::vector<BusStop> bs3;
+	// std::vector<Route> rts;
+	// std::vector<BusStop> bs;
+	// std::vector<BusStop> bs1;
+	// std::vector<BusStop> bs2;
+	// std::vector<BusStop> bs3;
 
 	
-	bs.push_back(bus_stops[8]);
-	bs.push_back(bus_stops[14]);
+	// bs.push_back(bus_stops[8]);
+	// bs.push_back(bus_stops[14]);
 
 		
-	bs1.push_back(bus_stops[0]);
-	bs1.push_back(bus_stops[1]);
-	bs1.push_back(bus_stops[3]);
-	bs1.push_back(bus_stops[4]);
+	// bs1.push_back(bus_stops[0]);
+	// bs1.push_back(bus_stops[1]);
+	// bs1.push_back(bus_stops[3]);
+	// bs1.push_back(bus_stops[4]);
 	
-	bs2.push_back(bus_stops[10]);
-	bs2.push_back(bus_stops[9]);
-	bs2.push_back(bus_stops[6]);
-	bs2.push_back(bus_stops[14]);
-	bs2.push_back(bus_stops[7]);
-	bs2.push_back(bus_stops[5]);
-	bs2.push_back(bus_stops[2]);
-	bs2.push_back(bus_stops[1]);
+	// bs2.push_back(bus_stops[10]);
+	// bs2.push_back(bus_stops[9]);
+	// bs2.push_back(bus_stops[6]);
+	// bs2.push_back(bus_stops[14]);
+	// bs2.push_back(bus_stops[7]);
+	// bs2.push_back(bus_stops[5]);
+	// bs2.push_back(bus_stops[2]);
+	// bs2.push_back(bus_stops[1]);
 	
-	bs3.push_back(bus_stops[13]);
-	bs3.push_back(bus_stops[12]);
-	bs3.push_back(bus_stops[10]);
-	bs3.push_back(bus_stops[11]);
+	// bs3.push_back(bus_stops[13]);
+	// bs3.push_back(bus_stops[12]);
+	// bs3.push_back(bus_stops[10]);
+	// bs3.push_back(bus_stops[11]);
 	
-	r->set_bus_stops(bs);
-	r1->set_bus_stops(bs1);
-	r2->set_bus_stops(bs2);
-	r3->set_bus_stops(bs3);
+	// r->set_bus_stops(bs);
+	// r1->set_bus_stops(bs1);
+	// r2->set_bus_stops(bs2);
+	// r3->set_bus_stops(bs3);
 
-	rts.push_back(r[0]);
-	rts.push_back(r1[0]);
-	rts.push_back(r2[0]);
-	rts.push_back(r3[0]);
+	// rts.push_back(r[0]);
+	// rts.push_back(r1[0]);
+	// rts.push_back(r2[0]);
+	// rts.push_back(r3[0]);
 	
-	s->set_routes(rts);
+	// s->set_routes(rts);
 	
-	std::cout << "Routes:" << std::endl;
-	s->routes[0].print_route();
-	s->routes[1].print_route();
-	s->routes[2].print_route();
-	s->routes[3].print_route();
+	// std::cout << "Routes:" << std::endl;
+	// s->routes[0].print_route();
+	// s->routes[1].print_route();
+	// s->routes[2].print_route();
+	// s->routes[3].print_route();
 	
-	ShortestRoute *sr = new ShortestRoute(size);
+	// ShortestRoute *sr = new ShortestRoute(size);
 	
-	sr->calcDistNoRoutes(travel_times);
-	Route rti;
-	std::cout << "Ruta más corta (0,10):\n";
-	sr->construct_route(0,10,&rti,bus_stops);	
-	for(int i=0; i < rti.bus_stops.size();i++){
-		std::cout << rti.bus_stops[i].idi;
-		if( i < rti.bus_stops.size() - 1) std::cout << ", ";
-	}
-	std::cout << "\n";
+	// sr->calcDistNoRoutes(travel_times);
+	// Route rti;
+	// std::cout << "Ruta más corta (0,10):\n";
+	// sr->construct_route(0,10,&rti,bus_stops);	
+	// for(int i=0; i < rti.bus_stops.size();i++){
+	// 	std::cout << rti.bus_stops[i].idi;
+	// 	if( i < rti.bus_stops.size() - 1) std::cout << ", ";
+	// }
+	// std::cout << "\n";
 
 
-	sr->calcDist(travel_times,rts);
+	// sr->calcDist(travel_times,rts);
 
-	bool y = s->check_connectivity(size);
-	std::cout << "check_connectivity: " << y << std::endl;
+	// bool y = s->check_connectivity(size);
+	// std::cout << "check_connectivity: " << y << std::endl;
 	
-	bool x = s->routes[0].check_cycles_and_backtracks();
-	std::cout << "check_cycles_and_backtracks (route: 0): " << x << std::endl;
+	// bool x = s->routes[0].check_cycles_and_backtracks();
+	// std::cout << "check_cycles_and_backtracks (route: 0): " << x << std::endl;
 
-	float fo1 = s->setFO1(sr,demand);
-	float fo2 = s->setF02(size,travel_times);
+	// float fo1 = s->setFO1(sr,demand);
+	// float fo2 = s->setF02(size,travel_times);
 
-	s->print_solution_routes();
+	// s->print_solution_routes();
 	
-	std::cout << "FO1: " << fo1 << std::endl;
-	std::cout << "FO2: " << fo2 << std::endl;
+	// std::cout << "FO1: " << fo1 << std::endl;
+	// std::cout << "FO2: " << fo2 << std::endl;
 
-	SolutionSet *st = new SolutionSet();
-	st->solutions.push_back(*s);
+	// SolutionSet *st = new SolutionSet();
+	// st->solutions.push_back(*s);
 	
-	st->print_solution_set();	
-        float hypervolume = hv(st, p);
-	std::cout<<hypervolume<<std::endl;
+	// st->print_solution_set();	
+ //        float hypervolume = hv(st, p);
+	// std::cout<<hypervolume<<std::endl;
+	
+	Ants *a=new Ants(bus_stops,demand,travel_times,10,1000,opt_seed,routes_info,p,opt_instance_prefix);
 
-	Ants *a=new Ants(bus_stops,demand,travel_times,10,200,opt_seed,routes_info);
-
-	delete p;
-	delete s;
-	delete r;
-	delete r1;
-	delete r2;
-	delete r3;
-	delete sr;
+	// delete p;
+	// delete s;
+	// delete r;
+	// delete r1;
+	// delete r2;
+	// delete r3;
+	// delete sr;
 	
 	// De-Allocate memory to prevent memory leak
 	for (int i = 0; i < size; ++i)
