@@ -12,7 +12,7 @@ public:
 
 	Problem p;
 	SolutionSet result;
-	int seed,route_types,total_routes,route_min_length,route_max_length,route_type;
+	int seed,route_types,total_routes,route_min_length,route_max_length,route_type,number_of_routes;
 	int** routes_info;
 
 	int best_routeset_so_far_o1, best_routeset_so_far_o2;
@@ -27,12 +27,14 @@ public:
 	int nice_neighbour(std::vector<BusStop> used_nodes, std::vector<BusStop> left_bus_stops);
 	std::vector<BusStop> get_specific_nodes(Solution *routeset,bool status);
 	void print_temp_route(std::vector<BusStop> ruta);
+	bool find_route(std::vector<Route>actual, Route ruta);
 	void seamo2(void);
 	void set_best_routes(void);
 	Solution *crossover(Solution P1, Solution P2);
-	int nice_route(std::vector<Route> route_set,std::vector<BusStop> used_nodes, std::vector<BusStop> left_bus_stops);
+	int nice_route(std::vector<Route> route_set,std::vector<BusStop> used_nodes, std::vector<BusStop> left_bus_stops, int route_type,std::vector<Route> actual_route_set);
 	bool check_feasability2(Solution *sol);
 	void set_fs(Solution *sol);
+	int get_route_type(int i);
 };
 /*
 Generate initial population of feasible route sets.
