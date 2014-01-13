@@ -12,8 +12,9 @@ class Ants {
 public:
 
     std::vector<BusStop> bus_stops;
-    std::vector<std::vector<int> > feromonas;
+    std::vector<std::vector<double> > feromonas;
     std::vector<Route> bestSolution;
+    std::vector<Route> actualSolution;
     int size;
     int seed;
     int **demand;

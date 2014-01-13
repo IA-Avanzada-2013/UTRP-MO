@@ -31,8 +31,8 @@ Ants::Ants(std::vector<BusStop> &bus_stops, int **&demand,int **&travel_times, i
 
 void Ants::initializePheromoneMatrix(int size){
 	this->size=size;
-	std::vector<int> temp(size,1); 
-	std::vector<std::vector<int> > feromonas(size,temp); 
+	std::vector<double> temp(size,1); 
+	std::vector<std::vector<double> > feromonas(size,temp); 
 	this->feromonas=feromonas;
 }
 
@@ -71,6 +71,7 @@ std::vector<BusStop> Ants::cleanDestinos(std::vector<BusStop> bs, std::vector<Bu
 	return stops;
 }
 
+
 std::vector<BusStop> Ants::antMakeRoute(){
 	std::vector<BusStop> stops=this->bus_stops;
    	std::vector<BusStop> bs;
@@ -81,7 +82,6 @@ std::vector<BusStop> Ants::antMakeRoute(){
    	do{
    		B=stops[p];
    		bs.push_back(B);
-   		//int asd = this->getPositionInBusStops(stops[p]);
    		stops=this->getPosiblesDestinos(B);
    		stops=this->cleanDestinos(bs,stops);
    		i++;
@@ -104,7 +104,6 @@ std::vector<BusStop> Ants::antMakeRoute(){
    			p=0;
    		}
    	}while(flag && stops.size()>0 );
-   	//this->printBusStops(bs);
 	return bs;
 }
 
@@ -132,37 +131,42 @@ void Ants::getSolutions(){
 
 	for (int i = 0; i < this->nIterations; i++)
 	{
+		rts.clear();
 		while(rts.size()<this->q)
 		{
 			stops=this->antMakeRoute();
 			r.set_bus_stops(stops);
 			rts.push_back(r);
-
+			this->actualSolution=rts;
 		}
 		sr->calcDist(this->travel_times,rts);
 		s->set_routes(rts);
 		int calidad= s->setFO1(sr,demand) + s->setF02(this->size,travel_times);
-		std::cout<<"FO1: "<<s->setFO1(sr,demand)<<" FO2: "<<s->setF02(this->size,travel_times)<<std::endl;
 		if(calidad<=this->calidad)
 		{
+			this->calidad=calidad;
 			this->setBestSolution(rts);
 			for (int i = 0; i < rts.size(); i++)
 			{
-				this->fillPheromone(rts[i].bus_stops, 3);
+				this->fillPheromone(rts[i].bus_stops, 10);
 			}
 		}
 		else{
-			this->fillPheromone(rts[i].bus_stops, 1);
+			for (int i = 0; i < rts.size(); i++)
+			{
+				this->fillPheromone(rts[i].bus_stops, 1);
+			}
 		}
 	}
 	this->printPheromone();
+	sr->calcDist(this->travel_times,this->bestSolution);
+	s->set_routes(this->bestSolution);
 	for (int i = 0; i < rts.size(); i++)
 	{
-		//this->printBusStops(rts[i].bus_stops);
 		this->bestSolution[i].print_route();
-		bool x = s->routes[i].check_cycles_and_backtracks();
-		std::cout << "check_cycles_and_backtracks: " << x << std::endl;
+		//bool x = s->routes[i].check_cycles_and_backtracks();
 	}	
+	std::cout<<"FO1: "<<s->setFO1(sr,demand)<<" FO2: "<<s->setF02(this->size,travel_times)<<std::endl;
 	s->print_solution_routes();
 	bool y = s->check_connectivity(this->size);
 	std::cout << "check_connectivity: " << y << std::endl;
@@ -170,7 +174,6 @@ void Ants::getSolutions(){
 
 int Ants::getPositionInBusStops(BusStop bus){
 	int pos=0;
-	//std::cout<<"entrando al get position"<<std::endl;
 	for (int i = 0;  i < this->bus_stops.size()  ; i++)
 	{
 		if(bus.idi==this->bus_stops[i].idi)
@@ -178,30 +181,31 @@ int Ants::getPositionInBusStops(BusStop bus){
 			pos=i;
 		}
 	}
-	//std::cout<<"saliendo del get position. posicion: "<<pos <<std::endl;
 	return pos;
 
 }
 
 int Ants::verticalRoulette(){
-	int sum=0;
-	for (int i = 0; i < this->bus_stops.size(); i++)
-	{
-		sum+=this->feromonas[0][i];
-	}
-
-	int number = random(sum);
 	int posicion=0;
-	sum=0;
-	for (int i = 0; (i < this->bus_stops.size()) || (sum>number); i++)
+	std::vector<int> solo(this->size,0);
+	for (int i = 0; i < this->actualSolution.size(); i++)
 	{
-		if(sum<=number)
+		for (int j = 0; j < this->actualSolution[i].bus_stops.size(); j++)
+			{
+				solo[this->getPositionInBusStops(this->actualSolution[i].bus_stops[j])]++;
+			}	
+	}
+	for (int i = 0; i < solo.size() && solo[i]!=0; i++)
+	{
+		if(solo[i]==0)
 		{
 			posicion=i;
 		}
-		sum+=this->feromonas[0][i];
 	}
-
+	if(posicion==0)
+	{
+		posicion=this->random(this->size);
+	}
 	return posicion;
 }
 
@@ -220,21 +224,16 @@ std::vector<BusStop> Ants::getPosiblesDestinos(BusStop bs){
 
 int Ants::horizontalRoulette(std::vector<BusStop> stops,int p){
 	float sum=0.0;
-	//std::cout<<"entrando a horizontal roulette"<<std::endl;
 	for (int i = 0; i < stops.size(); i++)
 	{
-		//std::cout<<"i: "<<i<<" size: "<<stops.size()<<" p: "<<p<<" posicion: "<<this->getPositionInBusStops(stops[i])<<" TT: "<<this->travel_times[this->getPositionInBusStops(stops[i])][p]<<std::endl;
 		sum+=this->feromonas[this->getPositionInBusStops(stops[i])][p];
 		
 	}
-	//std::cout<<"sali del primer for"<<std::endl;
 	int number = random(sum);
 	int posicion=0;
 	sum=0.0;
-	//std::cout<<"entrando a segundo for horizontal roulette"<<std::endl;
 	for (int i = 0; i < stops.size(); i++)
 	{
-		//std::cout<<"posiciones:[ "<< this->getPositionInBusStops(stops[i]) <<" , "<<p<<" ]"<<"Travel times"<<this->travel_times[this->getPositionInBusStops(stops[i])][p]<<std::endl;
 		
 		if(sum<=number)
 		{
@@ -243,7 +242,6 @@ int Ants::horizontalRoulette(std::vector<BusStop> stops,int p){
 		sum+=this->feromonas[this->getPositionInBusStops(stops[i])][p];
 		
 	}
-	//std::cout<<"saliendo a horizontal roulette"<<std::endl;
 	return posicion;
 
 }
@@ -252,10 +250,15 @@ void Ants::fillPheromone(std::vector<BusStop> stops, int cantidad){
 	BusStop bs = stops[0];
 	int pos=this->getPositionInBusStops(bs);
 	feromonas[pos][pos]++;
+	int cant=0;
 	for (int i = 1; i < stops.size(); ++i)
 	{
-		feromonas[this->getPositionInBusStops(stops[i])][pos]=feromonas[this->getPositionInBusStops(stops[i])][pos]+cantidad;
+		cant=feromonas[this->getPositionInBusStops(stops[i])][pos]+cantidad;
+		if(stops.size()<this->minL)
+		{
+			cant=cant/2;
+		}
+		feromonas[this->getPositionInBusStops(stops[i])][pos]=cant;
 		pos=this->getPositionInBusStops(stops[i]);
 	}
-	//this->printPheromone();
 }
