@@ -10,7 +10,7 @@ class SolutionSet {
 public:
 	std::vector <Solution> solutions;
 	SolutionSet(void){};
-	bool print_solution_set();
+	bool print_solution_set(std::string args);
 };
 
 #endif

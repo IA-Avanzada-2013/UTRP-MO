@@ -189,12 +189,13 @@ void Ants::getSolutions(){
 	s->print_solution_routes();
 	bool y = s->check_connectivity(this->size);
 	std::cout << "check_connectivity: " << y << std::endl;
-	this->st->print_solution_set();
 	
 
 	time_t fin = time(NULL);
 	ofstream file;
-	std::string fileName = "./Results/hormigas -i "+this->instancia+" -s "+static_cast<ostringstream*>( &(ostringstream() << this->seed) )->str()+" -r "+static_cast<ostringstream*>( &(ostringstream() << this->q) )->str()+":"+static_cast<ostringstream*>( &(ostringstream() << this->minL) )->str()+":"+static_cast<ostringstream*>( &(ostringstream() << this->maxL) )->str()+".txt";
+	std::string args ="-i "+this->instancia+" -s "+static_cast<ostringstream*>( &(ostringstream() << this->seed) )->str()+" -r "+static_cast<ostringstream*>( &(ostringstream() << this->q) )->str()+":"+static_cast<ostringstream*>( &(ostringstream() << this->minL) )->str()+":"+static_cast<ostringstream*>( &(ostringstream() << this->maxL) )->str()+".txt";
+	this->st->print_solution_set(args);
+	std::string fileName = "./Results/hormigas "+args;
 	std::cout << fileName<<std::endl;
 	file.open (fileName.c_str());
 	file << "#Rutas: "<<this->q<<"\tLMin: "<<this->minL<<"\tLMax: "<<this->maxL<<"\tSemilla: "<<this->seed<<"\n";

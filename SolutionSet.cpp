@@ -2,9 +2,9 @@
 
 SolutionSet::SolutionSet(void);
 
-bool SolutionSet::print_solution_set(){
+bool SolutionSet::print_solution_set(std::string args){
 	std::string filename;
-	filename = "Results/Pareto.txt";
+	filename = "Results/Pareto"+args+".txt";
 	std::ofstream paret(filename.c_str());
 
 	for (std::vector<Solution>::iterator it =  this->solutions.begin(); it!= this->solutions.end(); ++it)
