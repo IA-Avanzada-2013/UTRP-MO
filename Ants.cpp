@@ -62,16 +62,28 @@ void Ants::printPheromone(){
 	}
 }
 
+std::vector<BusStop> Ants::cleanDestinos(std::vector<BusStop> bs, std::vector<BusStop> stops){
+	for (int i = 0; i < bs.size(); i++)
+	{
+		stops.erase(std::remove(stops.begin(), stops.end(), bs[i]), stops.end());
+	}
+
+	return stops;
+}
+
 std::vector<BusStop> Ants::antMakeRoute(){
 	std::vector<BusStop> stops=this->bus_stops;
    	std::vector<BusStop> bs;
    	int p=this->verticalRoulette();
+   	BusStop B=this->bus_stops[p];
    	bool flag =true;
    	int i =0;
    	do{
-   		bs.push_back(stops[p]);
-   		int asd = this->getPositionInBusStops(stops[p]);
-   		stops.erase(stops.begin()+p);
+   		B=stops[p];
+   		bs.push_back(B);
+   		//int asd = this->getPositionInBusStops(stops[p]);
+   		stops=this->getPosiblesDestinos(B);
+   		stops=this->cleanDestinos(bs,stops);
    		i++;
    		if(bs.size()>=this->minL)
    		{
@@ -97,6 +109,10 @@ std::vector<BusStop> Ants::antMakeRoute(){
 }
 
 int Ants::random(int max){
+	if(max==0)
+	{
+		return 0;
+	}
 	return rand() % max;
 
 }
@@ -154,6 +170,7 @@ void Ants::getSolutions(){
 
 int Ants::getPositionInBusStops(BusStop bus){
 	int pos=0;
+	//std::cout<<"entrando al get position"<<std::endl;
 	for (int i = 0;  i < this->bus_stops.size()  ; i++)
 	{
 		if(bus.idi==this->bus_stops[i].idi)
@@ -161,6 +178,7 @@ int Ants::getPositionInBusStops(BusStop bus){
 			pos=i;
 		}
 	}
+	//std::cout<<"saliendo del get position. posicion: "<<pos <<std::endl;
 	return pos;
 
 }
@@ -187,24 +205,47 @@ int Ants::verticalRoulette(){
 	return posicion;
 }
 
+std::vector<BusStop> Ants::getPosiblesDestinos(BusStop bs){
+	int posicion=this->getPositionInBusStops(bs);
+	std::vector<BusStop> stops;
+	for (int i = 0; i < this->size; i++)
+	{
+		if(this->travel_times[posicion][i]>0)
+		{
+			stops.push_back(this->bus_stops[i]);
+		}
+	}
+	return stops;
+}
+
 int Ants::horizontalRoulette(std::vector<BusStop> stops,int p){
-	int sum=0;
+	float sum=0.0;
+	//std::cout<<"entrando a horizontal roulette"<<std::endl;
 	for (int i = 0; i < stops.size(); i++)
 	{
+		//std::cout<<"i: "<<i<<" size: "<<stops.size()<<" p: "<<p<<" posicion: "<<this->getPositionInBusStops(stops[i])<<" TT: "<<this->travel_times[this->getPositionInBusStops(stops[i])][p]<<std::endl;
 		sum+=this->feromonas[this->getPositionInBusStops(stops[i])][p];
+		
 	}
+	//std::cout<<"sali del primer for"<<std::endl;
 	int number = random(sum);
 	int posicion=0;
-	sum=0;
+	sum=0.0;
+	//std::cout<<"entrando a segundo for horizontal roulette"<<std::endl;
 	for (int i = 0; i < stops.size(); i++)
 	{
+		//std::cout<<"posiciones:[ "<< this->getPositionInBusStops(stops[i]) <<" , "<<p<<" ]"<<"Travel times"<<this->travel_times[this->getPositionInBusStops(stops[i])][p]<<std::endl;
+		
 		if(sum<=number)
 		{
 			posicion=i;
 		}
 		sum+=this->feromonas[this->getPositionInBusStops(stops[i])][p];
+		
 	}
+	//std::cout<<"saliendo a horizontal roulette"<<std::endl;
 	return posicion;
+
 }
 
 void Ants::fillPheromone(std::vector<BusStop> stops, int cantidad){

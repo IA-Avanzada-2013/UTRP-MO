@@ -245,7 +245,7 @@ int main(int argc, char **argv)
         float hypervolume = hv(st, p);
 	std::cout<<hypervolume<<std::endl;
 
-	Ants *a=new Ants(bus_stops,demand,travel_times,10,100,opt_seed,routes_info);
+	Ants *a=new Ants(bus_stops,demand,travel_times,100,50,opt_seed,routes_info);
 
 	delete p;
 	delete s;

@@ -37,5 +37,7 @@ public:
 	int random(int max);
 	void getSolutions();
 	void setBestSolution(std::vector<Route> rts);
+    std::vector<BusStop> getPosiblesDestinos(BusStop bs);
+    std::vector<BusStop> cleanDestinos(std::vector<BusStop> bs, std::vector<BusStop> stops);
     
 };
