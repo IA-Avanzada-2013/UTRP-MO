@@ -2,10 +2,18 @@
 
 using namespace std;
 
-Inmune::Inmune(vector<RouteInfo> info,Opciones* &opc)
+Inmune::Inmune(vector<RouteInfo> info,Opciones* &opc,int** &demanda, int** &travel,vector<BusStop> &bstops,int &tam,int &semilla)
 {
 	this->informacion = info;
 	this->opciones = opc;
+	this->demand = demanda;
+	this->travel_times = travel;
+	this->bs = bstops;
+	this->size = tam;
+	this->seed = semilla;
+	ShortestRoute *shrt = new ShortestRoute(this->size);
+	shrt->calcDistNoRoutes(this->travel_times);
+	this->sr = shrt;
 }	
 
 Route* Inmune::generar_ruta_factible(int tipo,vector<BusStop> &bus_stops,int** &travel_times)
@@ -50,7 +58,6 @@ Route* Inmune::generar_ruta_factible(int tipo,vector<BusStop> &bus_stops,int** &
 Solution* Inmune::generar_anticuerpo(vector<BusStop> &bus_stops,int** &travel_times,int seed)
 {
 	//inicializacion de la solucion
-	srand(seed);
 	Solution *s = new Solution();
 	std::vector<Route> rts;
 	
@@ -95,11 +102,11 @@ Solution* Inmune::generar_anticuerpo(vector<BusStop> &bus_stops,int** &travel_ti
 	return s;
 }	
 
-void Inmune::generar_poblacion(SolutionSet &poblacion,int pop_size,vector<BusStop> &bus_stops,int** &travel_times)
+void Inmune::generar_poblacion(SolutionSet &poblacion)
 {
-	for(int j=0;j<pop_size;j++)
+	for(int j=0;j<this->opciones.get_popsize();j++)
 	{
-		Solution *s = generar_anticuerpo(bus_stops,travel_times,j*time(NULL));
+		Solution *s = generar_anticuerpo(this->bs,this->travel_times,j*time(NULL));
 		
 		cout << "antes " << poblacion.solutions.size() << endl;
 		
@@ -112,12 +119,12 @@ void Inmune::generar_poblacion(SolutionSet &poblacion,int pop_size,vector<BusSto
 	
 }
 
-void Inmune::evaluar_fo(SolutionSet* &poblacion,int** &travel_times, int** &demand,ShortestRoute* &sr,int size)
+void Inmune::evaluar_fo(SolutionSet* &poblacion)
 {
 	for(int i=0;i<poblacion->solutions.size();i++)
 	{
-		float fo1 = poblacion->solutions[i].setFO1(sr,demand);
-		float fo2 = poblacion->solutions[i].setF02(size,travel_times);
+		float fo1 = poblacion->solutions[i].setFO1(this->sr,this->demand);
+		float fo2 = poblacion->solutions[i].setF02(this->size,this->travel_times);
 	}
 }
 
@@ -134,10 +141,10 @@ bool Inmune::es_dominado_de_Pareto(Solution s, SolutionSet ss){
 	return dominado;
 }
 
-void Inmune::afinidad(SolutionSet* &poblacion, float alpha, float beta){
+void Inmune::afinidad(SolutionSet* &poblacion){
 	for(int i=0;i<poblacion->solutions.size();i++)
 	{
-		poblacion->solutions[i].setQuality(alpha,beta);
+		poblacion->solutions[i].setQuality(this->opciones.get_alpha(),this->opciones.get_beta());
 	}
 }
 
@@ -191,10 +198,11 @@ int Inmune::get_index(float &valor, SolutionSet ss)
 	return -1;
 }
 
-vector<Solution> Inmune::seleccionar_mejores_anticuerpos(SolutionSet* &poblacion,float porcentaje)
+vector<Solution> Inmune::seleccionar_mejores_anticuerpos(SolutionSet* &poblacion)
 {
 	vector<Solution> mejores;
-	int seleccion = poblacion->solutions.size()*porcentaje;
+	//se elige un porcentaje de los mejores individuos
+	int seleccion = poblacion->solutions.size()*this->opciones.get_afinidad();
 	vector<float> afinidades = ordenar_afinidad(poblacion);
 	
 	for(int i=0;i<seleccion;i++)
@@ -205,12 +213,12 @@ vector<Solution> Inmune::seleccionar_mejores_anticuerpos(SolutionSet* &poblacion
 	return mejores;
 }
 
-void Inmune::clonar_anticuerpos(vector<Solution> &clones,int n_clones)
+void Inmune::clonar_anticuerpos(vector<Solution> &clones)
 {
 	int random;
 	int size = clones.size();
 	srand(time(NULL));
-	for(int i=0;i<n_clones-size;i++)
+	for(int i=0;i<this->opciones.get_clonsize()-size;i++)
 	{
 		random = rand()%size;
 		clones.push_back(clones[random]);
@@ -218,40 +226,39 @@ void Inmune::clonar_anticuerpos(vector<Solution> &clones,int n_clones)
 }
 
 
-void Inmune::mutacion(vector<Solution> &clones,int seed, float probabilidad,vector<BusStop> &bus_stops,int** &travel_times)
+void Inmune::mutacion(vector<Solution> &clones)
 {
 	int posicion,clon_size,size,tipo;
-	srand(seed);
 	clon_size=clones.size();
 	for(int i=0;i<clon_size;i++)
 	{
 		//si el numero aleatorio es mayor que la probabilidad entonces se muta al clon
-		if(rand()%101>probabilidad*100)
+		if(rand()%101>this->opciones.get_probmutacion()*100)
 		{
 			size = clones[i].routes.size();
 			posicion =  rand()%size;
 			tipo= clones[i].routes[posicion].tipo_ruta;
 			
-			std::vector<BusStop> bs;
+			std::vector<BusStop> bus;
 			
-			bs.clear();
+			bus.clear();
 			//se define un largo aleatorio entre el minimo y el maximo ingresado
 			int aleatorio = informacion[tipo].min_length+rand()%(informacion[tipo].max_length-informacion[tipo].min_length);
 			//generacion de rutas iniciales
 			for(int j=0;j<aleatorio;j++)
 			{
-				int stop_random=rand()%bus_stops.size();
+				int stop_random=rand()%this->bs.size();
 				if(j!=0)
 				{
 					//verifica que la ruta sea conexa
-					while(travel_times[bs[j-1].idi][stop_random]==-1)
+					while(this->travel_times[bus[j-1].idi][stop_random]==-1)
 					{
-						stop_random=rand()%bus_stops.size();
+						stop_random=rand()%this->bs.size();
 					}
 				}
-				bs.push_back(bus_stops[stop_random]);
+				bus.push_back(this->bs[stop_random]);
 			}
-			clones[i].routes[posicion].set_bus_stops(bs);
+			clones[i].routes[posicion].set_bus_stops(bus);
 		}
 	}
 }
@@ -268,23 +275,23 @@ bool Inmune::valor_in_vector(float valor,vector<float> v)
 	return false;
 }
 
-void Inmune::eliminar_exceso(vector<Solution> &clones,int pop_size,float porcentaje,int** &travel_times, int** &demand,ShortestRoute* &sr,int size, float alpha, float beta)
+void Inmune::eliminar_exceso(vector<Solution> &clones)
 {
 	vector<float> afinidades;
 	int clones_size = clones.size();
 	//se actualizan las funciones objetivo y la calidad de los clones
 	for(int i=0;i<clones_size;i++)
 	{
-		float fo1 = clones[i].setFO1(sr,demand);
-		float fo2 = clones[i].setF02(size,travel_times);
-		clones[i].setQuality(alpha,beta);
+		float fo1 = clones[i].setFO1(this->sr,this->demand);
+		float fo2 = clones[i].setF02(this->size,this->travel_times);
+		clones[i].setQuality(this->opciones.get_alpha(),this->opciones.get_beta());
 		afinidades.push_back(clones[i].quality);
 	}
 	
 	sort(afinidades.begin(),afinidades.end());
 	
 	//se escoge un porcentaje de los mejores clones
-	int n_clones = pop_size*porcentaje;
+	int n_clones = this->opciones.get_popsize()*this->opciones.get_porcentajeclones();
 	afinidades.erase(afinidades.begin()+n_clones,afinidades.end());
 	
 	
@@ -297,7 +304,7 @@ void Inmune::eliminar_exceso(vector<Solution> &clones,int pop_size,float porcent
 	}
 }
 		
-void Inmune::nueva_generacion(SolutionSet* &poblacion,vector<Solution> &clones,int pop_size, int reemplazo,vector<BusStop> &bus_stops,int** &travel_times,int** &demand,ShortestRoute* &sr, int size,float alpha, float beta)
+void Inmune::nueva_generacion(SolutionSet* &poblacion,vector<Solution> &clones)
 {	
 	for(int i=0;i<clones.size();i++)
 	{
@@ -307,9 +314,9 @@ void Inmune::nueva_generacion(SolutionSet* &poblacion,vector<Solution> &clones,i
 	
 	vector<float> afinidades = ordenar_afinidad(poblacion);
 	
-	if(afinidades.size()>pop_size)
+	if(afinidades.size()>this->opciones.get_popsize())
 	{
-		afinidades.erase(afinidades.begin()+pop_size,afinidades.end());
+		afinidades.erase(afinidades.begin()+this->opciones.get_popsize(),afinidades.end());
 		
 		for(int i=0;i<poblacion->solutions.size();i++)
 		{
@@ -321,28 +328,28 @@ void Inmune::nueva_generacion(SolutionSet* &poblacion,vector<Solution> &clones,i
 	}
 	else
 	{
-		for(int i=0;i<pop_size-afinidades.size();i++)
+		for(int i=0;i<this->opciones.get_popsize()-afinidades.size();i++)
 		{
-			Solution *s = generar_anticuerpo(bus_stops,travel_times,i*time(NULL));
-			float fo1 = s->setFO1(sr,demand);
-			float fo2 = s->setF02(size,travel_times);
-			s->setQuality(alpha,beta);
+			Solution *s = generar_anticuerpo(this->bs,this->travel_times,this->seed);
+			float fo1 = s->setFO1(this->sr,this->demand);
+			float fo2 = s->setF02(this->size,this->travel_times);
+			s->setQuality(this->opciones.get_alpha(),this->opciones.get_beta());
 			poblacion->solutions.push_back(*s);
 			delete s;
 		}
 	}
 	
 	//se reemplzan los peores anticuerpos por anticuerpos generados aleatoriamente
-	int n_reemplazo = reemplazo*pop_size;
+	int n_reemplazo = this->opciones.get_porcentajereemplazo()*this->opciones.get_popsize();
 	
 	poblacion->solutions.erase(poblacion->solutions.end()-n_reemplazo,poblacion->solutions.end());
 	
 	for(int i=0;i<n_reemplazo;i++)
 	{
-		Solution *s = generar_anticuerpo(bus_stops,travel_times,i*time(NULL));
-		float fo1 = s->setFO1(sr,demand);
-		float fo2 = s->setF02(size,travel_times);
-		s->setQuality(alpha,beta);
+		Solution *s = generar_anticuerpo(this->bs,this->travel_times,this->seed);
+		float fo1 = s->setFO1(this->sr,this->demand);
+		float fo2 = s->setF02(this->size,this->travel_times);
+		s->setQuality(this->opciones.get_alpha(),this->opciones.get_beta());
 		poblacion->solutions.push_back(*s);
 		delete s;
 	}

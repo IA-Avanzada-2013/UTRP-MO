@@ -18,7 +18,7 @@
 #include "inmune.h"
 #include "opciones.h"
 
-#define POP_SIZE 1000
+#define POP_SIZE 100
 #define ALPHA 0.4
 #define BETA 0.6
 #define CLON_SIZE 150
@@ -54,6 +54,7 @@ void usage(void)
 
 int main(int argc, char **argv)
 {
+	srand(time(NULL));
 	time_t inicio;
 	time_t fin;
 	double segundos;
@@ -186,17 +187,20 @@ int main(int argc, char **argv)
 	o->set_porcentajeclones(0.5);
 	o->set_porcentajereemplazo(0.3);
 
+	ShortestRoute *sr = new ShortestRoute(size);
+	sr->calcDistNoRoutes(travel_times);
+
 	//inicializacion del algoritmo
-	Inmune *algoritmo = new Inmune(routes_info,o);
+	Inmune *algoritmo = new Inmune(routes_info,o,demand,travel_times,bus_stops,size,opt_seed);
 	
-	//inicializacion de la poblacionvector bad_alloc c++
+	//inicializacion de la poblacion
 	SolutionSet *poblacion = new SolutionSet();
 	
 	vector<Solution> sol;
 	poblacion->solutions=sol;
 	
 	//se genera la poblacion aleatoriamente
-	algoritmo->generar_poblacion(*poblacion,POP_SIZE,bus_stops,travel_times);
+	algoritmo->generar_poblacion(*poblacion);
 	
 	//mostrar la poblacion
 	for(int i=0;i<POP_SIZE;i++)
@@ -209,39 +213,40 @@ int main(int argc, char **argv)
 		cout << endl;
 	}
 	
-	ShortestRoute *sr = new ShortestRoute(size);
-	sr->calcDistNoRoutes(travel_times);
+	//se le entrega la semmilla al random
+	srand(opt_seed);
 	
 	//empieza el ciclo
 	
 	int generacion = 1;
 	
-	while(generacion<GENERACIONES)
+	//se itera hasta cumplir con el numero de generaciones ingresado
+	while(generacion<algoritmo->opciones.get_generaciones())
 	{
 		
 		//evaluacion de las funciones objetivo de las soluciones
-		algoritmo->evaluar_fo(poblacion,travel_times,demand,sr,size);
+		algoritmo->evaluar_fo(poblacion);
 		
 		//calculo de afinidad
-		algoritmo->afinidad(poblacion,ALPHA,BETA);
+		algoritmo->afinidad(poblacion);
 		
 		//se consideran solo las soluciones no dominadas del problema
 		algoritmo->eliminar_dominados(poblacion);
 				
 		//seleccion de los mejores individuos
-		vector<Solution> clones = algoritmo->seleccionar_mejores_anticuerpos(poblacion,AFINIDAD);
+		vector<Solution> clones = algoritmo->seleccionar_mejores_anticuerpos(poblacion);
 		
 		//seleccion clonal
-		algoritmo->clonar_anticuerpos(clones,CLON_SIZE);
+		algoritmo->clonar_anticuerpos(clones);
 		
 		//mutacion
-		algoritmo->mutacion(clones,opt_seed,PROBMUTACION,bus_stops,travel_times);
+		algoritmo->mutacion(clones);
 		
 		//se elimina el exceso de anticuerpos
-		algoritmo->eliminar_exceso(clones,POP_SIZE,CLONES,travel_times,demand,sr,size,ALPHA,BETA);
+		algoritmo->eliminar_exceso(clones);
 		
 		//se incorporan nuevos anticuerpos a la nueva generacion
-		algoritmo->nueva_generacion(poblacion,clones,POP_SIZE,REEMPLAZO,bus_stops,travel_times,demand,sr,size,ALPHA,BETA);
+		algoritmo->nueva_generacion(poblacion,clones);
 		
 		cout << poblacion->solutions.size() << endl;
 		
