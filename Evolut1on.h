@@ -35,6 +35,7 @@ public:
 	bool check_feasability2(Solution *sol);
 	void set_fs(Solution *sol);
 	int get_route_type(int i);
+	Solution *mutate(Solution *offspring);
 };
 /*
 Generate initial population of feasible route sets.
