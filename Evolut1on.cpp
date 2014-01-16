@@ -117,17 +117,16 @@ void Evolut1on::seamo2(){
 			do {rand_id = rand() % this->result.solutions.size();}while(rand_id!=i);
 			parent2 = this->result.solutions[rand_id];
 			offspring = this->crossover(parent1,parent2);
-			this->make_small_change(offspring);//apply mutation
+			this->mutate(offspring);//apply mutation
 			if(this->check_feasability2(offspring)){
-				std::cout<<"Applying mutation!"<<std::endl;
-				this->mutate(offspring);
+				std::cout<<"Mutation is Feasible!"<<std::endl;
 			}
 			else{
 				if(this->repair_routeset(offspring)){
 					std::cout<<"Yay!"<<std::endl;
 					if(this->check_feasability2(offspring)){
 						std::cout<<"Offspring is feasible now!"<<std::endl;
-						this->mutate(offspring);
+						
 					}
 				}
 				
@@ -138,38 +137,93 @@ void Evolut1on::seamo2(){
 	//}
 }
 
-Solution *Evolut1on::mutate(Solution *offspring){
-	Solution *result;
+void *Evolut1on::mutate(Solution *offspring){
 	bool mutated = false;
 	int countdown=10; //10 attempts no select mutating node
+	
+	//std::cout<<"Starting Mutation!"<<std::endl;
+	std::vector<BusStop> v = this->p.get_bus_stops();
+	//selection of node
+	int idx = v[rand() % v.size()].idi;
+	int route1_type,route2_type,route1_id,route2_id;
+	std::vector<BusStop> route1, route2,nice_neighbours2;
+	int i, position=1000,found=0;
 	while(!mutated){
-		//selection of node
-		std::vector<BusStop> v = this->p.get_bus_stops();
-		int idx = v[rand() % v.size()].idi;
-		std::vector<BusStop> route1, route2;
 		//seleccion dos rutas que tienen el nodo
-		int found = 0;
-		for (int i = 0; i < offspring->routes.size(); ++i){
+		for ( i= 0; i < offspring->routes.size(); ++i){
 			if(this->find_node(offspring->routes[i].bus_stops,idx)){
 				found ++;
 				if(found==1){
 					route1 = offspring->routes[i].bus_stops;
+					route1_type = offspring->routes[i].tipo_ruta;
+					route1_id = i;
 				}
 				if(found==2){
 					route2 = offspring->routes[i].bus_stops;
+					route2_type = offspring->routes[i].tipo_ruta;
+					route2_id = i;
 					break;
 				}
 			}
 		}
+		//std::cout<<"Routes Chosen! types: ("<< route1_type << ","<< route2_type<< ")"<<std::endl;
 		if(found==2){
 			//swap routes until node is reached
 			std::vector<BusStop> route1m, route2m;
-			for (int i = 0; i < route2.size(); ++i){
-				//get route2 nodes until idx is reached 
+			//swap previous nodes
+			for ( i = 0; i < route2.size(); ++i){ 
+				route1m.push_back(route2[i]);
+				if(route2[i].idi==idx)
+					break;
 			}
-			//revisar que no existan ciclos en rutas nuevas
-
-			//si hay tratar de cortar la ruta nueva en el ciclo :)
+			for ( i = 0; i < route1.size(); ++i){ 
+				route2m.push_back(route1[i]);
+				if(route1[i].idi==idx)
+					break;
+			}
+			//std::cout<<"Swapped first side!"<<std::endl;
+			//fill in rest of routes
+			for ( i = 0; i < route1.size(); ++i){ 
+				if(route1[i].idi==idx)
+					position=i;
+				if(position < i){
+					if(this->find_node(route1m,route1[i].idi)) //avoid cycles
+						break;
+					if(route1m.size() == this->routes_info[route1_type][2])//avoid larger size
+						break;
+					route1m.push_back(route1[i]);
+				}
+			}	
+			position = 1000;
+			for ( i = 0; i < route2.size(); ++i){ 
+				if(route2[i].idi==idx)
+					position=i;
+				if(position < i){
+					if(this->find_node(route2m,route2[i].idi)) //avoid cycles
+						break;
+					if(route2m.size() == this->routes_info[route2_type][2])//avoid larger size
+						break;
+					route2m.push_back(route2[i]);
+				}
+			}
+			//std::cout<<"Routes mixed!"<<std::endl;		
+			//if the route was cut, and its actual length is smaler than min, add extra nodes till min is reached.
+			if(route1m.size() < this->routes_info[route1_type][1]){
+				route1m = this->refill_route(route1m, this->routes_info[route1_type][1]-route1m.size());
+			}
+			if(route2m.size() < this->routes_info[route2_type][1]){
+				route2m = this->refill_route(route2m ,this->routes_info[route2_type][1]-route2m.size());
+			}
+			std::cout << "Mutation Result:" <<std::endl;
+			this->print_temp_route(offspring->routes[route1_id].bus_stops);
+			std::cout << "is now:" <<std::endl;
+			offspring->routes[route1_id].bus_stops = route1m;
+			this->print_temp_route(offspring->routes[route1_id].bus_stops);
+			std::cout << "&" <<std::endl;
+			this->print_temp_route(offspring->routes[route2_id].bus_stops);
+			offspring->routes[route2_id].bus_stops = route2m;
+			std::cout << "is now:" <<std::endl;
+			this->print_temp_route(offspring->routes[route2_id].bus_stops);
 		}
 		else{
 			countdown --;
@@ -177,15 +231,25 @@ Solution *Evolut1on::mutate(Solution *offspring){
 				break;
 		}
 	}
-
-
-
-
-//retornar offspring
-	return result;
-
 }
 
+std::vector<BusStop> Evolut1on::refill_route(std::vector<BusStop> in, int diff){
+	std::vector<BusStop> neigh;
+	int top=1000,top_id;
+	for (int i = 0; i < diff; ++i){
+		neigh = this->get_neighbour_bus_stops(in[in.size()-1].idi,in,this->p.get_bus_stops());
+		//get the less-travel-time neighbour
+		for (int j = 0; j < neigh.size(); ++j){
+			if(this->p.get_travel_times()[neigh[j].idi][in[in.size()-1].idi]<top){
+				top=this->p.get_travel_times()[neigh[j].idi][in[in.size()-1].idi];
+				top_id=j;
+			}
+
+		}
+		in.push_back(neigh[top_id]);
+	}
+	return in;
+}
 
 Solution *Evolut1on::crossover(Solution P1, Solution P2){
 	Solution *result = new Solution();
@@ -634,9 +698,6 @@ bool Evolut1on::repair_routeset(Solution *unfeasible_routeset){
 	return result;
 }
 
-void Evolut1on::make_small_change(Solution *offspring){
-
-}
 bool Evolut1on::check_duplicate_routes(Solution *routeset, Route *route){
 	bool result;
 	for (int i = 0; i < routeset->routes.size(); ++i){
