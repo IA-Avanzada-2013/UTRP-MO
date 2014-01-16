@@ -12,6 +12,7 @@
 class Solution {
 	    
 public:
+	int id;
 	float fo1,fo2; // stores the result of the objective functions for efficiency
 	std::vector<Route> routes;
 	Solution(void);

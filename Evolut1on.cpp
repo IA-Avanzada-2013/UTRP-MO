@@ -28,30 +28,13 @@ Evolut1on::Evolut1on(Problem p, int seed, std::vector<RouteInfo> routes_info){
 	this->number_of_routes=0;
 	for (int i = 0; i < this->route_types; ++i)
 		this->number_of_routes += this->routes_info[i][0];
-    //debug1
-    /*std::cout << "Seed:" << std::endl;
-    std::cout << this->seed << std::endl;
 
-    std::cout << "Problem:" << std::endl;
-    this->p.show_bus_stops();
-	std::cout << "..." << std::endl;
-	this->p.show_demand();
-	std::cout << "..." << std::endl;
-	this->p.show_travel_times();
-	
-
-	std::cout << "RouteInfo:" << std::endl;
-	for (int i = 0; i < this->route_types; ++i)
-	{
-		std::cout << "Ruta " << i <<  ":";
-		std::cout << this->routes_info[i][0] << ":" << this->routes_info[i][1] << ":" << this->routes_info[i][2]<< std::endl;
-	}
-	*/
     //generate feasible routes sets
     std::cout << " Generating Initial Solutions" << std::endl;
     for (int i = 0; i < SOLSET_SIZE; ++i)
     {
     	this->result.solutions.push_back(generate_feasible_route_set(routes_info)[0]);
+    	this->result.solutions[i].id = i;
     }
     std::cout << SOLSET_SIZE<< " Solutions Generated!" << std::endl;
     this->set_best_routes();
@@ -59,6 +42,9 @@ Evolut1on::Evolut1on(Problem p, int seed, std::vector<RouteInfo> routes_info){
     //exec the algorithm
 
     this->seamo2();
+	this->result.print_solution_set();
+	float hypervolume = hv(&this->result, &this->p);
+    std::cout<<"hipervolumen: "<<hypervolume<<std::endl;
 };
 
 Evolut1on::~Evolut1on(void){
@@ -82,59 +68,78 @@ void Evolut1on::set_best_routes(){
 
 void Evolut1on::seamo2(){
 
-	/*
-	Fig. 3. SEAMO2 AlGORITHM
-	1: Generate initial population of feasible route sets
-	2: Calculate passenger and operator costs for each route set
-	3: Record the best-routeset-so-far for each objective
-	4: repeat
-	5:		for each individual in the population do
-	6:			This individual is Parent1
-	7:			Select a second individual at random (Parent2)
-	8:			Offspring ← Crossover(Parent1,Parent2)
-	9:			Repair(Offspring)
-	10:			Apply mutation(Offspring)
-	11:			if Offspring is a duplicate then
-	12:				Delete offspring
-	13:			else if Offspring dominates either parent then
-	14:				Offspring replaces the dominated parent, testing Parent 1 first,then Parent 2
-	15:			else if Offspring dominates either vector containing the best-so-far objective or Offspring improves on a best-so-far objective then
-	16:				Offspring replaces a parent, ensuring the other best-so-far objective is not lost
-	17:			else if Offspring and parent(s) are mutually non-dominating then
-	18:				Find an individual in the population that is dominated by the Offspring and replace it with the Offspring
-	19:			else
-	20:				Delete Offspring
-	21: until the stopping condition is satisfied
-	22: print All non-dominated solutions in the final population.
-	*/
 	Solution parent1,parent2,*offspring;
-	int rand_id;
+	int rand_id,eval_countdown=1000;
 	bool condition_satisfied=false;
-	//while(!condition_satisfied){
+	while(!condition_satisfied){
+		//std::cout<<"Seamo2 Starting"<<std::endl;
 		for (int i = 0; i < this->result.solutions.size(); ++i)
 		{
 			parent1 = this->result.solutions[i];
 			do {rand_id = rand() % this->result.solutions.size();}while(rand_id!=i);
 			parent2 = this->result.solutions[rand_id];
 			offspring = this->crossover(parent1,parent2);
+			//std::cout<<"Crossover Check!"<<std::endl;
 			this->mutate(offspring);//apply mutation
 			if(this->check_feasability2(offspring)){
-				std::cout<<"Mutation is Feasible!"<<std::endl;
-			}
-			else{
-				if(this->repair_routeset(offspring)){
-					std::cout<<"Yay!"<<std::endl;
-					if(this->check_feasability2(offspring)){
-						std::cout<<"Offspring is feasible now!"<<std::endl;
-						
+				//std::cout<<"Mutation is Feasible!"<<std::endl;
+				this->set_fs(offspring);
+				eval_countdown --;
+				if(this->check_duplicate_route_set(&this->result, offspring)){
+					//std::cout<<"Mutation is a duplie!"<<std::endl;
+				}
+				else if(this->domination(offspring,parent1)){
+					offspring->id=parent1.id;
+					this->result.solutions[parent1.id]=*offspring;
+
+				}
+				else if(this->domination(offspring,parent2)){
+					offspring->id=parent2.id;
+					this->result.solutions[parent2.id]=*offspring;
+				}
+				else if(offspring->fo1 < this->result.solutions[this->best_routeset_so_far_o1].fo1){
+					if(parent1.id != best_routeset_so_far_o1 && parent1.id != best_routeset_so_far_o2){
+						offspring->id=parent1.id;
+						this->result.solutions[parent1.id]=*offspring;
+					}
+					else{
+						if(parent2.id != best_routeset_so_far_o1 && parent2.id != best_routeset_so_far_o2){
+							offspring->id=parent2.id;
+							this->result.solutions[parent2.id]=*offspring;
+						}
+						else{
+							//std::cout << "both parents contain best route so far =(" << std::endl;
+						}
 					}
 				}
-				
-				else
-					std::cout<<"Boo!"<<std::endl;
+				else{
+					bool dominates = false;
+					int dominated_id;
+					for (int j = 0; j < this->result.solutions.size(); ++j){
+						if(this->domination(offspring,this->result.solutions[j])){
+							dominated_id=j;
+							dominates=true;
+							break;
+						}
+					}
+					if(dominates){
+						offspring->id=this->result.solutions[dominated_id].id;
+						this->result.solutions[dominated_id]=*offspring;
+					}
+				}
+
 			}
-		}	
-	//}
+		}
+		if(eval_countdown==0)
+			condition_satisfied=true;	
+	}
+}
+
+bool Evolut1on::domination(Solution *offspring, Solution parent){
+	bool result = false;
+	if(offspring->fo1 < parent.fo1 && offspring->fo2 < parent.fo2)
+		result = true;
+	return result;
 }
 
 void *Evolut1on::mutate(Solution *offspring){
@@ -214,16 +219,16 @@ void *Evolut1on::mutate(Solution *offspring){
 			if(route2m.size() < this->routes_info[route2_type][1]){
 				route2m = this->refill_route(route2m ,this->routes_info[route2_type][1]-route2m.size());
 			}
-			std::cout << "Mutation Result:" <<std::endl;
-			this->print_temp_route(offspring->routes[route1_id].bus_stops);
-			std::cout << "is now:" <<std::endl;
+			//std::cout << "Mutation Result:" <<std::endl;
+			//this->print_temp_route(offspring->routes[route1_id].bus_stops);
+			//std::cout << "is now:" <<std::endl;
 			offspring->routes[route1_id].bus_stops = route1m;
-			this->print_temp_route(offspring->routes[route1_id].bus_stops);
-			std::cout << "&" <<std::endl;
-			this->print_temp_route(offspring->routes[route2_id].bus_stops);
+			//this->print_temp_route(offspring->routes[route1_id].bus_stops);
+			//std::cout << "&" <<std::endl;
+			//this->print_temp_route(offspring->routes[route2_id].bus_stops);
 			offspring->routes[route2_id].bus_stops = route2m;
-			std::cout << "is now:" <<std::endl;
-			this->print_temp_route(offspring->routes[route2_id].bus_stops);
+			//std::cout << "is now:" <<std::endl;
+			//this->print_temp_route(offspring->routes[route2_id].bus_stops);
 		}
 		else{
 			countdown --;
@@ -235,7 +240,7 @@ void *Evolut1on::mutate(Solution *offspring){
 
 std::vector<BusStop> Evolut1on::refill_route(std::vector<BusStop> in, int diff){
 	std::vector<BusStop> neigh;
-	int top=1000,top_id;
+	int top=1000,top_id=-1;
 	for (int i = 0; i < diff; ++i){
 		neigh = this->get_neighbour_bus_stops(in[in.size()-1].idi,in,this->p.get_bus_stops());
 		//get the less-travel-time neighbour
@@ -246,7 +251,8 @@ std::vector<BusStop> Evolut1on::refill_route(std::vector<BusStop> in, int diff){
 			}
 
 		}
-		in.push_back(neigh[top_id]);
+		if(top_id != -1)
+			in.push_back(neigh[top_id]);
 	}
 	return in;
 }
@@ -280,12 +286,11 @@ Solution *Evolut1on::crossover(Solution P1, Solution P2){
     	this->set_fs(result);
     }
     else{
-    	std::cout << "Its NOT Feasible:" << std::endl;
-
+    	//std::cout << "Its NOT Feasible:" << std::endl;
     	if(this->repair_routeset(result)){
-    		std::cout << "Route Repaired!" << std::endl;
+    		//std::cout << "Route Repaired!" << std::endl;
     		if(this->check_feasability2(result)){
-    			std::cout << "Now Its Feasible =)" << std::endl;
+    			//std::cout << "Now Its Feasible =)" << std::endl;
 				this->set_fs(result);
     		}
     	}
@@ -645,7 +650,7 @@ void Evolut1on::set_fs(Solution *sol){
 }
 
 bool Evolut1on::repair_routeset(Solution *unfeasible_routeset){
-	std::cin.get();
+	//std::cin.get();
 	std::vector<BusStop> used_nodes = this->get_specific_nodes(unfeasible_routeset,true);
 	std::vector<BusStop> left_bus_stops= this->get_specific_nodes(unfeasible_routeset,false);
 	bool result=false;
@@ -656,10 +661,10 @@ bool Evolut1on::repair_routeset(Solution *unfeasible_routeset){
 
 	bool possibilities_exhausted = false;
 	Route chosen_route;
-	std::cout << "Free Nodes Left 1: " << left_bus_stops.size();
+	//std::cout << "Free Nodes Left 1: " << left_bus_stops.size();
 	while((used_nodes.size()<this->p.get_size()) && !possibilities_exhausted){
-		std::cout << "Free Nodes Left: " << left_bus_stops.size();	
-		this->print_temp_route(left_bus_stops);
+		//std::cout << "Free Nodes Left: " << left_bus_stops.size();	
+		//this->print_temp_route(left_bus_stops);
 		// std::cout << "Starting repair attempt" << std::endl;
 		chosen_route=unfeasible_routeset->routes[rand() % unfeasible_routeset->routes.size()];
 		chosen_route.print_route();
@@ -699,7 +704,7 @@ bool Evolut1on::repair_routeset(Solution *unfeasible_routeset){
 }
 
 bool Evolut1on::check_duplicate_routes(Solution *routeset, Route *route){
-	bool result;
+	bool result=false;
 	for (int i = 0; i < routeset->routes.size(); ++i){
 		if(routeset->routes[i].bus_stops.size() == route->bus_stops.size()){
 			result=true;
@@ -708,6 +713,20 @@ bool Evolut1on::check_duplicate_routes(Solution *routeset, Route *route){
 					result=false;
 			}
 		}	
+	}
+	return result;
+}
+
+bool Evolut1on::check_duplicate_route_set(SolutionSet *solset, Solution *offspring){
+	bool result=false;
+	for (int i = 0; i < solset->solutions.size(); ++i){
+		result=true;
+		for (int j = 0; j < offspring->routes.size(); ++j){
+			if(!this->check_duplicate_routes(&solset->solutions[i],&offspring->routes[j])){
+				result=false;
+				break;
+			}
+		}
 	}
 	return result;
 }
@@ -722,7 +741,7 @@ bool Evolut1on::check_feasability2(Solution *sol){
                     if( sol->routes[r].tipo_ruta == i) count++; 
             }
             if( count != this->routes_info[i][0]){
-            	std::cout << "Feasibility Error: Quantity  (" << count << "/" << this->routes_info[i][0]  << ")" << std::endl; 
+            	//std::cout << "Feasibility Error: Quantity  (" << count << "/" << this->routes_info[i][0]  << ")" << std::endl; 
             	return false;
             }
         }
@@ -731,15 +750,15 @@ bool Evolut1on::check_feasability2(Solution *sol){
         for( unsigned int i=0;i<sol->routes.size();i++){
                                
                
-                if( sol->routes[i].bus_stops.size() < (this->routes_info[sol->routes[i].tipo_ruta][1]) ){ std::cout << "Feasibility Error:  Min Length"<< std::endl; return false;}
-                if( sol->routes[i].bus_stops.size() > (this->routes_info[sol->routes[i].tipo_ruta][2]) ){ std::cout << "Feasibility Error:  Max Length"<< std::endl; return false;}
+                //if( sol->routes[i].bus_stops.size() < (this->routes_info[sol->routes[i].tipo_ruta][1]) ){ std::cout << "Feasibility Error:  Min Length"<< std::endl; return false;}
+                //if( sol->routes[i].bus_stops.size() > (this->routes_info[sol->routes[i].tipo_ruta][2]) ){ std::cout << "Feasibility Error:  Max Length"<< std::endl; return false;}
                
                 //Si hay ciclos, no es factible
-                if( sol->routes[i].check_cycles_and_backtracks() ){ std::cout << "cyc" ; return false;}
+                //if( sol->routes[i].check_cycles_and_backtracks() ){ std::cout << "cyc" ; return false;}
         }
        
         //Si no es conexo, no es factible
-        if( !sol->check_connectivity(this->p.get_size()) ){ std::cout << "Feasibility Error: Connectivity" << std::endl; return false;}
+        //if( !sol->check_connectivity(this->p.get_size()) ){ std::cout << "Feasibility Error: Connectivity" << std::endl; return false;}
  
         return true;
 };

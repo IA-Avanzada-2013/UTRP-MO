@@ -36,6 +36,8 @@ public:
 	int get_route_type(int i);
 	void *mutate(Solution *offspring);
 	std::vector<BusStop> refill_route(std::vector<BusStop> in, int diff);
+	bool domination(Solution *offspring, Solution parent);
+	bool check_duplicate_route_set(SolutionSet *solset, Solution *offspring);
 };
 /*
 Generate initial population of feasible route sets.
