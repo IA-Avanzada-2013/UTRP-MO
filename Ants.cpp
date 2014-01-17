@@ -36,7 +36,7 @@ Ants::Ants(std::vector<BusStop> &bus_stops, int **&demand,int **&travel_times, i
 	this->nIterations=nIterations;
 	this->good=good;
 	this->bad=bad;
-	this->instancia=instancia.substr(10);
+	this->instancia=instancia.substr(instancia.find_last_of("/\\")+1);
 	this->minL=routes_info[0].min_length;
 	this->maxL=routes_info[0].max_length;
 	this->q=routes_info[0].quantity;
