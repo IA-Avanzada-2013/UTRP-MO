@@ -92,7 +92,7 @@ Solution *Evolut1on::generate_feasible_route_set(std::vector<RouteInfo> routes_i
 	    if(this->check_feasability2(sol)){
 	    	std::cout << "Its Feasible!" << std::endl;
 	    	this->set_fs(sol);
-			std::cout<< "FO's: (" << sol->fo1 << "," <<  sol->fo2 << ")" <<std::endl;
+			std::cout<< "FO's: (" << sol->fo1 << "," <<  sol->fo2 << ") # press enter to continue" <<std::endl;
 			std::cin.get();
 	    	is_not_feasible=false;
 	    }
@@ -103,7 +103,7 @@ Solution *Evolut1on::generate_feasible_route_set(std::vector<RouteInfo> routes_i
 	    		if(this->check_feasability2(sol)){
 	    			std::cout << "Now Its Feasible =)" << std::endl;
 					this->set_fs(sol);
-					std::cout<< "FO's: (" << sol->fo1 << "," <<  sol->fo2 << ")" <<std::endl;
+					std::cout<< "FO's: (" << sol->fo1 << "," <<  sol->fo2 << ")  # press enter to continue" <<std::endl;
 					std::cin.get();
 					is_not_feasible=false;
 	    		}
