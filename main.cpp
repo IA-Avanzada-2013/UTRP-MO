@@ -46,12 +46,16 @@ int main(int argc, char **argv)
     char c;
 
     int opt_seed = -1;
+    int opt_iter = -1;
+    int opt_nants=-1;
+    int opt_good=-1;
+    int opt_bad = -1;
     std::string opt_route_type;
     std::string opt_instance_prefix;
     std::vector<RouteInfo> routes_info;
 
 
-    while ((c = getopt(argc, argv, "i:s:r:")) != -1)
+    while ((c = getopt(argc, argv, "i:s:r:t:a:g:b:")) != -1)
     switch (c)
     {
     	case 'i':
@@ -83,6 +87,18 @@ int main(int argc, char **argv)
                         optopt);
             usage();
 	        return 1;
+	    case 't':
+    		opt_iter = atoi(optarg);
+    		break;
+    	case 'a':
+    		opt_nants = atoi(optarg);
+    		break;
+    	case 'g':
+    		opt_good = atoi(optarg);
+    		break;
+    	case 'b':
+    		opt_bad = atoi(optarg);
+    		break;
 	    default:
                 usage();
 	            abort();
@@ -91,6 +107,30 @@ int main(int argc, char **argv)
     if (opt_seed == -1)
     {
             fprintf (stderr, "You need to specify option `-s'.\n");
+            usage();
+            return 1;
+    }
+    if (opt_iter == -1)
+    {
+            fprintf (stderr, "You need to specify option `-t'.\n");
+            usage();
+            return 1;
+    }
+    if (opt_nants == -1)
+    {
+            fprintf (stderr, "You need to specify option `-a'.\n");
+            usage();
+            return 1;
+    }
+    if (opt_good == -1)
+    {
+            fprintf (stderr, "You need to specify option `-g'.\n");
+            usage();
+            return 1;
+    }
+    if (opt_bad == -1)
+    {
+            fprintf (stderr, "You need to specify option `-b'.\n");
             usage();
             return 1;
     }
@@ -245,7 +285,7 @@ int main(int argc, char **argv)
  //        float hypervolume = hv(st, p);
 	// std::cout<<hypervolume<<std::endl;
 	
-	Ants *a=new Ants(bus_stops,demand,travel_times,10,1000,opt_seed,routes_info,p,opt_instance_prefix);
+	Ants *a=new Ants(bus_stops,demand,travel_times,opt_nants,opt_iter,opt_good,opt_bad,opt_seed,routes_info,p,opt_instance_prefix);
 
 	// delete p;
 	// delete s;

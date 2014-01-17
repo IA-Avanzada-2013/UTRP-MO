@@ -23,7 +23,7 @@
 
 using namespace std;
 
-Ants::Ants(std::vector<BusStop> &bus_stops, int **&demand,int **&travel_times, int nAnts, int nIterations,int seed,std::vector<RouteInfo> routes_info, Problem *problem,std::string instancia) {
+Ants::Ants(std::vector<BusStop> &bus_stops, int **&demand,int **&travel_times, int nAnts, int nIterations, int good, int bad, int seed,std::vector<RouteInfo> routes_info, Problem *problem,std::string instancia) {
 	this->seed=seed;
 	srand ( this->seed );
 	this->start=time(NULL);
@@ -34,11 +34,14 @@ Ants::Ants(std::vector<BusStop> &bus_stops, int **&demand,int **&travel_times, i
 	initializePheromoneMatrix(this->bus_stops.size());
 	this->nAnts=nAnts;
 	this->nIterations=nIterations;
+	this->good=good;
+	this->bad=bad;
 	this->instancia=instancia.substr(10);
 	this->minL=routes_info[0].min_length;
 	this->maxL=routes_info[0].max_length;
 	this->q=routes_info[0].quantity;
-	this->calidad=9999999.9;
+	this->calidad1=9999999.9;
+	this->calidad2=9999999.9;
 	this->st=new SolutionSet();
 	this->getSolutions();
 };
@@ -136,6 +139,29 @@ void Ants::setBestSolution(std::vector<Route> rts){
 	
 }
 
+void Ants::pareto(){
+	for (int i = 0; i < this->st->solutions.size(); i++)
+	{
+		for (int j = 0; j < this->st->solutions.size(); j++)
+		{
+			if(i!=j)
+			{
+				if(this->st->solutions[i].fo1 >= this->st->solutions[j].fo1)
+				{
+					if(this->st->solutions[i].fo2 >= this->st->solutions[j].fo2)
+					{
+						this->st->solutions.erase(this->st->solutions.begin() + i);
+						i--;
+						j--;
+					}	
+				}
+			}
+		}
+	}
+	this->setBestSolution(this->st->solutions[this->st->solutions.size()-1].routes);
+
+}
+
 void Ants::getSolutions(){
 	std::vector<Route> rts;
 	std::vector<BusStop> stops;
@@ -144,37 +170,64 @@ void Ants::getSolutions(){
 	Solution *s = new Solution();
 
 
-	for (int i = 0; i < this->nIterations; i++)
+	for (int k = 0; k < this->nIterations; k++)
 	{
-		rts.clear();
-		while(rts.size()<this->q)
+		for (int i = 0; i < this->nAnts; i++)
 		{
-			stops=this->antMakeRoute();
-			r.set_bus_stops(stops);
-			rts.push_back(r);
-			this->actualSolution=rts;
-		}
-		sr->calcDist(this->travel_times,rts);
-		s->set_routes(rts);
-		int calidad= s->setFO1(sr,demand) + s->setF02(this->size,travel_times);
-		if(calidad<this->calidad)
-		{
-			this->calidad=calidad;
-			this->setBestSolution(rts);
-			this->st->solutions.push_back(*s);
-			for (int i = 0; i < rts.size(); i++)
+			rts.clear();
+			while(rts.size()<this->q)
 			{
-				this->fillPheromone(rts[i].bus_stops, 10);
+				stops=this->antMakeRoute();
+				r.set_bus_stops(stops);
+				rts.push_back(r);
+				this->actualSolution=rts;
 			}
-		}
-		else{
-			for (int i = 0; i < rts.size(); i++)
+			sr->calcDist(this->travel_times,rts);
+			s->set_routes(rts);
+			int calidad1= s->setFO1(sr,demand);
+			int calidad2= s->setF02(this->size,travel_times);
+			if(calidad1<=this->calidad1)
 			{
-				this->fillPheromone(rts[i].bus_stops, 1);
+				this->calidad1=calidad1;
+				if(s->check_connectivity(this->size))
+				{
+					this->setBestSolution(rts);
+					this->st->solutions.push_back(*s);
+				}
+				for (int j = 0; j < rts.size(); j++)
+				{
+					this->fillPheromone(rts[j].bus_stops, this->good);
+				}
+			}
+			else{
+				for (int j = 0; j < rts.size(); j++)
+				{
+					this->fillPheromone(rts[j].bus_stops, this->bad);
+				}
+			}
+			if(calidad2<=this->calidad2)
+			{
+				this->calidad2=calidad2;
+				if(s->check_connectivity(this->size))
+				{
+					this->setBestSolution(rts);
+					this->st->solutions.push_back(*s);
+				}
+				for (int j = 0; j < rts.size(); j++)
+				{
+					this->fillPheromone(rts[j].bus_stops, 10);
+				}
+			}
+			else{
+				for (int j = 0; j < rts.size(); j++)
+				{
+					this->fillPheromone(rts[j].bus_stops, 1);
+				}
 			}
 		}
 	}
 	this->printPheromone();
+	this->pareto();
 	sr->calcDist(this->travel_times,this->bestSolution);
 	s->set_routes(this->bestSolution);
 	for (int i = 0; i < rts.size(); i++)
