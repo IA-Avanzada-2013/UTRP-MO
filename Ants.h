@@ -35,6 +35,7 @@ public:
     std::string instancia;
     float calidad1;
     float calidad2;
+    float hipV;
 
     Ants(std::vector<BusStop> &bus_stops, int **&demand,int **&travel_times, int nAnts, int nIterations,int good,int bad, int seed,std::vector<RouteInfo> routes_info,Problem *problem,std::string instancia);
 	void initializePheromoneMatrix(int size);
@@ -51,5 +52,6 @@ public:
     std::vector<BusStop> getPosiblesDestinos(BusStop bs);
     std::vector<BusStop> cleanDestinos(std::vector<BusStop> bs, std::vector<BusStop> stops);
     void pareto();
+    float getHV();
     
 };

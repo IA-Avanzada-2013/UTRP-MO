@@ -139,6 +139,10 @@ void Ants::setBestSolution(std::vector<Route> rts){
 	
 }
 
+float Ants::getHV(){
+	return this->hipV;
+}
+
 void Ants::pareto(){
 	for (int i = 0; i < this->st->solutions.size(); i++)
 	{
@@ -226,33 +230,35 @@ void Ants::getSolutions(){
 			}
 		}
 	}
-	this->printPheromone();
+	//this->printPheromone();
 	this->pareto();
 	sr->calcDist(this->travel_times,this->bestSolution);
 	s->set_routes(this->bestSolution);
-	for (int i = 0; i < rts.size(); i++)
-	{
-		this->bestSolution[i].print_route();
+	//for (int i = 0; i < rts.size(); i++)
+	//{
+	//	this->bestSolution[i].print_route();
 		//bool x = s->routes[i].check_cycles_and_backtracks();
-	}	
-	std::cout<<"FO1: "<<s->setFO1(sr,demand)<<" FO2: "<<s->setF02(this->size,travel_times)<<std::endl;
+	//}	
+	//std::cout<<"FO1: "<<s->setFO1(sr,demand)<<" FO2: "<<s->setF02(this->size,travel_times)<<std::endl;
 	float hypervolume = hv(this->st, this->problem);
-	std::cout<<"hipervolumen: "<<hypervolume<<std::endl;
-	std::cout<<"cuantas: "<<this->st->solutions.size()<<std::endl;
+	this->hipV = -hypervolume;
+	//std::cout<<"hipervolumen: "<<hypervolume<<std::endl;
+	//std::cout<<"cuantas: "<<this->st->solutions.size()<<std::endl;
 	s->print_solution_routes();
 	bool y = s->check_connectivity(this->size);
-	std::cout << "check_connectivity: " << y << std::endl;
+	//std::cout << "check_connectivity: " << y << std::endl;
 	
 
 	time_t fin = time(NULL);
 	ofstream file;
-	std::string args ="-i "+this->instancia+" -s "+static_cast<ostringstream*>( &(ostringstream() << this->seed) )->str()+" -r "+static_cast<ostringstream*>( &(ostringstream() << this->q) )->str()+":"+static_cast<ostringstream*>( &(ostringstream() << this->minL) )->str()+":"+static_cast<ostringstream*>( &(ostringstream() << this->maxL) )->str()+".txt";
+	std::string args ="-i "+this->instancia+" -s "+static_cast<ostringstream*>( &(ostringstream() << this->seed) )->str()+" -r "+static_cast<ostringstream*>( &(ostringstream() << this->q) )->str()+":"+static_cast<ostringstream*>( &(ostringstream() << this->minL) )->str()+":"+static_cast<ostringstream*>( &(ostringstream() << this->maxL) )->str()+" -t "+static_cast<ostringstream*>( &(ostringstream() << this->nIterations) )->str()+" -a "+static_cast<ostringstream*>( &(ostringstream() << this->nAnts) )->str()+" -g "+static_cast<ostringstream*>( &(ostringstream() << this->good) )->str()+" -b "+static_cast<ostringstream*>( &(ostringstream() << this->bad) )->str()+".txt";
 	this->st->print_solution_set(args);
 	std::string fileName = "./Results/hormigas "+args;
-	std::cout << fileName<<std::endl;
+	//std::cout << fileName<<std::endl;
 	file.open (fileName.c_str());
 	file << "#Rutas: "<<this->q<<"\tLMin: "<<this->minL<<"\tLMax: "<<this->maxL<<"\tSemilla: "<<this->seed<<"\n";
-	file << "hipervolumen: "<<hypervolume<<"\tTiempo de Ejecucion: "<<difftime(fin,this->start)<<"\n\n";
+	file << "hipervolumen: "<<hypervolume<<"\tTiempo de Ejecucion: "<<difftime(fin,this->start)<<"\n";
+	file << "nIteraciones: "<<this->nIterations<<"\tnAnts: "<<this->nAnts<<"\tg: "<<this->good<<"\tb: "<<this->bad<<"\n\n";
 	file <<"-Mejor Solucion\tFO1: "<<s->setFO1(sr,demand)<<"\tFO2: "<<s->setF02(this->size,travel_times)<<"\t Conectividad: "<<y<<"------------------------------------------------------\n";
 	for (int i = 0; i < this->bestSolution.size(); i++)
 	{

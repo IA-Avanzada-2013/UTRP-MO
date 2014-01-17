@@ -147,12 +147,12 @@ int main(int argc, char **argv)
             return 1;
     }
 
-    std::cout << "The passed parameters are:" << std::endl;
-    for (int i = 0; i < routes_info.size(); ++i)
-    {
-    	std::cout << "\t" << routes_info[i].tipo_ruta <<  ":";
-	std::cout << routes_info[i].quantity << ":" << routes_info[i].min_length << ":" << routes_info[i].max_length << std::endl;
-    }
+ //    std::cout << "The passed parameters are:" << std::endl;
+ //    for (int i = 0; i < routes_info.size(); ++i)
+ //    {
+ //    	std::cout << "\t" << routes_info[i].tipo_ruta <<  ":";
+	// std::cout << routes_info[i].quantity << ":" << routes_info[i].min_length << ":" << routes_info[i].max_length << std::endl;
+ //    }
 
 
 	// PARSE DATA
@@ -185,14 +185,14 @@ int main(int argc, char **argv)
 	p->set_bus_stops(bus_stops);	
 
 	// Show parsed data (optional)
-	if (DEBUG)
-	{
-		p->show_bus_stops();
-		std::cout << "..." << std::endl;
-		p->show_demand();
-		std::cout << "..." << std::endl;
-		p->show_travel_times();	
-	}
+	// if (DEBUG)
+	// {
+	// 	p->show_bus_stops();
+	// 	std::cout << "..." << std::endl;
+	// 	p->show_demand();
+	// 	std::cout << "..." << std::endl;
+	// 	p->show_travel_times();	
+	// }
 
 
 	// Solution *s = new Solution();
@@ -286,8 +286,7 @@ int main(int argc, char **argv)
 	// std::cout<<hypervolume<<std::endl;
 	
 	Ants *a=new Ants(bus_stops,demand,travel_times,opt_nants,opt_iter,opt_good,opt_bad,opt_seed,routes_info,p,opt_instance_prefix);
-
-	// delete p;
+	float hipV = a->getHV();
 	// delete s;
 	// delete r;
 	// delete r1;
@@ -301,8 +300,9 @@ int main(int argc, char **argv)
 		delete [] demand[i];
 		delete [] travel_times[i];
 	}
+	delete a;
+	delete p;
 	delete [] demand;
 	delete [] travel_times;
-
-	return 0;
+	return hipV;
 }
