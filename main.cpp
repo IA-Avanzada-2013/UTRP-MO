@@ -18,7 +18,7 @@
 
 void intro(void)
 {
-	std::string s = 	"____ __________________________________  _____   ________   		\n"
+	/*std::string s = 	"____ __________________________________  _____   ________   		\n"
 						"|    |   \\__    ___/\\______   \\______   \\/     \\  \\_____  \\ \n"
 						"|    |   / |    |    |       _/|     ___/  \\ /  \\  /   |   \\ 	\n"
 						"|    |  /  |    |    |    |   \\|    |  /    Y    \\/    |    \\	\n"
@@ -26,15 +26,15 @@ void intro(void)
 						"                            \\/                 \\/         \\/ 	\n";
 
 	s += ">>> UTRP Multi Objective C++ Approach by UTFSM Students :D <<< ";
-	std::cout << s << std::endl;
+	std::cout << s << std::endl;*/
 }
 
 void usage(void)
 {
-	std::string s = 	"Usage: ./utrpmo -i INSTANCE_PREFIX -s SEED -r ROUTE_INFO\n"
+	/*std::string s = 	"Usage: ./utrpmo -i INSTANCE_PREFIX -s SEED -r ROUTE_INFO\n"
 						"For example: ./utrpmo -i instances/Mandl -s 12345 -r \"10:2:7;12:3:8\" \n";
 
-	std::cout << s << std::endl;
+	std::cout << s << std::endl;*/
 }
 
 int main(int argc, char **argv)
@@ -304,5 +304,6 @@ int main(int argc, char **argv)
 	delete p;
 	delete [] demand;
 	delete [] travel_times;
-	return hipV;
+	std::cout<<hipV<<std::endl;
+	return 0;
 }
