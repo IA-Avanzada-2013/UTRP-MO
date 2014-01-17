@@ -24,6 +24,7 @@ public:
 	bool repair_routeset(Solution *unfeasible_routeset);
 	bool check_duplicate_routes(Solution *routeset, Route *route);
 	int nice_neighbour(std::vector<BusStop> used_nodes, std::vector<BusStop> left_bus_stops);
+	int nice_neighbour2(std::vector<BusStop> used_nodes, std::vector<BusStop> left_bus_stops);
 	std::vector<BusStop> get_specific_nodes(Solution *routeset,bool status);
 	void print_temp_route(std::vector<BusStop> ruta);
 	bool find_route(std::vector<Route>actual, Route ruta);
@@ -38,6 +39,7 @@ public:
 	std::vector<BusStop> refill_route(std::vector<BusStop> in, int diff);
 	bool domination(Solution *offspring, Solution parent);
 	bool check_duplicate_route_set(SolutionSet *solset, Solution *offspring);
+	bool is_reached(int idx, std::vector<Route> routes);
 };
 /*
 Generate initial population of feasible route sets.

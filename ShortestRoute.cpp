@@ -76,6 +76,18 @@ void ShortestRoute::calcDist(int **&travel_time, std::vector<Route> routes ){
             }
         }
     }
+
+    for (int i = 0; i < routes.size(); ++i)
+    {
+        routes[i].print_route();
+    }
+    //print final distance matrix
+    for(int i = 0; i < size; i++){
+        for(int j = 0; j < size; j++)
+            std::cout << dist[i][j] << " ";
+        std::cout << std::endl;
+    }
+    
 }
 
 /* ShortestRoute::calcDist

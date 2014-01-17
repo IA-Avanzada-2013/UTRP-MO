@@ -49,12 +49,13 @@ int Solution::setF01(ShortestRoute *sr, int **&demand){
 	{
 		//std::cout<<"Transferencias ("<<i+1<<","<<j+1<<"):"<< sr->getTransfers(i,j,this->routes)<<std::endl;
 		//getchar();
-                numerador+=demand[i][j]*(sr->distance(i,j) + 5*sr->getTransfers(i,j,this->routes));
-                denominador+=demand[i][j];
+        numerador+=demand[i][j]*(sr->distance(i,j) + 5*sr->getTransfers(i,j,this->routes));
+        //std::cout<< "Distancia: "<< sr->distance(i,j) <<std::endl;
+        denominador+=demand[i][j];
 
         }
     }    
-    //std::cout << "\nFO:" << numerador/denominador << "\n";
+    //std::cout << "\nFO: " <<numerador <<"/" <<denominador << "="<< numerador/denominador << "\n";
     this->fo1 = (numerador/denominador);
     return (numerador/denominador);
     //this->fo1 = (numerador/denominador);
@@ -98,8 +99,8 @@ bool Solution::check_connectivity(int size){
 			if(added[i] == 0){
 				for (int j= 0; j < this->routes[i].bus_stops.size();j++){
 					for (int k = 0; k < set->bus_stops.size(); k++){
-						//std::cout << "comparando paradas " << this->routes[i].bus_stops[j].id << " y " << set->bus_stops[k].id << std::endl;
-						if(this->routes[i].bus_stops[j] == set->bus_stops[k]){
+						//std::cout << "comparando paradas " << this->routes[i].bus_stops[j].idi << " y " << set->bus_stops[k].idi << std::endl;
+						if(this->routes[i].bus_stops[j].idi == set->bus_stops[k].idi){
 							set->add_distinct_bus_stops(this->routes[i].bus_stops);
 							added [i] = 1;
 							added_sum +=1;
@@ -115,10 +116,10 @@ bool Solution::check_connectivity(int size){
 		}
 	}
 
-	// std::cout << "p->size: " << size << std::endl;
-	// std::cout << "set size: " << set->bus_stops.size() << std::endl;
-	// std::cout << "Connected Bus Stops: " << std::endl;
-	// set->print_route();
+	//std::cout << "p->size: " << size << std::endl;
+	//std::cout << "set size: " << set->bus_stops.size() << std::endl;
+	//std::cout << "Connected Bus Stops: " << std::endl;
+	//set->print_route();
 	if(size == set->bus_stops.size()){
 		return true;
 	}
