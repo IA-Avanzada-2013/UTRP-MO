@@ -7,13 +7,15 @@
 class Evolut1on
 {
 public:
-	Evolut1on(Problem p, int seed,std::vector<RouteInfo> routes_info); 
+	Evolut1on(Problem p, int seed, std::vector<RouteInfo> routes_info, int solset_size, float prob_mutation, float prob_crossover, int fxeval); 
 	~Evolut1on(void);
 
 	Problem p;
 	SolutionSet result;
 	int seed,route_types,total_routes,route_min_length,route_max_length,route_type,number_of_routes;
 	int** routes_info;
+	int solset_size, fxeval;
+	float prob_mutation, prob_crossover;
 
 	int best_routeset_so_far_o1, best_routeset_so_far_o2;
 	Solution *generate_feasible_route_set(std::vector<RouteInfo> routes_info);

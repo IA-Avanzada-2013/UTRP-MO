@@ -8,16 +8,15 @@
 #include "Evolut1on.h"
 #include <algorithm>
 
-#define SOLSET_SIZE 100 //nº of solutions in set
-#define PROB_MUTATION 0.4
-#define PROB_CROSSOVER 0.6
-#define FXEVAL 1000
-
-Evolut1on::Evolut1on(Problem p, int seed, std::vector<RouteInfo> routes_info){
+Evolut1on::Evolut1on(Problem p, int seed, std::vector<RouteInfo> routes_info, int solset_size, float prob_mutation, float prob_crossover, int fxeval){
 	this->p = p;
     this->seed=seed;
     srand ( this->seed );
     this->route_types = routes_info.size();
+    this->prob_crossover = prob_crossover;
+    this->prob_mutation = prob_mutation;
+    this->fxeval = fxeval;
+
     //routes_info row=id, col1=quantity, col2=min, col3=max
 	this->routes_info = new int*[routes_info.size()];
 	for (int i = 0; i < routes_info.size(); ++i){
@@ -34,14 +33,29 @@ Evolut1on::Evolut1on(Problem p, int seed, std::vector<RouteInfo> routes_info){
 
     //generate feasible routes sets
     std::cout << " Generating Initial Solutions" << std::endl;
-    for (int i = 0; i < SOLSET_SIZE; ++i)
+    Solution new_sol;
+    bool dominates=false;
+    for (int i = 0; i < solset_size; ++i)
     {
-    	this->result.solutions.push_back(generate_feasible_route_set(routes_info)[0]);
-    	this->result.solutions[i].id = i;
+    	new_sol = generate_feasible_route_set(routes_info)[0];
+    	dominates=false;
+    	for (int j = 0; j < this->result.solutions.size(); ++j){
+    		if(this->domination(&new_sol,this->result.solutions[j])){
+    			dominates = true;
+    			this->result.solutions[j]=new_sol;
+    			this->result.solutions[j].id = j;
+    			i--;
+    			break;
+    		}
+    	}
+    	if(!dominates){
+    		this->result.solutions.push_back(new_sol);
+    		this->result.solutions[i].id = i;
+    	}
     }
-    std::cout << SOLSET_SIZE<< " Solutions Generated!" << std::endl;
+    std::cout << solset_size<< " Solutions Generated!" << std::endl;
     this->set_best_routes();
-    this->result.print_solution_set();
+    //this->result.print_solution_set();
     //exec the algorithm
 
     this->seamo2();
@@ -265,7 +279,7 @@ void Evolut1on::set_best_routes(){
 
 void Evolut1on::seamo2(){
 	Solution parent1,parent2,*offspring;
-	int rand_id,eval_countdown=FXEVAL;
+	int rand_id,eval_countdown=this->fxeval;
 	bool condition_satisfied=false;
 	while(!condition_satisfied){
 		//std::cout<<"Seamo2 Starting"<<std::endl;
@@ -274,12 +288,12 @@ void Evolut1on::seamo2(){
 			parent1 = this->result.solutions[i];
 			do {rand_id = rand() % this->result.solutions.size();}while(rand_id!=i);
 			parent2 = this->result.solutions[rand_id];
-			if((float)rand() < PROB_CROSSOVER)
+			if((float)rand() < this->prob_crossover)
 				offspring = this->crossover(parent1,parent2);
 			else
 				offspring = &parent1;
 			//std::cout<<"Crossover Check!"<<std::endl;
-			if((float)rand() < PROB_MUTATION)
+			if((float)rand() < this->prob_mutation)
 				this->mutate(offspring);//apply mutation
 
 			if(this->check_feasability2(offspring)){

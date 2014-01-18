@@ -31,8 +31,8 @@ void intro(void)
 
 void usage(void)
 {
-	std::string s = 	"Usage: ./utrpmo -i INSTANCE_PREFIX -s SEED -r ROUTE_INFO\n"
-						"For example: ./utrpmo -i instances/Mandl -s 12345 -r \"10:2:7;12:3:8\" \n";
+	std::string s = 	"Usage: ./utrpmo -i INSTANCE_PREFIX -s SEED -r ROUTE_INFO -p SOLSET_SIZE:PROB_MUTATION:PROB_CROSSOVER:FXEVAL\n"
+						"For example: ./utrpmo -i instances/Mandl -s 12345 -r \"10:2:7;12:3:8\" -p \"100:0.4:0.6:1000\" \n";
 
 	std::cout << s << std::endl;
 }
@@ -48,10 +48,12 @@ int main(int argc, char **argv)
     int opt_seed = -1;
     std::string opt_route_type;
     std::string opt_instance_prefix;
+    std::string opt_params;
     std::vector<RouteInfo> routes_info;
+    int solset_size,fxeval;
+    float prob_mutation, prob_crossover;
 
-
-    while ((c = getopt(argc, argv, "i:s:r:")) != -1)
+    while ((c = getopt(argc, argv, "i:s:r:p:")) != -1)
     switch (c)
     {
     	case 'i':
@@ -72,8 +74,19 @@ int main(int argc, char **argv)
 			}
 	        break;
 	    }
+	    case 'p':
+	    {
+	    	opt_params = optarg;
+	    	std::vector<std::string> y = split(opt_params, ':');
+			solset_size= atoi(y[0].c_str());
+			prob_mutation= atof(y[1].c_str());
+			prob_crossover= atof(y[2].c_str());
+			fxeval= atoi(y[3].c_str());
+
+			break;
+	    }
 	    case '?':
-	        if (optopt == 's' || optopt == 'r' || optopt == 'i')
+	        if (optopt == 's' || optopt == 'r' || optopt == 'i'|| optopt == 'p')
             	fprintf (stderr, "Option -%c requires an argument.\n", optopt);
 	        else if (isprint (optopt))
                 fprintf (stderr, "Unknown option `-%c'.\n", optopt);
@@ -261,7 +274,11 @@ int main(int argc, char **argv)
 		delete [] travel_times;
 	}
 
-	Evolut1on *evo = new Evolut1on(*p,opt_seed,routes_info);
+#define SOLSET_SIZE 100 //nº of solutions in set
+#define PROB_MUTATION 0.4
+#define PROB_CROSSOVER 0.6
+#define FXEVAL 1000
+	Evolut1on *evo = new Evolut1on(*p,opt_seed,routes_info,solset_size, prob_mutation, prob_crossover, fxeval);
 	delete evo;
 
 	return 0;
