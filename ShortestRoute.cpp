@@ -76,7 +76,7 @@ void ShortestRoute::calcDist(int **&travel_time, std::vector<Route> routes ){
             }
         }
     }
-
+/*
     for (int i = 0; i < routes.size(); ++i)
     {
         routes[i].print_route();
@@ -87,7 +87,7 @@ void ShortestRoute::calcDist(int **&travel_time, std::vector<Route> routes ){
             std::cout << dist[i][j] << " ";
         std::cout << std::endl;
     }
-    
+    */
 }
 
 /* ShortestRoute::calcDist

@@ -47,7 +47,7 @@ Evolut1on::Evolut1on(Problem p, int seed, std::vector<RouteInfo> routes_info){
     this->seamo2();
 	this->result.print_solution_set();
 	float hypervolume = hv(&this->result, &this->p);
-    std::cout<<"hipervolumen: "<<hypervolume<<std::endl;
+    std::cout<<"Hipervolume: "<<hypervolume<<std::endl;
 };
 
 Evolut1on::~Evolut1on(void){
@@ -90,25 +90,25 @@ Solution *Evolut1on::generate_feasible_route_set(std::vector<RouteInfo> routes_i
 		sol->set_routes(route_set);
 		//check feasibility
 	    if(this->check_feasability2(sol)){
-	    	std::cout << "Its Feasible!" << std::endl;
+	    	//std::cout << "Its Feasible!" << std::endl;
 	    	this->set_fs(sol);
-			std::cout<< "FO's: (" << sol->fo1 << "," <<  sol->fo2 << ") # press enter to continue" <<std::endl;
-			std::cin.get();
+			//std::cout<< "FO's: (" << sol->fo1 << "," <<  sol->fo2 << ") # press enter to continue" <<std::endl;
+			//std::cin.get();
 	    	is_not_feasible=false;
 	    }
 	    else{
 	    	//std::cout << "Its NOT Feasible:" << std::endl;	
 	    	if(this->repair_routeset(sol)){
-	    		std::cout << "Route Repaired!" << std::endl;
+	    		//std::cout << "Route Repaired!" << std::endl;
 	    		if(this->check_feasability2(sol)){
-	    			std::cout << "Now Its Feasible =)" << std::endl;
+	    			//std::cout << "Now Its Feasible =)" << std::endl;
 					this->set_fs(sol);
-					std::cout<< "FO's: (" << sol->fo1 << "," <<  sol->fo2 << ")  # press enter to continue" <<std::endl;
-					std::cin.get();
+					//std::cout<< "FO's: (" << sol->fo1 << "," <<  sol->fo2 << ")  # press enter to continue" <<std::endl;
+					//std::cin.get();
 					is_not_feasible=false;
 	    		}
 	    		else{
-		    		std::cout << "Repair Failed =(" << std::endl;
+		    		//std::cout << "Repair Failed =(" << std::endl;
 		    		route_set.clear();
 		    		delete sol;
 		    		sol = new Solution();
@@ -116,7 +116,7 @@ Solution *Evolut1on::generate_feasible_route_set(std::vector<RouteInfo> routes_i
 					
 	    	}
 	    	else{
-	    		std::cout << "Repair Failed =(" << std::endl;
+	    		//std::cout << "Repair Failed =(" << std::endl;
 	    		route_set.clear();
 	    		delete sol;
 	    		sol = new Solution();
@@ -163,14 +163,16 @@ Route *Evolut1on::generate_route(int tmp_route_size,std::vector<Route> routes_so
 				tmp_route_start = rand() % left_bus_stops.size();
 				previous_node=tmp_route_start;
 				tmp_bus_stop_route.push_back(left_bus_stops[tmp_route_start]);
+				//std::cout << "Adding First Node: "<< previous_node<<std::endl;
 			}
 			else{
 				//random already used node (with cool addon)
 				tmp_route_start = this->nice_neighbour(used_nodes,left_bus_stops);
 				if(tmp_route_start==-1)
-					tmp_route_start = used_nodes[rand() % used_nodes.size()].idi;
-				previous_node=tmp_route_start;
-				tmp_bus_stop_route.push_back(left_bus_stops[tmp_route_start]);
+					tmp_route_start = rand() % used_nodes.size();
+				previous_node=used_nodes[tmp_route_start].idi;
+				tmp_bus_stop_route.push_back(used_nodes[tmp_route_start]);
+				//std::cout << "Adding First Node: "<<used_nodes[tmp_route_start].idi<<std::endl;
 			}
 		}
 
@@ -178,8 +180,8 @@ Route *Evolut1on::generate_route(int tmp_route_size,std::vector<Route> routes_so
 		neighbours = this->get_neighbour_bus_stops(previous_node,tmp_bus_stop_route,left_bus_stops);
 		//this->print_temp_route(neighbours);
 		if (neighbours.size() != 0){
-			tmp_neighbour = this->nice_neighbour2(neighbours,left_bus_stops);
-			//std::cout << "NN: "<< tmp_neighbour<<std::endl;
+			tmp_neighbour = this->nice_neighbour(neighbours,left_bus_stops);
+			//std::cout << "NN position: "<< tmp_neighbour<<std::endl;
 			if(tmp_neighbour==-1)
 				tmp_neighbour = rand() % neighbours.size();
 			previous_node = neighbours[tmp_neighbour].idi;
@@ -187,11 +189,11 @@ Route *Evolut1on::generate_route(int tmp_route_size,std::vector<Route> routes_so
 			//std::cout << "Adding Found neighbour: "<< previous_node<<std::endl;
 		}
 		else{
-			//std::cout << "No neighbours found"<< std::endl;
+			//std::cout << "No neighbours found, looking in full set"<< std::endl;
 			neighbours = this->get_neighbour_bus_stops(previous_node,tmp_bus_stop_route,this->p.get_bus_stops());
 			//this->print_temp_route(neighbours);
 			if (neighbours.size() != 0){
-				tmp_neighbour = this->nice_neighbour2(neighbours,left_bus_stops);
+				tmp_neighbour = this->nice_neighbour(neighbours,left_bus_stops);
 				//std::cout << "NN: "<< tmp_neighbour<<std::endl;
 				if(tmp_neighbour==-1)
 					tmp_neighbour = rand() % neighbours.size();
@@ -262,7 +264,6 @@ void Evolut1on::set_best_routes(){
 }
 
 void Evolut1on::seamo2(){
-
 	Solution parent1,parent2,*offspring;
 	int rand_id,eval_countdown=FXEVAL;
 	bool condition_satisfied=false;
@@ -585,7 +586,7 @@ std::vector<BusStop>  Evolut1on::get_neighbour_bus_stops(int previous_node,std::
 			out.push_back(bus_stops_left[i]);
 		}
 	}
-	//std::cout << "neighbeours found for: " << previous_node;
+	//std::cout << "neighbours found for: " << previous_node;
 	//this->print_temp_route(out);
 	return out;
 }
@@ -598,24 +599,8 @@ bool Evolut1on::is_neighbour(BusStop a, int b){
 	return result;
 }
 
-//selects a node which is actually in a route, neighbour to an unused node... returns id of node
-int Evolut1on::nice_neighbour(std::vector<BusStop> used_nodes, std::vector<BusStop> left_bus_stops){
-	int nice_neighbour =-1;
-	int i = rand() % used_nodes.size();
-	for (int j = 0; j < left_bus_stops.size(); ++j){
-		//std::cout << "comparando vecinidad " << used_nodes[i].idi <<"," << left_bus_stops[j].idi<< std::endl;
-		if(this->is_neighbour(used_nodes[i],left_bus_stops[j].idi)){
-			nice_neighbour =  used_nodes[i].idi;
-			//std::cout<<"Nice neighbour found: "<< nice_neighbour<<std::endl;
-			return nice_neighbour;
-		}
-	}
-		
-	return nice_neighbour;
-}
-
 //selects a node which is actually in a route, neighbour to an unused node... returns position in array
-int Evolut1on::nice_neighbour2(std::vector<BusStop> used_nodes, std::vector<BusStop> left_bus_stops){
+int Evolut1on::nice_neighbour(std::vector<BusStop> used_nodes, std::vector<BusStop> left_bus_stops){
 	int nice_neighbour =-1;
 	int i = rand() % used_nodes.size();
 	for (int j = 0; j < left_bus_stops.size(); ++j){
@@ -726,7 +711,14 @@ bool Evolut1on::repair_routeset(Solution *unfeasible_routeset){
 				//std::cout << "There is/are " << left_bus_stops.size() << " bus stop(s) left" <<std::endl; 
 				//std::cout << "Checking left node "<< left_bus_stops[i].idi << std::endl;
 				if(this->is_neighbour(chosen_route->bus_stops[chosen_route->bus_stops.size()-1],left_bus_stops[i].idi) ){
-					if(!this->find_node(chosen_route->bus_stops,left_bus_stops[i].idi)){
+					if(this->is_neighbour(chosen_route->bus_stops[0],left_bus_stops[i].idi) ){
+						//std::cout << "Node is Neighbour of the beginning" << std::endl;
+						chosen_route->bus_stops.insert(chosen_route->bus_stops.begin(), left_bus_stops[i]);
+						used_nodes.push_back(left_bus_stops[i]);
+						left_bus_stops.erase(left_bus_stops.begin()+i);
+						break;
+					}
+					else if(!this->find_node(chosen_route->bus_stops,left_bus_stops[i].idi)){
 						//std::cout << "Node is neighbour of end" << std::endl;
 						//this->print_temp_route(chosen_route->bus_stops);
 						chosen_route->bus_stops.push_back(left_bus_stops[i]);
@@ -809,7 +801,7 @@ bool Evolut1on::check_feasability2(Solution *sol){
                     if( sol->routes[r].tipo_ruta == i) count++; 
             }
             if( count != this->routes_info[i][0]){
-            	std::cout << "Feasibility Error: Quantity  (" << count << "/" << this->routes_info[i][0]  << ")" << std::endl; 
+            	//std::cout << "Feasibility Error: Quantity  (" << count << "/" << this->routes_info[i][0]  << ")" << std::endl; 
             	return false;
             }
         }
@@ -817,24 +809,24 @@ bool Evolut1on::check_feasability2(Solution *sol){
         //Chequear si las rutas tienen ciclos
         for( unsigned int i=0;i<sol->routes.size();i++){
                 if( sol->routes[i].bus_stops.size() < (this->routes_info[sol->routes[i].tipo_ruta][1]) ){ 
-                	std::cout << "Feasibility Error:  Min Length"<< std::endl; 
+                	//std::cout << "Feasibility Error:  Min Length"<< std::endl; 
                 	return false;
                 }
                 if( sol->routes[i].bus_stops.size() > (this->routes_info[sol->routes[i].tipo_ruta][2]) ){ 
-                	std::cout << "Feasibility Error:  Max Length"<< std::endl; 
+                	//std::cout << "Feasibility Error:  Max Length"<< std::endl; 
                 	return false;
                 }
                
                 //Si hay ciclos, no es factible
             if( sol->routes[i].check_cycles_and_backtracks() ){ 
-        		std::cout << "Feasibility Error:  Cycles"<< std::endl;  
+        		//std::cout << "Feasibility Error:  Cycles"<< std::endl;  
         		return false;
         	}
         }
        
         //Si no es conexo, no es factible
         if( !sol->check_connectivity(this->p.get_size()) ){ 
-        	std::cout << "Feasibility Error: Connectivity" << std::endl; 
+        	//std::cout << "Feasibility Error: Connectivity" << std::endl; 
         	return false;
         }
  
