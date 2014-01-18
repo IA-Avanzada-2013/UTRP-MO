@@ -327,6 +327,21 @@ void Evolut1on::seamo2(){
 						}
 					}
 				}
+				else if(offspring->fo2 < this->result.solutions[this->best_routeset_so_far_o2].fo2){
+					if(parent1.id != best_routeset_so_far_o1 && parent1.id != best_routeset_so_far_o2){
+						offspring->id=parent1.id;
+						this->result.solutions[parent1.id]=*offspring;
+					}
+					else{
+						if(parent2.id != best_routeset_so_far_o1 && parent2.id != best_routeset_so_far_o2){
+							offspring->id=parent2.id;
+							this->result.solutions[parent2.id]=*offspring;
+						}
+						else{
+							//std::cout << "both parents contain best route so far =(" << std::endl;
+						}
+					}
+				}
 				else{
 					bool dominates = false;
 					int dominated_id;
