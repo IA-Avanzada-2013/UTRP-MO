@@ -16,6 +16,7 @@ Evolut1on::Evolut1on(Problem p, int seed, std::vector<RouteInfo> routes_info, in
     this->prob_crossover = prob_crossover;
     this->prob_mutation = prob_mutation;
     this->fxeval = fxeval;
+    this->err_crossover=this->err_mutation=this->tot_crossover=this->tot_mutation=0;
 
     //routes_info row=id, col1=quantity, col2=min, col3=max
 	this->routes_info = new int*[routes_info.size()];
@@ -62,6 +63,9 @@ Evolut1on::Evolut1on(Problem p, int seed, std::vector<RouteInfo> routes_info, in
 	this->result.print_solution_set();
 	float hypervolume = hv(&this->result, &this->p);
     std::cout<<"Hipervolume: "<<hypervolume<<std::endl;
+    std::cout<<"Post crossover feasibility error percentage:"<< 100 * (float)this->err_crossover/this->tot_crossover << "%"<< std::endl;
+    std::cout<<"Post mutation feasibility error percentage:" << 100 * (float)this->err_mutation/this->tot_mutation << "%" << std::endl;
+
 };
 
 Evolut1on::~Evolut1on(void){
@@ -281,27 +285,37 @@ void Evolut1on::seamo2(){
 	Solution parent1,parent2,*offspring;
 	int rand_id,eval_countdown=this->fxeval;
 	bool condition_satisfied=false;
+	bool mutated=false,crossovered=false;
 	while(!condition_satisfied){
 		//std::cout<<"Seamo2 Starting"<<std::endl;
+		//std::cout<<((double) rand() / (RAND_MAX)) <<std::endl;
 		for (int i = 0; i < this->result.solutions.size(); ++i)
 		{
 			parent1 = this->result.solutions[i];
 			do {rand_id = rand() % this->result.solutions.size();}while(rand_id!=i);
 			parent2 = this->result.solutions[rand_id];
-			if((float)rand() < this->prob_crossover)
+			if(((double) rand() / (RAND_MAX)) < this->prob_crossover){
+				//std::cout<<"Crossovering!"<<std::endl;
 				offspring = this->crossover(parent1,parent2);
+				crossovered=true;
+				this->tot_crossover++;
+			}
 			else
 				offspring = &parent1;
 			//std::cout<<"Crossover Check!"<<std::endl;
-			if((float)rand() < this->prob_mutation)
+			if(((double) rand() / (RAND_MAX)) < this->prob_mutation){
+				//std::cout<<"Mutating!!"<<std::endl;
 				this->mutate(offspring);//apply mutation
-
+				this->tot_mutation++;
+				mutated=true;
+			}
 			if(this->check_feasability2(offspring)){
-				//std::cout<<"Mutation is Feasible!"<<std::endl;
+				//std::cout<<"Mutation is Feasible!" <<  eval_countdown<<std::endl;
 				this->set_fs(offspring);
 				eval_countdown --;
+				
 				if(this->check_duplicate_route_set(&this->result, offspring)){
-					std::cout<<"Mutation is a duplie!"<<std::endl;
+					//std::cout<<"Mutation is a duplie!"<<std::endl;
 				}
 				else if(this->domination(offspring,parent1)){
 					offspring->id=parent1.id;
@@ -359,8 +373,19 @@ void Evolut1on::seamo2(){
 				}
 
 			}
+			else{
+				if(mutated){
+					this->err_mutation++;
+					mutated=false;
+				}
+				if(crossovered){
+					this->err_crossover++;
+					crossovered=false;
+				}
+
+			}
 		}
-		if(eval_countdown==0)
+		if(eval_countdown<0)
 			condition_satisfied=true;	
 	}
 }

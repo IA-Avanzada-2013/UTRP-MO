@@ -119,6 +119,12 @@ int main(int argc, char **argv)
             usage();
             return 1;
     }
+    if (opt_params.empty())
+    {
+            fprintf (stderr, "You need to specify option `-p'.\n");
+            usage();
+            return 1;
+    }
 
     std::cout << "The passed parameters are:" << std::endl;
     for (int i = 0; i < routes_info.size(); ++i)

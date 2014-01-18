@@ -16,6 +16,7 @@ public:
 	int** routes_info;
 	int solset_size, fxeval;
 	float prob_mutation, prob_crossover;
+	int err_crossover,err_mutation, tot_crossover,tot_mutation;
 
 	int best_routeset_so_far_o1, best_routeset_so_far_o2;
 	Solution *generate_feasible_route_set(std::vector<RouteInfo> routes_info);
