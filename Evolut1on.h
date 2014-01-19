@@ -42,6 +42,7 @@ public:
 	bool domination(Solution *offspring, Solution parent);
 	bool check_duplicate_route_set(SolutionSet *solset, Solution *offspring);
 	bool is_reached(int idx, std::vector<Route> routes);
+	void print_hipervolume(float hypervolume);
 };
 /*
 Generate initial population of feasible route sets.

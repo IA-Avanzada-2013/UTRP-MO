@@ -1,0 +1,12 @@
+algo = sh EVO.sh
+execdir = .
+deterministic = 0
+run_obj = runlength
+overall_obj = mean
+cutoff_time = max
+cutoff_length = max
+tunerTimeout = 100000000
+paramfile = EVO.params
+outdir = out
+instance_file = README
+test_instance_file = README

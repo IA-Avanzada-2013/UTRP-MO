@@ -1,0 +1,1377 @@
+/mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/EVO.params
+num_params = 4, num_combos=1620
+seed: 1234
+Run 1
+Level 
+========================================================
+Starting ILS for level 1, i.e. a limit of N=1000, and cutoff time=1000000000.0.
+Current CPU time = 0, this run goes until 100000000.0 
+========================================================
+New Incumbent: 0, 100000000 [0, 0]. With state fx=1000, pc=0.60, pm=0.40, ps=100
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 100 -pm 0.40 -fx 1000 -pc 0.60 > /tmp/tmp-2014-01-1900:31:27-0.4931640625
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 100 -pm 0.40 -fx 1000 -pc 0.60 > /tmp/tmp-2014-01-1900:31:27-0.4931640625
+Result: SAT, 0, -632.697, -999, 822569775
+ Same incumbent, new precision:
+New Incumbent: 0.1, -632.0 [1, 1000000000.0]. With state fx=1000, pc=0.60, pm=0.40, ps=100
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 50 -pm 0.60 -fx 5000 -pc 0.70 > /tmp/tmp-2014-01-1900:31:29-0.284745216369629
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 50 -pm 0.60 -fx 5000 -pc 0.70 > /tmp/tmp-2014-01-1900:31:29-0.284745216369629
+Result: SAT, 0, -631.467, -999, 822569775
+        -> Worse random: fx=5000 pc=0.70 pm=0.60 ps=50 (-631.0 [based on 1 runs with cutoff 1000000000.0])
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.20 -fx 10000 -pc 0.90 > /tmp/tmp-2014-01-1900:31:37-0.463761568069458
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.20 -fx 10000 -pc 0.90 > /tmp/tmp-2014-01-1900:31:37-0.463761568069458
+Result: SAT, 0, -688.353, -999, 822569775
+New inc: -688.0
+New Incumbent: 0.3, -688.0 [1, 1000000000.0]. With state fx=10000, pc=0.90, pm=0.20, ps=300
+          -> Take improving step to random fx=10000 pc=0.90 pm=0.20 ps=300 (-688.0 [based on 1 runs with cutoff 1000000000.0])
+
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 50 -pm 0.90 -fx 500 -pc 0.70 > /tmp/tmp-2014-01-1900:32:01-0.0107401609420776
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 50 -pm 0.90 -fx 500 -pc 0.70 > /tmp/tmp-2014-01-1900:32:01-0.0107401609420776
+Result: SAT, 0, -621.636, -999, 822569775
+        -> Worse random: fx=500 pc=0.70 pm=0.90 ps=50 (-621.0 [based on 1 runs with cutoff 1000000000.0])
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 100 -pm 0.10 -fx 10000 -pc 0.60 > /tmp/tmp-2014-01-1900:32:02-0.484104156494141
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 100 -pm 0.10 -fx 10000 -pc 0.60 > /tmp/tmp-2014-01-1900:32:02-0.484104156494141
+Result: SAT, 0, -641.74, -999, 822569775
+        -> Worse random: fx=10000 pc=0.60 pm=0.10 ps=100 (-641.0 [based on 1 runs with cutoff 1000000000.0])
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 200 -pm 0.60 -fx 1000 -pc 0.10 > /tmp/tmp-2014-01-1900:32:19-0.960368990898132
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 200 -pm 0.60 -fx 1000 -pc 0.10 > /tmp/tmp-2014-01-1900:32:19-0.960368990898132
+Result: SAT, 0, -662.147, -999, 822569775
+        -> Worse random: fx=1000 pc=0.10 pm=0.60 ps=200 (-662.0 [based on 1 runs with cutoff 1000000000.0])
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.80 -fx 1000 -pc 0.40 > /tmp/tmp-2014-01-1900:32:22-0.887790679931641
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.80 -fx 1000 -pc 0.40 > /tmp/tmp-2014-01-1900:32:22-0.887790679931641
+Result: SAT, 0, -686.053, -999, 822569775
+        -> Worse random: fx=1000 pc=0.40 pm=0.80 ps=300 (-686.0 [based on 1 runs with cutoff 1000000000.0])
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 200 -pm 0.40 -fx 100 -pc 0.10 > /tmp/tmp-2014-01-1900:32:26-0.867463111877441
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 200 -pm 0.40 -fx 100 -pc 0.10 > /tmp/tmp-2014-01-1900:32:26-0.867463111877441
+Result: SAT, 0, -645.566, -999, 822569775
+        -> Worse random: fx=100 pc=0.10 pm=0.40 ps=200 (-645.0 [based on 1 runs with cutoff 1000000000.0])
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.40 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:32:27-0.0476764440536499
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.40 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:32:27-0.0476764440536499
+Result: SAT, 0, -694.039, -999, 822569775
+New inc: -694.0
+New Incumbent: 0.9, -694.0 [1, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.40, ps=300
+          -> Take improving step to random fx=5000 pc=0.20 pm=0.40 ps=300 (-694.0 [based on 1 runs with cutoff 1000000000.0])
+
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.40 -fx 1000 -pc 0.20 > /tmp/tmp-2014-01-1900:32:37-0.614263415336609
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.40 -fx 1000 -pc 0.20 > /tmp/tmp-2014-01-1900:32:37-0.614263415336609
+Result: SAT, 0, -693.772, -999, 822569775
+        -> Worse random: fx=1000 pc=0.20 pm=0.40 ps=300 (-693.0 [based on 1 runs with cutoff 1000000000.0])
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 100 -pm 0.80 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1900:32:41-0.599283218383789
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 100 -pm 0.80 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1900:32:41-0.599283218383789
+Result: SAT, 0, -651.712, -999, 822569775
+        -> Worse random: fx=10000 pc=0.20 pm=0.80 ps=100 (-651.0 [based on 1 runs with cutoff 1000000000.0])
+   BLS in iteration 1, start with fx=5000 pc=0.20 pm=0.40 ps=300 (-694.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.70, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.40 -fx 5000 -pc 0.70 > /tmp/tmp-2014-01-1900:32:53-0.176792621612549
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.40 -fx 5000 -pc 0.70 > /tmp/tmp-2014-01-1900:32:53-0.176792621612549
+Result: SAT, 0, -686.721, -999, 822569775
+        -> worse: (-686.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing ps: 300->50, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 50 -pm 0.40 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:33:06-0.482211589813232
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 50 -pm 0.40 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:33:06-0.482211589813232
+Result: SAT, 0, -638.494, -999, 822569775
+        -> worse: (-638.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing fx: 5000->1000, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.40 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:33:12-0.759378433227539
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.40 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:33:12-0.759378433227539
+Result: SAT, 0, -707.267, -999, 2137449171
+ Same incumbent, new precision:
+New Incumbent: 1.4, -700.5 [2, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.40, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.40 -fx 1000 -pc 0.20 > /tmp/tmp-2014-01-1900:33:22-0.812363624572754
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.40 -fx 1000 -pc 0.20 > /tmp/tmp-2014-01-1900:33:22-0.812363624572754
+Result: SAT, 0, -672.927, -999, 2137449171
+        -> worse: (-682.5 [based on 2 runs with cutoff 1000000000.0])
+    Changing pm: 0.40->0.50, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:33:26-0.0475730895996094
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:33:26-0.0475730895996094
+Result: SAT, 0, -698.653, -999, 822569775
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:33:36-0.994229316711426
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:33:36-0.994229316711426
+Result: SAT, 0, -718.154, -999, 2137449171
+New inc: -708.0
+New Incumbent: 1.7, -708.0 [2, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+          -> Take improving step to neighbour fx=5000 pc=0.20 pm=0.50 ps=300 (-708.0 [based on 2 runs with cutoff 1000000000.0]) with flip 1
+
+          
+============= Performing 5 bonus runs of state: fx=5000 pc=0.20 pm=0.50 ps=300 (-708.0 [based on 2 runs with cutoff 1000000000.0]) ============ 
+
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 524453158 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:33:46-0.117972373962402
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 524453158 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:33:46-0.117972373962402
+Result: SAT, 0, -710.401, -999, 524453158
+ Same incumbent, new precision:
+New Incumbent: 1.8, -708.666666666667 [3, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1365105717 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:33:56-0.685434341430664
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1365105717 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:33:56-0.685434341430664
+Result: SAT, 0, -725.13, -999, 1365105717
+ Same incumbent, new precision:
+New Incumbent: 1.9, -712.75 [4, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1880026316 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:34:06-0.909733295440674
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1880026316 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:34:06-0.909733295440674
+Result: SAT, 0, -690.421, -999, 1880026316
+ Same incumbent, new precision:
+New Incumbent: 2.0, -708.2 [5, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 481516916 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:34:16-0.203518390655518
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 481516916 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:34:16-0.203518390655518
+Result: SAT, 0, -703.694, -999, 481516916
+ Same incumbent, new precision:
+New Incumbent: 2.1, -707.333333333333 [6, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1225605784 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:34:26-0.831573486328125
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1225605784 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:34:26-0.831573486328125
+Result: SAT, 0, -733.477, -999, 1225605784
+ Same incumbent, new precision:
+New Incumbent: 2.2, -711.0 [7, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+          -> After 5 bonus runs: fx=5000 pc=0.20 pm=0.50 ps=300 (-711.0 [based on 7 runs with cutoff 1000000000.0])
+
+    Changing pc: 0.20->0.40, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 5000 -pc 0.40 > /tmp/tmp-2014-01-1900:34:35-0.813198447227478
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 5000 -pc 0.40 > /tmp/tmp-2014-01-1900:34:35-0.813198447227478
+Result: SAT, 0, -697.02, -999, 822569775
+        -> worse: (-697.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pm: 0.50->0.30, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.30 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:34:46-0.726725816726685
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.30 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:34:46-0.726725816726685
+Result: SAT, 0, -689.34, -999, 822569775
+        -> worse: (-689.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.90, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 5000 -pc 0.90 > /tmp/tmp-2014-01-1900:34:56-0.53880786895752
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 5000 -pc 0.90 > /tmp/tmp-2014-01-1900:34:56-0.53880786895752
+Result: SAT, 0, -677.126, -999, 822569775
+        -> worse: (-677.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing fx: 5000->10000, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1900:35:09-0.350592613220215
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1900:35:09-0.350592613220215
+Result: SAT, 0, -691.205, -999, 822569775
+        -> worse: (-691.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.60, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 5000 -pc 0.60 > /tmp/tmp-2014-01-1900:35:26-0.82610297203064
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 5000 -pc 0.60 > /tmp/tmp-2014-01-1900:35:26-0.82610297203064
+Result: SAT, 0, -696.681, -999, 822569775
+        -> worse: (-696.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pm: 0.50->0.90, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:35:37-0.703090667724609
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:35:37-0.703090667724609
+Result: SAT, 0, -683.586, -999, 822569775
+        -> worse: (-683.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pm: 0.50->0.80, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.80 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:35:47-0.990724921226501
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.80 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:35:47-0.990724921226501
+Result: SAT, 0, -680.502, -999, 822569775
+        -> worse: (-680.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing fx: 5000->100, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 100 -pc 0.20 > /tmp/tmp-2014-01-1900:35:58-0.720373153686523
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 100 -pc 0.20 > /tmp/tmp-2014-01-1900:35:58-0.720373153686523
+Result: SAT, 0, -673.992, -999, 822569775
+        -> worse: (-673.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.50, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:36:00-0.537142157554626
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:36:00-0.537142157554626
+Result: SAT, 0, -699.245, -999, 822569775
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:36:12-0.49417781829834
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:36:12-0.49417781829834
+Result: SAT, 0, -690.856, -999, 2137449171
+        -> worse: (-694.5 [based on 2 runs with cutoff 1000000000.0])
+    Changing pm: 0.50->0.60, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:36:24-0.108638763427734
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:36:24-0.108638763427734
+Result: SAT, 0, -699.405, -999, 822569775
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.60 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:36:35-0.774749994277954
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.60 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:36:35-0.774749994277954
+Result: SAT, 0, -703.215, -999, 2137449171
+        -> worse: (-701.0 [based on 2 runs with cutoff 1000000000.0])
+    Changing fx: 5000->1000, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 1000 -pc 0.20 > /tmp/tmp-2014-01-1900:36:46-0.61050820350647
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 1000 -pc 0.20 > /tmp/tmp-2014-01-1900:36:46-0.61050820350647
+Result: SAT, 0, -697.957, -999, 822569775
+        -> worse: (-697.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pm: 0.50->0.70, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.70 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:36:50-0.382940769195557
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.70 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:36:50-0.382940769195557
+Result: SAT, 0, -694.005, -999, 822569775
+        -> worse: (-694.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.80, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 5000 -pc 0.80 > /tmp/tmp-2014-01-1900:37:01-0.936538457870483
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 5000 -pc 0.80 > /tmp/tmp-2014-01-1900:37:01-0.936538457870483
+Result: SAT, 0, -682.759, -999, 822569775
+        -> worse: (-682.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pm: 0.50->0.10, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.10 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:37:14-0.733223915100098
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.10 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:37:14-0.733223915100098
+Result: SAT, 0, -678.417, -999, 822569775
+        -> worse: (-678.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing ps: 300->100, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 100 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:37:25-0.123729228973389
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 100 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:37:25-0.123729228973389
+Result: SAT, 0, -646.008, -999, 822569775
+        -> worse: (-646.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pm: 0.50->0.20, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.20 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:37:32-0.350958347320557
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.20 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:37:32-0.350958347320557
+Result: SAT, 0, -685.155, -999, 822569775
+        -> worse: (-685.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.30, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 5000 -pc 0.30 > /tmp/tmp-2014-01-1900:37:42-0.217519521713257
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 5000 -pc 0.30 > /tmp/tmp-2014-01-1900:37:42-0.217519521713257
+Result: SAT, 0, -696.486, -999, 822569775
+        -> worse: (-696.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.70, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 5000 -pc 0.70 > /tmp/tmp-2014-01-1900:37:53-0.744300842285156
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 5000 -pc 0.70 > /tmp/tmp-2014-01-1900:37:53-0.744300842285156
+Result: SAT, 0, -692.422, -999, 822569775
+        -> worse: (-692.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.10, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 5000 -pc 0.10 > /tmp/tmp-2014-01-1900:38:05-0.709321022033691
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 5000 -pc 0.10 > /tmp/tmp-2014-01-1900:38:05-0.709321022033691
+Result: SAT, 0, -693.17, -999, 822569775
+        -> worse: (-693.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing ps: 300->200, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 200 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:38:14-0.492632389068604
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 200 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:38:14-0.492632389068604
+Result: SAT, 0, -658.971, -999, 822569775
+        -> worse: (-658.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing ps: 300->50, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 50 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:38:22-0.635441064834595
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 50 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:38:22-0.635441064834595
+Result: SAT, 0, -632.676, -999, 822569775
+        -> worse: (-632.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing fx: 5000->500, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 500 -pc 0.20 > /tmp/tmp-2014-01-1900:38:28-0.847347855567932
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.50 -fx 500 -pc 0.20 > /tmp/tmp-2014-01-1900:38:28-0.847347855567932
+Result: SAT, 0, -686.348, -999, 822569775
+        -> worse: (-686.0 [based on 1 runs with cutoff 1000000000.0])
+          
+============= Performing 22 bonus runs of state: fx=5000 pc=0.20 pm=0.50 ps=300 (-711.0 [based on 7 runs with cutoff 1000000000.0]) ============ 
+
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1165481977 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:38:31-0.34282398223877
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1165481977 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:38:31-0.34282398223877
+Result: SAT, 0, -663.364, -999, 1165481977
+ Same incumbent, new precision:
+New Incumbent: 4.7, -705.0 [8, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1202486927 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:38:41-0.748944520950317
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1202486927 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:38:41-0.748944520950317
+Result: SAT, 0, -719.565, -999, 1202486927
+ Same incumbent, new precision:
+New Incumbent: 4.8, -706.555555555556 [9, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1549064881 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:38:51-0.870611667633057
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1549064881 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:38:51-0.870611667633057
+Result: SAT, 0, -713.712, -999, 1549064881
+ Same incumbent, new precision:
+New Incumbent: 4.9, -707.2 [10, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1170776343 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:39:01-0.450237154960632
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1170776343 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:39:01-0.450237154960632
+Result: SAT, 0, -693.366, -999, 1170776343
+ Same incumbent, new precision:
+New Incumbent: 5.0, -705.909090909091 [11, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 646980841 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:39:12-0.543920516967773
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 646980841 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:39:12-0.543920516967773
+Result: SAT, 0, -655.53, -999, 646980841
+ Same incumbent, new precision:
+New Incumbent: 5.1, -701.666666666667 [12, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1187404954 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:39:23-0.915338516235352
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1187404954 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:39:23-0.915338516235352
+Result: SAT, 0, -700.283, -999, 1187404954
+ Same incumbent, new precision:
+New Incumbent: 5.2, -701.538461538462 [13, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 852631582 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:39:33-0.752549171447754
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 852631582 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:39:33-0.752549171447754
+Result: SAT, 0, -704.004, -999, 852631582
+ Same incumbent, new precision:
+New Incumbent: 5.3, -701.714285714286 [14, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1296531115 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:39:43-0.652625322341919
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1296531115 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:39:43-0.652625322341919
+Result: SAT, 0, -711.895, -999, 1296531115
+ Same incumbent, new precision:
+New Incumbent: 5.4, -702.333333333333 [15, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1353614494 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:39:53-0.560607433319092
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1353614494 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:39:53-0.560607433319092
+Result: SAT, 0, -681.66, -999, 1353614494
+ Same incumbent, new precision:
+New Incumbent: 5.5, -701.0 [16, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1967693548 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:40:03-0.826821804046631
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1967693548 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:40:03-0.826821804046631
+Result: SAT, 0, -707.443, -999, 1967693548
+ Same incumbent, new precision:
+New Incumbent: 5.6, -701.352941176471 [17, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 682106748 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:40:14-0.706371784210205
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 682106748 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:40:14-0.706371784210205
+Result: SAT, 0, -711.462, -999, 682106748
+ Same incumbent, new precision:
+New Incumbent: 5.7, -701.888888888889 [18, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1614618394 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:40:24-0.95525074005127
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1614618394 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:40:24-0.95525074005127
+Result: SAT, 0, -698.048, -999, 1614618394
+ Same incumbent, new precision:
+New Incumbent: 5.8, -701.684210526316 [19, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 498808182 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:40:34-0.114972591400146
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 498808182 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:40:34-0.114972591400146
+Result: SAT, 0, -673.295, -999, 498808182
+ Same incumbent, new precision:
+New Incumbent: 5.9, -700.25 [20, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1536813498 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:40:44-0.316938877105713
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1536813498 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:40:44-0.316938877105713
+Result: SAT, 0, -694.326, -999, 1536813498
+ Same incumbent, new precision:
+New Incumbent: 5.99999999999999, -699.952380952381 [21, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 55437432 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:40:53-0.327954649925232
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 55437432 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:40:53-0.327954649925232
+Result: SAT, 0, -668.911, -999, 55437432
+ Same incumbent, new precision:
+New Incumbent: 6.09999999999999, -698.5 [22, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 4274032 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:41:03-0.0511740446090698
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 4274032 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:41:03-0.0511740446090698
+Result: SAT, 0, -694.798, -999, 4274032
+ Same incumbent, new precision:
+New Incumbent: 6.19999999999999, -698.304347826087 [23, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2090933724 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:41:13-0.153495311737061
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2090933724 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:41:13-0.153495311737061
+Result: SAT, 0, -675.881, -999, 2090933724
+ Same incumbent, new precision:
+New Incumbent: 6.29999999999999, -697.333333333333 [24, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 787967301 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:41:24-0.149527549743652
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 787967301 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:41:24-0.149527549743652
+Result: SAT, 0, -693.521, -999, 787967301
+ Same incumbent, new precision:
+New Incumbent: 6.39999999999999, -697.16 [25, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1421700432 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:41:34-0.426355838775635
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1421700432 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:41:34-0.426355838775635
+Result: SAT, 0, -649.928, -999, 1421700432
+ Same incumbent, new precision:
+New Incumbent: 6.49999999999999, -695.307692307692 [26, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 913548233 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:41:44-0.0273637771606445
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 913548233 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:41:44-0.0273637771606445
+Result: SAT, 0, -709.775, -999, 913548233
+ Same incumbent, new precision:
+New Incumbent: 6.59999999999999, -695.814814814815 [27, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1299827071 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:41:53-0.292063236236572
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1299827071 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:41:53-0.292063236236572
+Result: SAT, 0, -663.807, -999, 1299827071
+ Same incumbent, new precision:
+New Incumbent: 6.69999999999999, -694.642857142857 [28, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1590214902 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:42:03-0.89699387550354
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1590214902 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:42:03-0.89699387550354
+Result: SAT, 0, -693.346, -999, 1590214902
+ Same incumbent, new precision:
+New Incumbent: 6.79999999999999, -694.586206896552 [29, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+          -> After 22 bonus runs for LM: fx=5000 pc=0.20 pm=0.50 ps=300 (-694.586206896552 [based on 29 runs with cutoff 1000000000.0])
+
+   LM for iteration 1: fx=5000 pc=0.20 pm=0.50 ps=300 (-694.586206896552 [based on 29 runs with cutoff 1000000000.0])
+
+========== DETAILED RESULTS (iteration 1): ==========
+[["SAT", 0.0, -698, -999.0, 822569775], ["SAT", 0.0, -718, -999.0, 2137449171], ["SAT", 0.0, -710, -999.0, 524453158], ["SAT", 0.0, -725, -999.0, 1365105717], ["SAT", 0.0, -690, -999.0, 1880026316], ["SAT", 0.0, -703, -999.0, 481516916], ["SAT", 0.0, -733, -999.0, 1225605784], ["SAT", 0.0, -663, -999.0, 1165481977], ["SAT", 0.0, -719, -999.0, 1202486927], ["SAT", 0.0, -713, -999.0, 1549064881], ["SAT", 0.0, -693, -999.0, 1170776343], ["SAT", 0.0, -655, -999.0, 646980841], ["SAT", 0.0, -700, -999.0, 1187404954], ["SAT", 0.0, -704, -999.0, 852631582], ["SAT", 0.0, -711, -999.0, 1296531115], ["SAT", 0.0, -681, -999.0, 1353614494], ["SAT", 0.0, -707, -999.0, 1967693548], ["SAT", 0.0, -711, -999.0, 682106748], ["SAT", 0.0, -698, -999.0, 1614618394], ["SAT", 0.0, -673, -999.0, 498808182], ["SAT", 0.0, -694, -999.0, 1536813498], ["SAT", 0.0, -668, -999.0, 55437432], ["SAT", 0.0, -694, -999.0, 4274032], ["SAT", 0.0, -675, -999.0, 2090933724], ["SAT", 0.0, -693, -999.0, 787967301], ["SAT", 0.0, -649, -999.0, 1421700432], ["SAT", 0.0, -709, -999.0, 913548233], ["SAT", 0.0, -663, -999.0, 1299827071], ["SAT", 0.0, -693, -999.0, 1590214902]]
+/mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D: -698		[based on 29 runs]
+================================================
+
+==================================================================
+Best parameter configuration found so far (end of iteration 1): ps=300, pm=0.50, fx=5000, pc=0.20
+==================================================================
+Training quality of this incumbent parameter configuration: -694.586206896552, based on 29 runs with cutoff 1000000000.0
+==================================================================
+
+Comparing LM against incumbent:
+fx=5000 pc=0.20 pm=0.50 ps=300 (-694.586206896552 [based on 29 runs with cutoff 1000000000.0])
+fx=5000 pc=0.20 pm=0.50 ps=300 (-694.586206896552 [based on 29 runs with cutoff 1000000000.0])
+LM better, change incumbent
+New Incumbent: 6.79999999999999, -694.586206896552 [29, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+68/1000, 6.79999999999999/100000000.0
+iteration 2, flip 3, evaluation count 68
+    perturb to ---> fx=5000 pc=0.10 pm=0.50 ps=300 (-693.0 [based on 1 runs with cutoff 1000000000.0])
+    perturb to ---> fx=5000 pc=0.90 pm=0.50 ps=300 (-677.0 [based on 1 runs with cutoff 1000000000.0])
+    perturb to ---> fx=5000 pc=0.60 pm=0.50 ps=300 (-696.0 [based on 1 runs with cutoff 1000000000.0])
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 5000 -pc 0.60 > /tmp/tmp-2014-01-1900:42:13-0.332888960838318
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 5000 -pc 0.60 > /tmp/tmp-2014-01-1900:42:13-0.332888960838318
+Result: SAT, 0, -698.493, -999, 2137449171
+   BLS in iteration 2, start with fx=5000 pc=0.60 pm=0.50 ps=300 (-697.0 [based on 2 runs with cutoff 1000000000.0])
+    Changing pc: 0.60->0.90, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 5000 -pc 0.90 > /tmp/tmp-2014-01-1900:42:26-0.433003187179565
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 5000 -pc 0.90 > /tmp/tmp-2014-01-1900:42:26-0.433003187179565
+Result: SAT, 0, -689.293, -999, 2137449171
+        -> worse: (-683.0 [based on 2 runs with cutoff 1000000000.0])
+    Changing pc: 0.60->0.10, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 5000 -pc 0.10 > /tmp/tmp-2014-01-1900:42:40-0.308516025543213
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 5000 -pc 0.10 > /tmp/tmp-2014-01-1900:42:40-0.308516025543213
+Result: SAT, 0, -706.575, -999, 2137449171
+          -> Take improving step to neighbour fx=5000 pc=0.10 pm=0.50 ps=300 (-699.5 [based on 2 runs with cutoff 1000000000.0]) with flip 3
+
+          
+============= Performing 2 bonus runs of state: fx=5000 pc=0.10 pm=0.50 ps=300 (-699.5 [based on 2 runs with cutoff 1000000000.0]) ============ 
+
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 524453158 -ps 300 -pm 0.50 -fx 5000 -pc 0.10 > /tmp/tmp-2014-01-1900:42:49-0.110121250152588
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 524453158 -ps 300 -pm 0.50 -fx 5000 -pc 0.10 > /tmp/tmp-2014-01-1900:42:49-0.110121250152588
+Result: SAT, 0, -674.458, -999, 524453158
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1365105717 -ps 300 -pm 0.50 -fx 5000 -pc 0.10 > /tmp/tmp-2014-01-1900:42:58-0.752763032913208
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1365105717 -ps 300 -pm 0.50 -fx 5000 -pc 0.10 > /tmp/tmp-2014-01-1900:42:58-0.752763032913208
+Result: SAT, 0, -734.003, -999, 1365105717
+          -> After 2 bonus runs: fx=5000 pc=0.10 pm=0.50 ps=300 (-701.75 [based on 4 runs with cutoff 1000000000.0])
+
+    Changing pc: 0.10->0.20, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1880026316 -ps 300 -pm 0.50 -fx 5000 -pc 0.10 > /tmp/tmp-2014-01-1900:43:08-0.388309240341187
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1880026316 -ps 300 -pm 0.50 -fx 5000 -pc 0.10 > /tmp/tmp-2014-01-1900:43:08-0.388309240341187
+Result: SAT, 0, -691.867, -999, 1880026316
+          -> Take improving step to neighbour fx=5000 pc=0.20 pm=0.50 ps=300 (-694.586206896552 [based on 29 runs with cutoff 1000000000.0]) with flip 4
+
+          
+============= Performing 1 bonus runs of state: fx=5000 pc=0.20 pm=0.50 ps=300 (-694.586206896552 [based on 29 runs with cutoff 1000000000.0]) ============ 
+
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 421988862 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:43:17-0.629588603973389
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 421988862 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:43:17-0.629588603973389
+Result: SAT, 0, -716.328, -999, 421988862
+ Same incumbent, new precision:
+New Incumbent: 7.49999999999999, -695.3 [30, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+          -> After 1 bonus runs: fx=5000 pc=0.20 pm=0.50 ps=300 (-695.3 [based on 30 runs with cutoff 1000000000.0])
+
+    Changing ps: 300->200, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 200 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:43:27-0.353002667427063
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 200 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:43:27-0.353002667427063
+Result: SAT, 0, -717.04, -999, 2137449171
+        -> worse: (-687.5 [based on 2 runs with cutoff 1000000000.0])
+    Changing fx: 5000->100, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 100 -pc 0.20 > /tmp/tmp-2014-01-1900:43:36-0.91278600692749
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 100 -pc 0.20 > /tmp/tmp-2014-01-1900:43:36-0.91278600692749
+Result: SAT, 0, -655.065, -999, 2137449171
+        -> worse: (-664.0 [based on 2 runs with cutoff 1000000000.0])
+    Changing pm: 0.50->0.30, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.30 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:43:38-0.544508099555969
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.30 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:43:38-0.544508099555969
+Result: SAT, 0, -693.058, -999, 2137449171
+        -> worse: (-691.0 [based on 2 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.80, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 5000 -pc 0.80 > /tmp/tmp-2014-01-1900:43:48-0.0216878652572632
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 5000 -pc 0.80 > /tmp/tmp-2014-01-1900:43:48-0.0216878652572632
+Result: SAT, 0, -689.098, -999, 2137449171
+        -> worse: (-685.5 [based on 2 runs with cutoff 1000000000.0])
+    Changing pm: 0.50->0.80, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.80 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:44:02-0.152526140213013
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.80 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:44:02-0.152526140213013
+Result: SAT, 0, -715.622, -999, 2137449171
+        -> worse: (-697.5 [based on 2 runs with cutoff 1000000000.0])
+    Changing pm: 0.50->0.90, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.90 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:44:12-0.0127798318862915
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.90 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:44:12-0.0127798318862915
+Result: SAT, 0, -716.216, -999, 2137449171
+        -> worse: (-699.5 [based on 2 runs with cutoff 1000000000.0])
+    Changing pm: 0.50->0.10, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.10 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:44:22-0.429818749427795
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.10 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:44:22-0.429818749427795
+Result: SAT, 0, -676.106, -999, 2137449171
+        -> worse: (-677.0 [based on 2 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.30, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 5000 -pc 0.30 > /tmp/tmp-2014-01-1900:44:32-0.284333825111389
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 5000 -pc 0.30 > /tmp/tmp-2014-01-1900:44:32-0.284333825111389
+Result: SAT, 0, -701.488, -999, 2137449171
+        -> worse: (-698.5 [based on 2 runs with cutoff 1000000000.0])
+    Changing fx: 5000->1000, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 1000 -pc 0.20 > /tmp/tmp-2014-01-1900:44:43-0.690906286239624
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 1000 -pc 0.20 > /tmp/tmp-2014-01-1900:44:43-0.690906286239624
+Result: SAT, 0, -676.256, -999, 2137449171
+        -> worse: (-686.5 [based on 2 runs with cutoff 1000000000.0])
+    Changing pm: 0.50->0.60, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 524453158 -ps 300 -pm 0.60 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:44:47-0.670927047729492
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 524453158 -ps 300 -pm 0.60 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:44:47-0.670927047729492
+Result: SAT, 0, -677.122, -999, 524453158
+        -> worse: (-693.0 [based on 3 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.70, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 5000 -pc 0.70 > /tmp/tmp-2014-01-1900:44:57-0.364692687988281
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 5000 -pc 0.70 > /tmp/tmp-2014-01-1900:44:57-0.364692687988281
+Result: SAT, 0, -696.766, -999, 2137449171
+        -> worse: (-694.0 [based on 2 runs with cutoff 1000000000.0])
+    Changing ps: 300->50, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 50 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:45:09-0.186220407485962
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 50 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:45:09-0.186220407485962
+Result: SAT, 0, -662.04, -999, 2137449171
+        -> worse: (-647.0 [based on 2 runs with cutoff 1000000000.0])
+    Changing pm: 0.50->0.40, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 524453158 -ps 300 -pm 0.40 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:45:15-0.777326583862305
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 524453158 -ps 300 -pm 0.40 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:45:15-0.777326583862305
+Result: SAT, 0, -687.702, -999, 524453158
+        -> worse: (-696.0 [based on 3 runs with cutoff 1000000000.0])
+    Changing pm: 0.50->0.20, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.20 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:45:25-0.472390651702881
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.20 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:45:25-0.472390651702881
+Result: SAT, 0, -683.524, -999, 2137449171
+        -> worse: (-684.0 [based on 2 runs with cutoff 1000000000.0])
+    Changing fx: 5000->500, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 500 -pc 0.20 > /tmp/tmp-2014-01-1900:45:35-0.787977457046509
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 500 -pc 0.20 > /tmp/tmp-2014-01-1900:45:35-0.787977457046509
+Result: SAT, 0, -662.644, -999, 2137449171
+        -> worse: (-674.0 [based on 2 runs with cutoff 1000000000.0])
+    Changing pm: 0.50->0.70, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.70 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:45:38-0.823728561401367
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.70 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:45:38-0.823728561401367
+Result: SAT, 0, -705.24, -999, 2137449171
+        -> worse: (-699.5 [based on 2 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.40, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 5000 -pc 0.40 > /tmp/tmp-2014-01-1900:45:48-0.224313974380493
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 5000 -pc 0.40 > /tmp/tmp-2014-01-1900:45:48-0.224313974380493
+Result: SAT, 0, -694.826, -999, 2137449171
+        -> worse: (-695.5 [based on 2 runs with cutoff 1000000000.0])
+    Changing fx: 5000->10000, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1900:45:59-0.373621106147766
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.50 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1900:45:59-0.373621106147766
+Result: SAT, 0, -720.204, -999, 2137449171
+        -> worse: (-705.5 [based on 2 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.50, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 524453158 -ps 300 -pm 0.50 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:46:17-0.0531833171844482
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 524453158 -ps 300 -pm 0.50 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:46:17-0.0531833171844482
+Result: SAT, 0, -688.708, -999, 524453158
+        -> worse: (-692.333333333333 [based on 3 runs with cutoff 1000000000.0])
+    Changing ps: 300->100, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 100 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:46:28-0.515776634216309
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 100 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:46:28-0.515776634216309
+Result: SAT, 0, -630.662, -999, 2137449171
+        -> worse: (-638.0 [based on 2 runs with cutoff 1000000000.0])
+          
+============= Performing 20 bonus runs of state: fx=5000 pc=0.20 pm=0.50 ps=300 (-695.3 [based on 30 runs with cutoff 1000000000.0]) ============ 
+
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 262835631 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:46:34-0.584792852401733
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 262835631 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:46:34-0.584792852401733
+Result: SAT, 0, -696.473, -999, 262835631
+ Same incumbent, new precision:
+New Incumbent: 9.59999999999998, -695.322580645161 [31, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 240490034 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:46:44-0.593632817268372
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 240490034 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:46:44-0.593632817268372
+Result: SAT, 0, -702.813, -999, 240490034
+ Same incumbent, new precision:
+New Incumbent: 9.69999999999998, -695.53125 [32, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 13242096 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:46:54-0.594942808151245
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 13242096 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:46:54-0.594942808151245
+Result: SAT, 0, -712.116, -999, 13242096
+ Same incumbent, new precision:
+New Incumbent: 9.79999999999998, -696.030303030303 [33, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1901221627 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:47:04-0.701470851898193
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1901221627 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:47:04-0.701470851898193
+Result: SAT, 0, -698.638, -999, 1901221627
+ Same incumbent, new precision:
+New Incumbent: 9.89999999999998, -696.088235294118 [34, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 59135052 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:47:13-0.0703321695327759
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 59135052 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:47:13-0.0703321695327759
+Result: SAT, 0, -714.999, -999, 59135052
+ Same incumbent, new precision:
+New Incumbent: 9.99999999999998, -696.6 [35, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 95107365 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:47:23-0.685957312583923
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 95107365 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:47:23-0.685957312583923
+Result: SAT, 0, -692.497, -999, 95107365
+101/1000, 10.1/100000000.0
+ Same incumbent, new precision:
+New Incumbent: 10.1, -696.472222222222 [36, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1171781410 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:47:33-0.23987090587616
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1171781410 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:47:33-0.23987090587616
+Result: SAT, 0, -706.491, -999, 1171781410
+ Same incumbent, new precision:
+New Incumbent: 10.2, -696.72972972973 [37, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1248669606 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:47:43-0.200620055198669
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1248669606 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:47:43-0.200620055198669
+Result: SAT, 0, -668.573, -999, 1248669606
+ Same incumbent, new precision:
+New Incumbent: 10.3, -695.973684210526 [38, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1643431418 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:47:53-0.788255572319031
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1643431418 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:47:53-0.788255572319031
+Result: SAT, 0, -673.154, -999, 1643431418
+ Same incumbent, new precision:
+New Incumbent: 10.4, -695.384615384615 [39, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1058256067 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:48:03-0.654103994369507
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1058256067 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:48:03-0.654103994369507
+Result: SAT, 0, -674.786, -999, 1058256067
+ Same incumbent, new precision:
+New Incumbent: 10.5, -694.85 [40, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1567173351 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:48:13-0.371148109436035
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1567173351 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:48:13-0.371148109436035
+Result: SAT, 0, -724.701, -999, 1567173351
+ Same incumbent, new precision:
+New Incumbent: 10.6, -695.560975609756 [41, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1023433867 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:48:23-0.608874678611755
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1023433867 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:48:23-0.608874678611755
+Result: SAT, 0, -721.188, -999, 1023433867
+ Same incumbent, new precision:
+New Incumbent: 10.7, -696.166666666667 [42, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 495622784 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:48:33-0.962944507598877
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 495622784 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:48:33-0.962944507598877
+Result: SAT, 0, -691.785, -999, 495622784
+ Same incumbent, new precision:
+New Incumbent: 10.8, -696.046511627907 [43, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1671713513 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:48:43-0.537638187408447
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1671713513 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:48:43-0.537638187408447
+Result: SAT, 0, -663.626, -999, 1671713513
+ Same incumbent, new precision:
+New Incumbent: 10.9, -695.295454545455 [44, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 323759947 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:48:54-0.979912996292114
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 323759947 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:48:54-0.979912996292114
+Result: SAT, 0, -698.051, -999, 323759947
+ Same incumbent, new precision:
+New Incumbent: 11.0, -695.355555555556 [45, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2092247376 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:49:05-0.68310546875
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2092247376 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:49:05-0.68310546875
+Result: SAT, 0, -665.631, -999, 2092247376
+ Same incumbent, new precision:
+New Incumbent: 11.1, -694.695652173913 [46, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1584087043 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:49:15-0.420201063156128
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1584087043 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:49:15-0.420201063156128
+Result: SAT, 0, -693.765, -999, 1584087043
+ Same incumbent, new precision:
+New Incumbent: 11.2, -694.659574468085 [47, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 504415490 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:49:26-0.799188613891602
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 504415490 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:49:26-0.799188613891602
+Result: SAT, 0, -688.94, -999, 504415490
+ Same incumbent, new precision:
+New Incumbent: 11.3, -694.520833333333 [48, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1860322579 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:49:35-0.501071929931641
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1860322579 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:49:35-0.501071929931641
+Result: SAT, 0, -726.507, -999, 1860322579
+ Same incumbent, new precision:
+New Incumbent: 11.4, -695.163265306122 [49, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1691282316 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:49:45-0.139257669448853
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1691282316 -ps 300 -pm 0.50 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:49:45-0.139257669448853
+Result: SAT, 0, -693.587, -999, 1691282316
+ Same incumbent, new precision:
+New Incumbent: 11.5, -695.12 [50, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+          -> After 20 bonus runs for LM: fx=5000 pc=0.20 pm=0.50 ps=300 (-695.12 [based on 50 runs with cutoff 1000000000.0])
+
+   LM for iteration 2: fx=5000 pc=0.20 pm=0.50 ps=300 (-695.12 [based on 50 runs with cutoff 1000000000.0])
+
+========== DETAILED RESULTS (iteration 2): ==========
+[["SAT", 0.0, -698, -999.0, 822569775], ["SAT", 0.0, -718, -999.0, 2137449171], ["SAT", 0.0, -710, -999.0, 524453158], ["SAT", 0.0, -725, -999.0, 1365105717], ["SAT", 0.0, -690, -999.0, 1880026316], ["SAT", 0.0, -703, -999.0, 481516916], ["SAT", 0.0, -733, -999.0, 1225605784], ["SAT", 0.0, -663, -999.0, 1165481977], ["SAT", 0.0, -719, -999.0, 1202486927], ["SAT", 0.0, -713, -999.0, 1549064881], ["SAT", 0.0, -693, -999.0, 1170776343], ["SAT", 0.0, -655, -999.0, 646980841], ["SAT", 0.0, -700, -999.0, 1187404954], ["SAT", 0.0, -704, -999.0, 852631582], ["SAT", 0.0, -711, -999.0, 1296531115], ["SAT", 0.0, -681, -999.0, 1353614494], ["SAT", 0.0, -707, -999.0, 1967693548], ["SAT", 0.0, -711, -999.0, 682106748], ["SAT", 0.0, -698, -999.0, 1614618394], ["SAT", 0.0, -673, -999.0, 498808182], ["SAT", 0.0, -694, -999.0, 1536813498], ["SAT", 0.0, -668, -999.0, 55437432], ["SAT", 0.0, -694, -999.0, 4274032], ["SAT", 0.0, -675, -999.0, 2090933724], ["SAT", 0.0, -693, -999.0, 787967301], ["SAT", 0.0, -649, -999.0, 1421700432], ["SAT", 0.0, -709, -999.0, 913548233], ["SAT", 0.0, -663, -999.0, 1299827071], ["SAT", 0.0, -693, -999.0, 1590214902], ["SAT", 0.0, -716, -999.0, 421988862], ["SAT", 0.0, -696, -999.0, 262835631], ["SAT", 0.0, -702, -999.0, 240490034], ["SAT", 0.0, -712, -999.0, 13242096], ["SAT", 0.0, -698, -999.0, 1901221627], ["SAT", 0.0, -714, -999.0, 59135052], ["SAT", 0.0, -692, -999.0, 95107365], ["SAT", 0.0, -706, -999.0, 1171781410], ["SAT", 0.0, -668, -999.0, 1248669606], ["SAT", 0.0, -673, -999.0, 1643431418], ["SAT", 0.0, -674, -999.0, 1058256067], ["SAT", 0.0, -724, -999.0, 1567173351], ["SAT", 0.0, -721, -999.0, 1023433867], ["SAT", 0.0, -691, -999.0, 495622784], ["SAT", 0.0, -663, -999.0, 1671713513], ["SAT", 0.0, -698, -999.0, 323759947], ["SAT", 0.0, -665, -999.0, 2092247376], ["SAT", 0.0, -693, -999.0, 1584087043], ["SAT", 0.0, -688, -999.0, 504415490], ["SAT", 0.0, -726, -999.0, 1860322579], ["SAT", 0.0, -693, -999.0, 1691282316]]
+/mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D: -697.0		[based on 50 runs]
+================================================
+
+==================================================================
+Best parameter configuration found so far (end of iteration 2): ps=300, pm=0.50, fx=5000, pc=0.20
+==================================================================
+Training quality of this incumbent parameter configuration: -695.12, based on 50 runs with cutoff 1000000000.0
+==================================================================
+
+Comparing LM against incumbent:
+fx=5000 pc=0.20 pm=0.50 ps=300 (-695.12 [based on 50 runs with cutoff 1000000000.0])
+fx=5000 pc=0.20 pm=0.50 ps=300 (-695.12 [based on 50 runs with cutoff 1000000000.0])
+LM better, change incumbent
+New Incumbent: 11.5, -695.12 [50, 1000000000.0]. With state fx=5000, pc=0.20, pm=0.50, ps=300
+same state as last ILS: fx=5000 pc=0.20 pm=0.50 ps=300 (-695.12 [based on 50 runs with cutoff 1000000000.0])
+115/1000, 11.5/100000000.0
+iteration 3, flip 6, evaluation count 115
+    perturb to ---> fx=5000 pc=0.20 pm=0.20 ps=300 (-684.0 [based on 2 runs with cutoff 1000000000.0])
+    perturb to ---> fx=5000 pc=0.20 pm=0.60 ps=300 (-693.0 [based on 3 runs with cutoff 1000000000.0])
+    perturb to ---> fx=5000 pc=0.40 pm=0.60 ps=300 (100000000 [based on 0 runs with cutoff 0])
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 5000 -pc 0.40 > /tmp/tmp-2014-01-1900:49:55-0.352338075637817
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 5000 -pc 0.40 > /tmp/tmp-2014-01-1900:49:55-0.352338075637817
+Result: SAT, 0, -697.2, -999, 822569775
+   BLS in iteration 3, start with fx=5000 pc=0.40 pm=0.60 ps=300 (-697.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pc: 0.40->0.70, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 5000 -pc 0.70 > /tmp/tmp-2014-01-1900:50:06-0.114180326461792
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 5000 -pc 0.70 > /tmp/tmp-2014-01-1900:50:06-0.114180326461792
+Result: SAT, 0, -691.556, -999, 822569775
+        -> worse: (-691.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing ps: 300->50, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 50 -pm 0.60 -fx 5000 -pc 0.40 > /tmp/tmp-2014-01-1900:50:18-0.868947505950928
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 50 -pm 0.60 -fx 5000 -pc 0.40 > /tmp/tmp-2014-01-1900:50:18-0.868947505950928
+Result: SAT, 0, -632.655, -999, 822569775
+        -> worse: (-632.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pc: 0.40->0.90, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 5000 -pc 0.90 > /tmp/tmp-2014-01-1900:50:25-0.124151229858398
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 5000 -pc 0.90 > /tmp/tmp-2014-01-1900:50:25-0.124151229858398
+Result: SAT, 0, -675.609, -999, 822569775
+        -> worse: (-675.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pm: 0.60->0.90, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 5000 -pc 0.40 > /tmp/tmp-2014-01-1900:50:38-0.457700252532959
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 5000 -pc 0.40 > /tmp/tmp-2014-01-1900:50:38-0.457700252532959
+Result: SAT, 0, -691.254, -999, 822569775
+        -> worse: (-691.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pc: 0.40->0.80, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 5000 -pc 0.80 > /tmp/tmp-2014-01-1900:50:49-0.874443531036377
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 5000 -pc 0.80 > /tmp/tmp-2014-01-1900:50:49-0.874443531036377
+Result: SAT, 0, -683.169, -999, 822569775
+        -> worse: (-683.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing fx: 5000->100, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 100 -pc 0.40 > /tmp/tmp-2014-01-1900:51:01-0.000335693359375
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 100 -pc 0.40 > /tmp/tmp-2014-01-1900:51:01-0.000335693359375
+Result: SAT, 0, -674.024, -999, 822569775
+        -> worse: (-674.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing ps: 300->200, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 200 -pm 0.60 -fx 5000 -pc 0.40 > /tmp/tmp-2014-01-1900:51:04-0.405451774597168
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 200 -pm 0.60 -fx 5000 -pc 0.40 > /tmp/tmp-2014-01-1900:51:04-0.405451774597168
+Result: SAT, 0, -657.787, -999, 822569775
+        -> worse: (-657.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pc: 0.40->0.50, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:51:13-0.0439794063568115
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:51:13-0.0439794063568115
+Result: SAT, 0, -707.692, -999, 822569775
+          -> Take improving step to neighbour fx=5000 pc=0.50 pm=0.60 ps=300 (-707.0 [based on 1 runs with cutoff 1000000000.0]) with flip 6
+
+          
+============= Performing 8 bonus runs of state: fx=5000 pc=0.50 pm=0.60 ps=300 (-707.0 [based on 1 runs with cutoff 1000000000.0]) ============ 
+
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:51:24-0.426101446151733
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:51:24-0.426101446151733
+Result: SAT, 0, -697.818, -999, 2137449171
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 524453158 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:51:36-0.393916606903076
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 524453158 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:51:36-0.393916606903076
+Result: SAT, 0, -675.263, -999, 524453158
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1365105717 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:51:47-0.861540198326111
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1365105717 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:51:47-0.861540198326111
+Result: SAT, 0, -721.142, -999, 1365105717
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1880026316 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:51:58-0.269368886947632
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1880026316 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:51:58-0.269368886947632
+Result: SAT, 0, -695.059, -999, 1880026316
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 481516916 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:52:10-0.110923767089844
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 481516916 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:52:10-0.110923767089844
+Result: SAT, 0, -702.456, -999, 481516916
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1225605784 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:52:21-0.383040904998779
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1225605784 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:52:21-0.383040904998779
+Result: SAT, 0, -723.714, -999, 1225605784
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1165481977 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:52:33-0.749048233032227
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1165481977 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:52:33-0.749048233032227
+Result: SAT, 0, -694.502, -999, 1165481977
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1202486927 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:52:44-0.343804001808167
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1202486927 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:52:44-0.343804001808167
+Result: SAT, 0, -715.86, -999, 1202486927
+          -> After 8 bonus runs: fx=5000 pc=0.50 pm=0.60 ps=300 (-703.222222222222 [based on 9 runs with cutoff 1000000000.0])
+
+    Changing pm: 0.60->0.10, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.10 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:52:56-0.462068319320679
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.10 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:52:56-0.462068319320679
+Result: SAT, 0, -673.446, -999, 822569775
+        -> worse: (-673.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing fx: 5000->1000, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 1000 -pc 0.50 > /tmp/tmp-2014-01-1900:53:07-0.305551052093506
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 1000 -pc 0.50 > /tmp/tmp-2014-01-1900:53:07-0.305551052093506
+Result: SAT, 0, -696.769, -999, 822569775
+        -> worse: (-696.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pm: 0.60->0.90, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:53:11-0.359045743942261
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:53:11-0.359045743942261
+Result: SAT, 0, -685.814, -999, 822569775
+        -> worse: (-685.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pc: 0.50->0.20, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1365105717 -ps 300 -pm 0.60 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:53:22-0.70636510848999
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1365105717 -ps 300 -pm 0.60 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1900:53:22-0.70636510848999
+Result: SAT, 0, -720.341, -999, 1365105717
+        -> worse: (-699.75 [based on 4 runs with cutoff 1000000000.0])
+    Changing ps: 300->50, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 50 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:53:33-0.756454467773438
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 50 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:53:33-0.756454467773438
+Result: SAT, 0, -635.994, -999, 822569775
+        -> worse: (-635.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pm: 0.60->0.40, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.40 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:53:40-0.735688209533691
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.40 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:53:40-0.735688209533691
+Result: SAT, 0, -702.858, -999, 822569775
+        -> worse: (-702.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pm: 0.60->0.50, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1365105717 -ps 300 -pm 0.50 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:53:51-0.152590155601501
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1365105717 -ps 300 -pm 0.50 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:53:51-0.152590155601501
+Result: SAT, 0, -720.355, -999, 1365105717
+        -> worse: (-699.25 [based on 4 runs with cutoff 1000000000.0])
+    Changing ps: 300->100, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 100 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:54:03-0.458807945251465
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 100 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:54:03-0.458807945251465
+Result: SAT, 0, -645.306, -999, 822569775
+        -> worse: (-645.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing fx: 5000->500, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 500 -pc 0.50 > /tmp/tmp-2014-01-1900:54:11-0.827917814254761
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 500 -pc 0.50 > /tmp/tmp-2014-01-1900:54:11-0.827917814254761
+Result: SAT, 0, -679.888, -999, 822569775
+        -> worse: (-679.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pc: 0.50->0.30, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 5000 -pc 0.30 > /tmp/tmp-2014-01-1900:54:14-0.200015306472778
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 5000 -pc 0.30 > /tmp/tmp-2014-01-1900:54:14-0.200015306472778
+Result: SAT, 0, -705.428, -999, 822569775
+        -> worse: (-705.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pm: 0.60->0.80, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.80 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:54:25-0.357378005981445
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.80 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:54:25-0.357378005981445
+Result: SAT, 0, -696.584, -999, 822569775
+        -> worse: (-696.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pc: 0.50->0.60, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 5000 -pc 0.60 > /tmp/tmp-2014-01-1900:54:36-0.983209133148193
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 5000 -pc 0.60 > /tmp/tmp-2014-01-1900:54:36-0.983209133148193
+Result: SAT, 0, -692.6, -999, 822569775
+        -> worse: (-692.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pm: 0.60->0.20, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.20 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:54:48-0.503889083862305
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.20 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:54:48-0.503889083862305
+Result: SAT, 0, -681.013, -999, 822569775
+        -> worse: (-681.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pm: 0.60->0.70, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.70 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:54:59-0.0948424339294434
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.70 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:54:59-0.0948424339294434
+Result: SAT, 0, -700.297, -999, 822569775
+        -> worse: (-700.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing ps: 300->200, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 200 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:55:10-0.0482883453369141
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 200 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:55:10-0.0482883453369141
+Result: SAT, 0, -677.73, -999, 822569775
+        -> worse: (-677.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pc: 0.50->0.10, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 5000 -pc 0.10 > /tmp/tmp-2014-01-1900:55:20-0.653876781463623
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 5000 -pc 0.10 > /tmp/tmp-2014-01-1900:55:20-0.653876781463623
+Result: SAT, 0, -695.812, -999, 822569775
+        -> worse: (-695.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing fx: 5000->10000, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 10000 -pc 0.50 > /tmp/tmp-2014-01-1900:55:29-0.964373826980591
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 10000 -pc 0.50 > /tmp/tmp-2014-01-1900:55:29-0.964373826980591
+Result: SAT, 0, -691.963, -999, 822569775
+        -> worse: (-691.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pm: 0.60->0.30, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.30 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:55:50-0.458400726318359
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.30 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:55:50-0.458400726318359
+Result: SAT, 0, -684.887, -999, 822569775
+        -> worse: (-684.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing fx: 5000->100, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 100 -pc 0.50 > /tmp/tmp-2014-01-1900:56:01-0.323995351791382
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 100 -pc 0.50 > /tmp/tmp-2014-01-1900:56:01-0.323995351791382
+Result: SAT, 0, -673.473, -999, 822569775
+        -> worse: (-673.0 [based on 1 runs with cutoff 1000000000.0])
+          
+============= Performing 19 bonus runs of state: fx=5000 pc=0.50 pm=0.60 ps=300 (-703.222222222222 [based on 9 runs with cutoff 1000000000.0]) ============ 
+
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1549064881 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:56:04-0.154926300048828
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1549064881 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:56:04-0.154926300048828
+Result: SAT, 0, -729.302, -999, 1549064881
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1170776343 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:56:15-0.190134286880493
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1170776343 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:56:15-0.190134286880493
+Result: SAT, 0, -688.112, -999, 1170776343
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 646980841 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:56:27-0.653883695602417
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 646980841 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:56:27-0.653883695602417
+Result: SAT, 0, -678.058, -999, 646980841
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1187404954 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:56:39-0.0376110076904297
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1187404954 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:56:39-0.0376110076904297
+Result: SAT, 0, -698.254, -999, 1187404954
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 852631582 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:56:51-0.711185932159424
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 852631582 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:56:51-0.711185932159424
+Result: SAT, 0, -700.818, -999, 852631582
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1296531115 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:57:03-0.72948431968689
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1296531115 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:57:03-0.72948431968689
+Result: SAT, 0, -714.53, -999, 1296531115
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1353614494 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:57:15-0.0717720985412598
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1353614494 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:57:15-0.0717720985412598
+Result: SAT, 0, -688.597, -999, 1353614494
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1967693548 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:57:27-0.624067068099976
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1967693548 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:57:27-0.624067068099976
+Result: SAT, 0, -692.116, -999, 1967693548
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 682106748 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:57:39-0.803594589233398
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 682106748 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:57:39-0.803594589233398
+Result: SAT, 0, -716.881, -999, 682106748
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1614618394 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:57:50-0.194979786872864
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1614618394 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:57:50-0.194979786872864
+Result: SAT, 0, -708.076, -999, 1614618394
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 498808182 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:58:02-0.786025524139404
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 498808182 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:58:02-0.786025524139404
+Result: SAT, 0, -657.688, -999, 498808182
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1536813498 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:58:14-0.296560764312744
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1536813498 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:58:14-0.296560764312744
+Result: SAT, 0, -680.932, -999, 1536813498
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 55437432 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:58:26-0.676376342773438
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 55437432 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:58:26-0.676376342773438
+Result: SAT, 0, -666.785, -999, 55437432
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 4274032 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:58:38-0.829824447631836
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 4274032 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:58:38-0.829824447631836
+Result: SAT, 0, -704.545, -999, 4274032
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2090933724 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:58:50-0.116124153137207
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2090933724 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:58:50-0.116124153137207
+Result: SAT, 0, -673.753, -999, 2090933724
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 787967301 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:59:02-0.918506622314453
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 787967301 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:59:02-0.918506622314453
+Result: SAT, 0, -711.045, -999, 787967301
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1421700432 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:59:13-0.5652756690979
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1421700432 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:59:13-0.5652756690979
+Result: SAT, 0, -644.509, -999, 1421700432
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 913548233 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:59:25-0.23206639289856
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 913548233 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:59:25-0.23206639289856
+Result: SAT, 0, -731.373, -999, 913548233
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1299827071 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:59:37-0.0167675018310547
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1299827071 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:59:37-0.0167675018310547
+Result: SAT, 0, -662.03, -999, 1299827071
+          -> After 19 bonus runs for LM: fx=5000 pc=0.50 pm=0.60 ps=300 (-695.285714285714 [based on 28 runs with cutoff 1000000000.0])
+
+   LM for iteration 3: fx=5000 pc=0.50 pm=0.60 ps=300 (-695.285714285714 [based on 28 runs with cutoff 1000000000.0])
+
+========== DETAILED RESULTS (iteration 3): ==========
+[["SAT", 0.0, -707, -999.0, 822569775], ["SAT", 0.0, -697, -999.0, 2137449171], ["SAT", 0.0, -675, -999.0, 524453158], ["SAT", 0.0, -721, -999.0, 1365105717], ["SAT", 0.0, -695, -999.0, 1880026316], ["SAT", 0.0, -702, -999.0, 481516916], ["SAT", 0.0, -723, -999.0, 1225605784], ["SAT", 0.0, -694, -999.0, 1165481977], ["SAT", 0.0, -715, -999.0, 1202486927], ["SAT", 0.0, -729, -999.0, 1549064881], ["SAT", 0.0, -688, -999.0, 1170776343], ["SAT", 0.0, -678, -999.0, 646980841], ["SAT", 0.0, -698, -999.0, 1187404954], ["SAT", 0.0, -700, -999.0, 852631582], ["SAT", 0.0, -714, -999.0, 1296531115], ["SAT", 0.0, -688, -999.0, 1353614494], ["SAT", 0.0, -692, -999.0, 1967693548], ["SAT", 0.0, -716, -999.0, 682106748], ["SAT", 0.0, -708, -999.0, 1614618394], ["SAT", 0.0, -657, -999.0, 498808182], ["SAT", 0.0, -680, -999.0, 1536813498], ["SAT", 0.0, -666, -999.0, 55437432], ["SAT", 0.0, -704, -999.0, 4274032], ["SAT", 0.0, -673, -999.0, 2090933724], ["SAT", 0.0, -711, -999.0, 787967301], ["SAT", 0.0, -644, -999.0, 1421700432], ["SAT", 0.0, -731, -999.0, 913548233], ["SAT", 0.0, -662, -999.0, 1299827071]]
+/mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D: -697.5		[based on 28 runs]
+================================================
+
+==================================================================
+Best parameter configuration found so far (end of iteration 3): ps=300, pm=0.50, fx=5000, pc=0.20
+==================================================================
+Training quality of this incumbent parameter configuration: -695.12, based on 50 runs with cutoff 1000000000.0
+==================================================================
+
+Comparing LM against incumbent:
+fx=5000 pc=0.50 pm=0.60 ps=300 (-695.285714285714 [based on 28 runs with cutoff 1000000000.0])
+fx=5000 pc=0.20 pm=0.50 ps=300 (-695.12 [based on 50 runs with cutoff 1000000000.0])
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1590214902 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:59:48-0.212103724479675
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1590214902 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1900:59:48-0.212103724479675
+Result: SAT, 0, -696.181, -999, 1590214902
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 421988862 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1901:00:00-0.323003053665161
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 421988862 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1901:00:00-0.323003053665161
+Result: SAT, 0, -742.752, -999, 421988862
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 262835631 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1901:00:12-0.134650707244873
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 262835631 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1901:00:12-0.134650707244873
+Result: SAT, 0, -680.1, -999, 262835631
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 240490034 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1901:00:24-0.972482323646545
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 240490034 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1901:00:24-0.972482323646545
+Result: SAT, 0, -704.301, -999, 240490034
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 13242096 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1901:00:36-0.984242916107178
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 13242096 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1901:00:36-0.984242916107178
+Result: SAT, 0, -714.283, -999, 13242096
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1901221627 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1901:00:48-0.769275426864624
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1901221627 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1901:00:48-0.769275426864624
+Result: SAT, 0, -671.989, -999, 1901221627
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 59135052 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1901:00:59-0.905392646789551
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 59135052 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1901:00:59-0.905392646789551
+Result: SAT, 0, -719.339, -999, 59135052
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 95107365 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1901:01:11-0.638807058334351
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 95107365 -ps 300 -pm 0.60 -fx 5000 -pc 0.50 > /tmp/tmp-2014-01-1901:01:11-0.638807058334351
+Result: SAT, 0, -673.287, -999, 95107365
+Incumbent better, keeping it
+rejecting worse fx=5000 pc=0.50 pm=0.60 ps=300 (-696.305555555556 [based on 36 runs with cutoff 1000000000.0]), going back to fx=5000 pc=0.20 pm=0.50 ps=300 (-695.12 [based on 50 runs with cutoff 1000000000.0])
+178/1000, 17.8/100000000.0
+iteration 4, flip 8, evaluation count 178
+    perturb to ---> fx=5000 pc=0.20 pm=0.20 ps=300 (-684.0 [based on 2 runs with cutoff 1000000000.0])
+    perturb to ---> fx=5000 pc=0.20 pm=0.20 ps=100 (100000000 [based on 0 runs with cutoff 0])
+    perturb to ---> fx=5000 pc=0.20 pm=0.90 ps=100 (100000000 [based on 0 runs with cutoff 0])
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 100 -pm 0.90 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1901:01:23-0.129302978515625
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 100 -pm 0.90 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1901:01:23-0.129302978515625
+Result: SAT, 0, -654.155, -999, 822569775
+   BLS in iteration 4, start with fx=5000 pc=0.20 pm=0.90 ps=100 (-654.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing ps: 100->300, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 100 -pm 0.90 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1901:01:29-0.587383627891541
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 100 -pm 0.90 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1901:01:29-0.587383627891541
+Result: SAT, 0, -638.627, -999, 2137449171
+          -> Take improving step to neighbour fx=5000 pc=0.20 pm=0.90 ps=300 (-699.5 [based on 2 runs with cutoff 1000000000.0]) with flip 8
+
+          
+============= Performing 1 bonus runs of state: fx=5000 pc=0.20 pm=0.90 ps=300 (-699.5 [based on 2 runs with cutoff 1000000000.0]) ============ 
+
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 524453158 -ps 300 -pm 0.90 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1901:01:36-0.0163426399230957
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 524453158 -ps 300 -pm 0.90 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1901:01:36-0.0163426399230957
+Result: SAT, 0, -721.843, -999, 524453158
+          -> After 1 bonus runs: fx=5000 pc=0.20 pm=0.90 ps=300 (-706.666666666667 [based on 3 runs with cutoff 1000000000.0])
+
+    Changing fx: 5000->1000, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 1000 -pc 0.20 > /tmp/tmp-2014-01-1901:01:46-0.662734746932983
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 1000 -pc 0.20 > /tmp/tmp-2014-01-1901:01:46-0.662734746932983
+Result: SAT, 0, -683.265, -999, 822569775
+        -> worse: (-683.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.80, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 5000 -pc 0.80 > /tmp/tmp-2014-01-1901:01:50-0.803125858306885
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 5000 -pc 0.80 > /tmp/tmp-2014-01-1901:01:50-0.803125858306885
+Result: SAT, 0, -685, -999, 822569775
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.90 -fx 5000 -pc 0.80 > /tmp/tmp-2014-01-1901:02:03-0.580439805984497
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.90 -fx 5000 -pc 0.80 > /tmp/tmp-2014-01-1901:02:03-0.580439805984497
+Result: SAT, 0, -695.88, -999, 2137449171
+        -> worse: (-690.0 [based on 2 runs with cutoff 1000000000.0])
+    Changing pm: 0.90->0.10, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 524453158 -ps 300 -pm 0.10 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1901:02:17-0.816896438598633
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 524453158 -ps 300 -pm 0.10 -fx 5000 -pc 0.20 > /tmp/tmp-2014-01-1901:02:17-0.816896438598633
+Result: SAT, 0, -689.466, -999, 524453158
+        -> worse: (-681.0 [based on 3 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.70, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 5000 -pc 0.70 > /tmp/tmp-2014-01-1901:02:27-0.891929626464844
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 5000 -pc 0.70 > /tmp/tmp-2014-01-1901:02:27-0.891929626464844
+Result: SAT, 0, -698.936, -999, 822569775
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.90 -fx 5000 -pc 0.70 > /tmp/tmp-2014-01-1901:02:39-0.382596015930176
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.90 -fx 5000 -pc 0.70 > /tmp/tmp-2014-01-1901:02:39-0.382596015930176
+Result: SAT, 0, -694.882, -999, 2137449171
+        -> worse: (-696.0 [based on 2 runs with cutoff 1000000000.0])
+    Changing fx: 5000->10000, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:02:51-0.343789935112
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:02:51-0.343789935112
+Result: SAT, 0, -694.521, -999, 822569775
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:03:09-0.605666637420654
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:03:09-0.605666637420654
+Result: SAT, 0, -727.587, -999, 2137449171
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 524453158 -ps 300 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:03:27-0.628355503082275
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 524453158 -ps 300 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:03:27-0.628355503082275
+Result: SAT, 0, -726.928, -999, 524453158
+          -> Take improving step to neighbour fx=10000 pc=0.20 pm=0.90 ps=300 (-715.666666666667 [based on 3 runs with cutoff 1000000000.0]) with flip 9
+
+          
+============= Performing 5 bonus runs of state: fx=10000 pc=0.20 pm=0.90 ps=300 (-715.666666666667 [based on 3 runs with cutoff 1000000000.0]) ============ 
+
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1365105717 -ps 300 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:03:45-0.848517417907715
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1365105717 -ps 300 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:03:45-0.848517417907715
+Result: SAT, 0, -734.787, -999, 1365105717
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1880026316 -ps 300 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:04:03-0.129457473754883
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1880026316 -ps 300 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:04:03-0.129457473754883
+Result: SAT, 0, -696.902, -999, 1880026316
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 481516916 -ps 300 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:04:20-0.681307911872864
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 481516916 -ps 300 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:04:20-0.681307911872864
+Result: SAT, 0, -726.262, -999, 481516916
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1225605784 -ps 300 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:04:38-0.00343132019042969
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1225605784 -ps 300 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:04:38-0.00343132019042969
+Result: SAT, 0, -739.983, -999, 1225605784
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1165481977 -ps 300 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:04:57-0.727182269096375
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1165481977 -ps 300 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:04:57-0.727182269096375
+Result: SAT, 0, -671.221, -999, 1165481977
+          -> After 5 bonus runs: fx=10000 pc=0.20 pm=0.90 ps=300 (-714.125 [based on 8 runs with cutoff 1000000000.0])
+
+    Changing pm: 0.90->0.30, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.30 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:05:15-0.948687672615051
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.30 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:05:15-0.948687672615051
+Result: SAT, 0, -691.778, -999, 822569775
+        -> worse: (-691.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.90, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 10000 -pc 0.90 > /tmp/tmp-2014-01-1901:05:33-0.250128746032715
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 10000 -pc 0.90 > /tmp/tmp-2014-01-1901:05:33-0.250128746032715
+Result: SAT, 0, -683.677, -999, 822569775
+        -> worse: (-683.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.50, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 10000 -pc 0.50 > /tmp/tmp-2014-01-1901:05:58-0.742434501647949
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 10000 -pc 0.50 > /tmp/tmp-2014-01-1901:05:58-0.742434501647949
+Result: SAT, 0, -697.279, -999, 822569775
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.90 -fx 10000 -pc 0.50 > /tmp/tmp-2014-01-1901:06:19-0.383205413818359
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.90 -fx 10000 -pc 0.50 > /tmp/tmp-2014-01-1901:06:19-0.383205413818359
+Result: SAT, 0, -695.577, -999, 2137449171
+        -> worse: (-696.0 [based on 2 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.40, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 10000 -pc 0.40 > /tmp/tmp-2014-01-1901:06:40-0.684916019439697
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 10000 -pc 0.40 > /tmp/tmp-2014-01-1901:06:40-0.684916019439697
+Result: SAT, 0, -699.662, -999, 822569775
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.90 -fx 10000 -pc 0.40 > /tmp/tmp-2014-01-1901:07:00-0.174498558044434
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.90 -fx 10000 -pc 0.40 > /tmp/tmp-2014-01-1901:07:00-0.174498558044434
+Result: SAT, 0, -713.935, -999, 2137449171
+201/1000, 20.1/100000000.0
+        -> worse: (-706.0 [based on 2 runs with cutoff 1000000000.0])
+    Changing pm: 0.90->0.70, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.70 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:07:20-0.0522632598876953
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.70 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:07:20-0.0522632598876953
+Result: SAT, 0, -703.475, -999, 822569775
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.70 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:07:37-0.149222612380981
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.70 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:07:37-0.149222612380981
+Result: SAT, 0, -698.908, -999, 2137449171
+        -> worse: (-700.5 [based on 2 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.10, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 10000 -pc 0.10 > /tmp/tmp-2014-01-1901:07:55-0.899372577667236
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 10000 -pc 0.10 > /tmp/tmp-2014-01-1901:07:55-0.899372577667236
+Result: SAT, 0, -709.815, -999, 822569775
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.90 -fx 10000 -pc 0.10 > /tmp/tmp-2014-01-1901:08:12-0.458760261535645
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.90 -fx 10000 -pc 0.10 > /tmp/tmp-2014-01-1901:08:12-0.458760261535645
+Result: SAT, 0, -708.757, -999, 2137449171
+        -> worse: (-708.5 [based on 2 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.80, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 10000 -pc 0.80 > /tmp/tmp-2014-01-1901:08:29-0.607460737228394
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 10000 -pc 0.80 > /tmp/tmp-2014-01-1901:08:29-0.607460737228394
+Result: SAT, 0, -669.751, -999, 822569775
+        -> worse: (-669.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pm: 0.90->0.20, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.20 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:08:54-0.972973346710205
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.20 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:08:54-0.972973346710205
+Result: SAT, 0, -695.556, -999, 822569775
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.20 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:09:11-0.724012136459351
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.20 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:09:11-0.724012136459351
+Result: SAT, 0, -681.514, -999, 2137449171
+        -> worse: (-688.0 [based on 2 runs with cutoff 1000000000.0])
+    Changing ps: 300->50, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 50 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:09:29-0.524740219116211
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 50 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:09:29-0.524740219116211
+Result: SAT, 0, -655.553, -999, 822569775
+        -> worse: (-655.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing ps: 300->100, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 100 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:09:40-0.188323974609375
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 100 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:09:40-0.188323974609375
+Result: SAT, 0, -654.923, -999, 822569775
+        -> worse: (-654.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pm: 0.90->0.10, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.10 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:09:53-0.508631229400635
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.10 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:09:53-0.508631229400635
+Result: SAT, 0, -682.804, -999, 822569775
+        -> worse: (-682.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing ps: 300->200, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 200 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:10:10-0.173443555831909
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 200 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:10:10-0.173443555831909
+Result: SAT, 0, -701.29, -999, 822569775
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 200 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:10:25-0.169512510299683
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 200 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:10:25-0.169512510299683
+Result: SAT, 0, -713.241, -999, 2137449171
+        -> worse: (-707.0 [based on 2 runs with cutoff 1000000000.0])
+    Changing pm: 0.90->0.80, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.80 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:10:40-0.495133876800537
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.80 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:10:40-0.495133876800537
+Result: SAT, 0, -704.606, -999, 822569775
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.80 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:10:57-0.817255258560181
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.80 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:10:57-0.817255258560181
+Result: SAT, 0, -706.746, -999, 2137449171
+        -> worse: (-705.0 [based on 2 runs with cutoff 1000000000.0])
+    Changing pm: 0.90->0.50, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 524453158 -ps 300 -pm 0.50 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:11:15-0.285937309265137
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 524453158 -ps 300 -pm 0.50 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:11:15-0.285937309265137
+Result: SAT, 0, -673.761, -999, 524453158
+        -> worse: (-694.666666666667 [based on 3 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.60, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 10000 -pc 0.60 > /tmp/tmp-2014-01-1901:11:32-0.144598245620728
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 10000 -pc 0.60 > /tmp/tmp-2014-01-1901:11:32-0.144598245620728
+Result: SAT, 0, -702.794, -999, 822569775
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.90 -fx 10000 -pc 0.60 > /tmp/tmp-2014-01-1901:11:54-0.125797271728516
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.90 -fx 10000 -pc 0.60 > /tmp/tmp-2014-01-1901:11:54-0.125797271728516
+Result: SAT, 0, -699.539, -999, 2137449171
+        -> worse: (-700.5 [based on 2 runs with cutoff 1000000000.0])
+    Changing pm: 0.90->0.60, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:12:16-0.183402061462402
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.60 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:12:16-0.183402061462402
+Result: SAT, 0, -675.037, -999, 822569775
+        -> worse: (-675.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.30, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 10000 -pc 0.30 > /tmp/tmp-2014-01-1901:12:33-0.352952718734741
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 10000 -pc 0.30 > /tmp/tmp-2014-01-1901:12:33-0.352952718734741
+Result: SAT, 0, -695.882, -999, 822569775
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.90 -fx 10000 -pc 0.30 > /tmp/tmp-2014-01-1901:12:51-0.309705257415771
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.90 -fx 10000 -pc 0.30 > /tmp/tmp-2014-01-1901:12:51-0.309705257415771
+Result: SAT, 0, -722.537, -999, 2137449171
+        -> worse: (-708.5 [based on 2 runs with cutoff 1000000000.0])
+    Changing pc: 0.20->0.70, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 10000 -pc 0.70 > /tmp/tmp-2014-01-1901:13:10-0.865423083305359
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 10000 -pc 0.70 > /tmp/tmp-2014-01-1901:13:10-0.865423083305359
+Result: SAT, 0, -704.291, -999, 822569775
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.90 -fx 10000 -pc 0.70 > /tmp/tmp-2014-01-1901:13:33-0.201038360595703
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.90 -fx 10000 -pc 0.70 > /tmp/tmp-2014-01-1901:13:33-0.201038360595703
+Result: SAT, 0, -707.651, -999, 2137449171
+        -> worse: (-705.5 [based on 2 runs with cutoff 1000000000.0])
+    Changing fx: 10000->100, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 100 -pc 0.20 > /tmp/tmp-2014-01-1901:13:56-0.837510347366333
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 100 -pc 0.20 > /tmp/tmp-2014-01-1901:13:56-0.837510347366333
+Result: SAT, 0, -673.092, -999, 822569775
+        -> worse: (-673.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing fx: 10000->500, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 500 -pc 0.20 > /tmp/tmp-2014-01-1901:13:59-0.410247802734375
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.90 -fx 500 -pc 0.20 > /tmp/tmp-2014-01-1901:13:59-0.410247802734375
+Result: SAT, 0, -679.134, -999, 822569775
+        -> worse: (-679.0 [based on 1 runs with cutoff 1000000000.0])
+    Changing pm: 0.90->0.40, evaluating ...
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.40 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:14:01-0.215739488601685
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 822569775 -ps 300 -pm 0.40 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:14:01-0.215739488601685
+Result: SAT, 0, -699.191, -999, 822569775
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.40 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:14:19-0.786060333251953
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 2137449171 -ps 300 -pm 0.40 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:14:19-0.786060333251953
+Result: SAT, 0, -704.766, -999, 2137449171
+        -> worse: (-701.5 [based on 2 runs with cutoff 1000000000.0])
+          
+============= Performing 21 bonus runs of state: fx=10000 pc=0.20 pm=0.90 ps=300 (-714.125 [based on 8 runs with cutoff 1000000000.0]) ============ 
+
+getAlgoResultsForInstsAndParams.
+  Trial 1 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1202486927 -ps 300 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:14:36-0.278105974197388
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1202486927 -ps 300 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:14:36-0.278105974197388
+  Trial 2 for calling: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1202486927 -ps 300 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:14:36-0.278105974197388
+Executing cmd: sh EVO.sh /mnt/home/Dropbox/2013-2/IA-A/UTRP-MO/:D "" 1000000000.0 2147483647 1202486927 -ps 300 -pm 0.90 -fx 10000 -pc 0.20 > /tmp/tmp-2014-01-1901:14:36-0.278105974197388

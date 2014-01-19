@@ -1,5 +1,6 @@
 .fuse*
 *.o
+out/*
 
 ### vim ###
 .*.s[a-w][a-z]

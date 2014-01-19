@@ -33,7 +33,7 @@ Evolut1on::Evolut1on(Problem p, int seed, std::vector<RouteInfo> routes_info, in
 		this->number_of_routes += this->routes_info[i][0];
 
     //generate feasible routes sets
-    std::cout << " Generating Initial Solutions" << std::endl;
+    //std::cout << " Generating Initial Solutions" << std::endl;
     Solution new_sol;
     bool dominates=false;
     for (int i = 0; i < solset_size; ++i)
@@ -54,19 +54,28 @@ Evolut1on::Evolut1on(Problem p, int seed, std::vector<RouteInfo> routes_info, in
     		this->result.solutions[i].id = i;
     	}
     }
-    std::cout << solset_size<< " Solutions Generated!" << std::endl;
+    //std::cout << solset_size<< " Solutions Generated!" << std::endl;
     this->set_best_routes();
     //this->result.print_solution_set();
     //exec the algorithm
 
     this->seamo2();
-	this->result.print_solution_set();
+	//this->result.print_solution_set();
 	float hypervolume = hv(&this->result, &this->p);
-    std::cout<<"Hipervolume: "<<hypervolume<<std::endl;
-    std::cout<<"Post crossover feasibility error percentage:"<< 100 * (float)this->err_crossover/this->tot_crossover << "%"<< std::endl;
-    std::cout<<"Post mutation feasibility error percentage:" << 100 * (float)this->err_mutation/this->tot_mutation << "%" << std::endl;
+    //std::cout<<"Hipervolume: "<<hypervolume<<std::endl;
+    //std::cout<<"Post crossover feasibility error percentage:"<< 100 * (float)this->err_crossover/this->tot_crossover << "%"<< std::endl;
+    //std::cout<<"Post mutation feasibility error percentage:" << 100 * (float)this->err_mutation/this->tot_mutation << "%" << std::endl;
+    this->print_hipervolume(hypervolume);
 
 };
+
+void Evolut1on::print_hipervolume(float hvol){
+	std::string filename;
+	filename = "resultados.txt";
+	std::ofstream sol(filename.c_str());
+	sol << "-"<< hvol <<std::endl;
+  	sol.close();
+}
 
 Evolut1on::~Evolut1on(void){
 }
