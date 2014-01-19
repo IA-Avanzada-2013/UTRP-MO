@@ -15,6 +15,7 @@ public:
 	int get_generaciones();
 	float get_porcentajeclones();
 	float get_porcentajereemplazo();
+	int get_size();
 	
 	//setters
 	void set_popsize(int);
@@ -26,6 +27,7 @@ public:
 	void set_generaciones(int);
 	void set_porcentajeclones(float);
 	void set_porcentajereemplazo(float);
+	void set_size(int);
 	
 	Opciones& operator=(Opciones*);
 	
@@ -39,6 +41,7 @@ private:
 	int generaciones;
 	float porcentaje_clones;
 	float porcentaje_reemplazo;
+	int size;
 };
 
 

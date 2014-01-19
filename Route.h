@@ -5,6 +5,7 @@
 #include "common.h"
 #include "BusStop.h"
 
+using namespace std;
 
 class Route {
 

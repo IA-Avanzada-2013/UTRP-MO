@@ -1,5 +1,7 @@
 #include "Route.h"
 
+using namespace std;
+
 Route::Route(void) {};
 void Route::define_bus_type(int tipo) 
 {
@@ -44,7 +46,7 @@ void Route::print_route(){
 		}
 		std::cout << std::endl;
 	}
-
+	
 bool Route::check_cycles_and_backtracks()
 {
 	for (int i = 0; i < this->bus_stops.size()-1; ++i)

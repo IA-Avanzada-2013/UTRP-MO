@@ -177,15 +177,16 @@ int main(int argc, char **argv)
 	//parametros del algoritmo
 	Opciones* o = new Opciones();
 	
-	o->set_popsize(100);
-	o->set_alpha(0.5);
-	o->set_beta(0.5);
-	o->set_clonsize(150);
+	o->set_popsize(10);
+	o->set_alpha(1.0);
+	o->set_beta(1.0);
+	o->set_clonsize(15);
 	o->set_probmutacion(0.1);
 	o->set_afinidad(1);
-	o->set_generaciones(10);
-	o->set_porcentajeclones(0.5);
+	o->set_generaciones(2);
+	o->set_porcentajeclones(0.6);
 	o->set_porcentajereemplazo(0.3);
+	o->set_size(size);
 
 	ShortestRoute *sr = new ShortestRoute(size);
 	sr->calcDistNoRoutes(travel_times);
@@ -199,19 +200,38 @@ int main(int argc, char **argv)
 	vector<Solution> sol;
 	poblacion->solutions=sol;
 	
+	vector<std::string> z = split(opt_instance_prefix, '/');
+	stringstream sstr2;
+	
+	sstr2 << "utpmo -i " << z[1] << " -s " << opt_seed << " -r " << opt_route_type << ".txt";
+	string arch_final = sstr2.str();
+	
+	ofstream archivo2(arch_final.c_str());
+
+	archivo2 << arch_final << endl;
+	cout << arch_final << endl;
+	
 	//se genera la poblacion aleatoriamente
 	algoritmo->generar_poblacion(*poblacion);
 	
-	//mostrar la poblacion
-	for(int i=0;i<POP_SIZE;i++)
+	for(int i=0;i<poblacion->solutions.size();i++)
 	{
-		cout << "Solucion " << i << endl;
+		archivo2 << "i " <<  i << " calidad " << poblacion->solutions[i].quality << endl;
+		archivo2 << "conectivity "<< i << " " << poblacion->solutions[i].check_connectivity(size) << endl;
 		for(int j=0;j<poblacion->solutions[i].routes.size();j++)
 		{
-			poblacion->solutions[i].routes[j].print_route();
+			for(int k=0;k<poblacion->solutions[i].routes[j].bus_stops.size();k++)
+			{
+				archivo2 << (poblacion->solutions[i].routes[j].bus_stops[k].idi)+1;
+				if(k!=poblacion->solutions[i].routes[j].bus_stops.size()-1)
+				{
+					archivo2 << "-";
+				}							
+			}
+			archivo2 << endl;
 		}
-		cout << endl;
 	}
+	
 	
 	//se le entrega la semmilla al random
 	srand(opt_seed);
@@ -221,7 +241,7 @@ int main(int argc, char **argv)
 	int generacion = 1;
 	
 	//se itera hasta cumplir con el numero de generaciones ingresado
-	while(generacion<algoritmo->opciones.get_generaciones())
+	while(generacion<=algoritmo->opciones.get_generaciones())
 	{
 		
 		//evaluacion de las funciones objetivo de las soluciones
@@ -244,11 +264,35 @@ int main(int argc, char **argv)
 		
 		//se elimina el exceso de anticuerpos
 		algoritmo->eliminar_exceso(clones);
-		
-		//se incorporan nuevos anticuerpos a la nueva generacion
-		algoritmo->nueva_generacion(poblacion,clones);
-		
+			
 		cout << poblacion->solutions.size() << endl;
+		
+		//st->print_solution_set();	
+		float hypervolume = hv(poblacion, p);
+		
+		archivo2 << "generacion " << generacion << "----------------------------------------------------" << endl;
+		
+		archivo2 << "hipervolumen " << hypervolume << endl;
+		
+		
+		for(int i=0;i<poblacion->solutions.size();i++)
+		{
+			archivo2 << "i " <<  i << " calidad " << poblacion->solutions[i].quality << endl;
+			archivo2 << "conectivity "<< i << " " << poblacion->solutions[i].check_connectivity(size) << endl;
+			for(int j=0;j<poblacion->solutions[i].routes.size();j++)
+			{
+				for(int k=0;k<poblacion->solutions[i].routes[j].bus_stops.size();k++)
+				{
+					archivo2 << (poblacion->solutions[i].routes[j].bus_stops[k].idi)+1;
+					if(k!=poblacion->solutions[i].routes[j].bus_stops.size()-1)
+					{
+						archivo2 << "-";
+					}							
+				}
+				archivo2 << endl;
+			}
+		}
+		
 		
 		//se guardan los optimos de pareto para la generacion
 		stringstream sstr;
@@ -257,11 +301,26 @@ int main(int argc, char **argv)
 		
 		ofstream archivo(nombre.c_str());
 		
-		for(int i=1;i<poblacion->solutions.size();i++)
+		for(int i=0;i<poblacion->solutions.size();i++)
 		{
 			if(!algoritmo->es_dominado_de_Pareto(poblacion->solutions[i],*poblacion))
 			{
-				archivo << poblacion->solutions[i].fo1 << " " << poblacion->solutions[i].fo2 << endl;
+				archivo << poblacion->solutions[i].fo1 << " " << poblacion->solutions[i].fo2 << " " << poblacion->solutions[i].quality << endl;
+				if(i==0)
+				{
+					for(int j=0;j<poblacion->solutions[0].routes.size();j++)
+					{
+						for(int k=0;k<poblacion->solutions[0].routes[j].bus_stops.size();k++)
+						{
+							archivo << (poblacion->solutions[0].routes[j].bus_stops[k].idi)+1;
+							if(k!=poblacion->solutions[0].routes[j].bus_stops.size()-1)
+							{
+								archivo << "-";
+							}							
+						}
+						archivo << endl;
+					}
+				}
 			}
 		}
 		archivo.close();
@@ -270,80 +329,17 @@ int main(int argc, char **argv)
 		//se aumenta en uno la generacion
 		generacion++;
 		
+		//se incorporan nuevos anticuerpos a la nueva generacion
+		algoritmo->nueva_generacion(poblacion,clones);
+		
 		//se repite el proceso hasta cumplir con la condicion de termino
 	}
 	
-	//st->print_solution_set();	
-    float hypervolume = hv(poblacion, p);
-	std::cout<<hypervolume<<std::endl;
-	
-	/*
-	
-	
-	for(int i=0;i<poblacion->solutions.size();i++)
-	{
-		cout << i << " es dominado " << algoritmo->es_dominado_de_Pareto(poblacion->solutions[i],*poblacion) << endl;
-		cout << poblacion->solutions[i].fo1 << " " << poblacion->solutions[i].fo2 << endl;
-		cout << poblacion->solutions[i].quality << endl;
-	}
-	
-	
-	*/
-	
-	/*
-	Solution *s = algoritmo->generar_anticuerpo(bus_stops,travel_times,1245);
-	
-	
-	for(unsigned int i=0;i<s->routes.size();i++)
-	{
-		s->routes[i].print_route();
-	}
-	
-	Route rti;
-	std::cout << "Ruta más corta (0,10):\n";
-	sr->construct_route(0,10,&rti,bus_stops);	
-	for(int i=0; i < rti.bus_stops.size();i++){
-		std::cout << rti.bus_stops[i].idi;
-		if( i < rti.bus_stops.size() - 1) std::cout << ", ";
-	}
-	std::cout << "\n";
 
-
-	//sr->calcDist(travel_times,rts);
-
-	bool y = s->check_connectivity(size);
-	std::cout << "check_connectivity: " << y << std::endl;
 	
-	bool x;
-	
-	for (int i=0;i<s->routes.size();i++)
-	{
-		x = s->routes[i].check_cycles_and_backtracks();
-		std::cout << "check_cycles_and_backtracks (route: " << i << " ):" << x << std::endl;
-	}
-	
-	float fo1 = s->setFO1(sr,demand);
-	float fo2 = s->setF02(size,travel_times);
-
-	s->print_solution_routes();
-	
-	std::cout << "FO1: " << fo1 << std::endl;
-	std::cout << "FO2: " << fo2 << std::endl;
-	*/
-	//SolutionSet *st = new SolutionSet();
-	//st->solutions.push_back(*s);
-	
-	//st->print_solution_set();	
-    //    float hypervolume = hv(st, p);
-	//std::cout<<hypervolume<<std::endl;
-
-
+	archivo2.close();
+		
 	delete p;
-	//delete s;
-	//delete r;
-	//delete r1;
-	//delete r2;
-	//delete r3;
 	delete sr;
 	
 	// De-Allocate memory to prevent memory leak

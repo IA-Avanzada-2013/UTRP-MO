@@ -17,8 +17,13 @@ using namespace std;
 class Inmune{
 	public:
 		Inmune(vector<RouteInfo>,Opciones*&,int**&,int**&,vector<BusStop>&,int&,int&);
-		Route* generar_ruta_factible(int,vector<BusStop>&,int**&);
-		Solution* generar_anticuerpo(vector<BusStop>&,int**&,int);
+		vector<int> get_vecinos(int);
+		vector<int> paradas_disponibles();
+		void borrar_parada(int,vector<int>&);
+		Route* generar_ruta_factible(int);
+		vector<BusStop> invertir(vector<BusStop>);
+		void movimiento_factible(Route&);
+		Solution* generar_anticuerpo();
 		void generar_poblacion(SolutionSet&);
 		void evaluar_fo(SolutionSet*&);
 		bool es_dominado_de_Pareto(Solution, SolutionSet);
@@ -28,6 +33,7 @@ class Inmune{
 		int get_index(float&, SolutionSet);
 		vector<Solution> seleccionar_mejores_anticuerpos(SolutionSet*&);
 		void clonar_anticuerpos(vector<Solution>&);
+		void mutar(Solution&);
 		void mutacion(vector<Solution>&);
 		bool valor_in_vector(float,vector<float>);
 		void eliminar_exceso(vector<Solution>&);

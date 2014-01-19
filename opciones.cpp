@@ -51,6 +51,11 @@ float Opciones::get_porcentajereemplazo()
 	return this->porcentaje_reemplazo;
 }
 
+int Opciones::get_size()
+{
+	return this->size;	
+}
+
 //setters
 void Opciones::set_popsize(int valor)
 {
@@ -97,6 +102,11 @@ void Opciones::set_porcentajereemplazo(float valor)
 	this->porcentaje_reemplazo = valor;
 }
 
+void Opciones::set_size(int valor)
+{
+	this->size = valor;
+}
+
 Opciones& Opciones::operator = (Opciones *opc)
 {
 	this->set_popsize(opc->get_popsize());
@@ -108,4 +118,5 @@ Opciones& Opciones::operator = (Opciones *opc)
 	this->set_generaciones(opc->get_generaciones());
 	this->set_porcentajeclones(opc->get_porcentajeclones());
 	this->set_porcentajereemplazo(opc->get_porcentajereemplazo());
+	this->set_size(opc->get_size());
 }
