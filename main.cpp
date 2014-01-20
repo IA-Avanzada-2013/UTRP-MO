@@ -69,9 +69,13 @@ int main(int argc, char **argv)
     std::string opt_route_type;
     std::string opt_instance_prefix;
     std::vector<RouteInfo> routes_info;
-
-
-    while ((c = getopt(argc, argv, "i:s:r:")) != -1)
+	int popsize = 0;
+	int clonsize = 0;
+	int iteraciones = 0;
+	int porc_clones = 0;
+	int porc_reemplazo = 0;
+	
+    while ((c = getopt(argc, argv, "i:s:r:p:c:g:a:b:")) != -1)
     switch (c)
     {
     	case 'i':
@@ -92,6 +96,21 @@ int main(int argc, char **argv)
 			}
 	        break;
 	    }
+	    case 'p':
+			popsize = atoi(optarg);
+			break;
+	    case 'c':
+			clonsize = atoi(optarg);
+			break;
+	    case 'g':
+			iteraciones = atoi(optarg);
+			break;
+	    case 'a':
+			porc_clones = atoi(optarg);
+			break;
+	    case 'b':
+			porc_reemplazo = atoi(optarg);
+			break;
 	    case '?':
 	        if (optopt == 's' || optopt == 'r' || optopt == 'i')
             	fprintf (stderr, "Option -%c requires an argument.\n", optopt);
@@ -177,15 +196,15 @@ int main(int argc, char **argv)
 	//parametros del algoritmo
 	Opciones* o = new Opciones();
 	
-	o->set_popsize(10);
-	o->set_alpha(1.0);
-	o->set_beta(1.0);
-	o->set_clonsize(15);
+	o->set_popsize(popsize);
+	o->set_alpha(1);
+	o->set_beta(1);
+	o->set_clonsize(clonsize);
 	o->set_probmutacion(0.1);
 	o->set_afinidad(1);
-	o->set_generaciones(2);
-	o->set_porcentajeclones(0.6);
-	o->set_porcentajereemplazo(0.3);
+	o->set_generaciones(iteraciones);
+	o->set_porcentajeclones(porc_clones/100.0);
+	o->set_porcentajereemplazo(porc_reemplazo/100.0);
 	o->set_size(size);
 
 	ShortestRoute *sr = new ShortestRoute(size);
@@ -214,25 +233,6 @@ int main(int argc, char **argv)
 	//se genera la poblacion aleatoriamente
 	algoritmo->generar_poblacion(*poblacion);
 	
-	for(int i=0;i<poblacion->solutions.size();i++)
-	{
-		archivo2 << "i " <<  i << " calidad " << poblacion->solutions[i].quality << endl;
-		archivo2 << "conectivity "<< i << " " << poblacion->solutions[i].check_connectivity(size) << endl;
-		for(int j=0;j<poblacion->solutions[i].routes.size();j++)
-		{
-			for(int k=0;k<poblacion->solutions[i].routes[j].bus_stops.size();k++)
-			{
-				archivo2 << (poblacion->solutions[i].routes[j].bus_stops[k].idi)+1;
-				if(k!=poblacion->solutions[i].routes[j].bus_stops.size()-1)
-				{
-					archivo2 << "-";
-				}							
-			}
-			archivo2 << endl;
-		}
-	}
-	
-	
 	//se le entrega la semmilla al random
 	srand(opt_seed);
 	
@@ -243,54 +243,50 @@ int main(int argc, char **argv)
 	//se itera hasta cumplir con el numero de generaciones ingresado
 	while(generacion<=algoritmo->opciones.get_generaciones())
 	{
-		
+		//cout << "evaluar fo" << endl;
 		//evaluacion de las funciones objetivo de las soluciones
 		algoritmo->evaluar_fo(poblacion);
 		
+		//cout << "afinidad" << endl;
 		//calculo de afinidad
 		algoritmo->afinidad(poblacion);
 		
+		//cout << "elimiar dominados" <<endl;
 		//se consideran solo las soluciones no dominadas del problema
 		algoritmo->eliminar_dominados(poblacion);
-				
+		
+		//cout << "selccionar mejores anticuerpos" << endl;
 		//seleccion de los mejores individuos
 		vector<Solution> clones = algoritmo->seleccionar_mejores_anticuerpos(poblacion);
 		
+		//cout << "clonar anticuerpos" << endl;
 		//seleccion clonal
 		algoritmo->clonar_anticuerpos(clones);
 		
+		//cout << "mutacion" << endl;
 		//mutacion
 		algoritmo->mutacion(clones);
-		
+
+		//cout << "eliminar exceso" << endl;
 		//se elimina el exceso de anticuerpos
 		algoritmo->eliminar_exceso(clones);
-			
-		cout << poblacion->solutions.size() << endl;
-		
-		//st->print_solution_set();	
-		float hypervolume = hv(poblacion, p);
-		
-		archivo2 << "generacion " << generacion << "----------------------------------------------------" << endl;
-		
-		archivo2 << "hipervolumen " << hypervolume << endl;
-		
 		
 		for(int i=0;i<poblacion->solutions.size();i++)
 		{
-			archivo2 << "i " <<  i << " calidad " << poblacion->solutions[i].quality << endl;
-			archivo2 << "conectivity "<< i << " " << poblacion->solutions[i].check_connectivity(size) << endl;
-			for(int j=0;j<poblacion->solutions[i].routes.size();j++)
-			{
-				for(int k=0;k<poblacion->solutions[i].routes[j].bus_stops.size();k++)
+				archivo2 << "i " << i << " calidad " << poblacion->solutions[i].quality << endl;
+				archivo2 << "conectivity "<< i << " " << poblacion->solutions[i].check_connectivity(size) << endl;
+				for(int j=0;j<poblacion->solutions[i].routes.size();j++)
 				{
-					archivo2 << (poblacion->solutions[i].routes[j].bus_stops[k].idi)+1;
-					if(k!=poblacion->solutions[i].routes[j].bus_stops.size()-1)
-					{
-						archivo2 << "-";
-					}							
+						for(int k=0;k<poblacion->solutions[i].routes[j].bus_stops.size();k++)
+						{
+								archivo2 << (poblacion->solutions[i].routes[j].bus_stops[k].idi)+1;
+								if(k!=poblacion->solutions[i].routes[j].bus_stops.size()-1)
+								{
+										archivo2 << "-";
+								}                                                        
+						}
+						archivo2 << endl;
 				}
-				archivo2 << endl;
-			}
 		}
 		
 		
@@ -303,44 +299,50 @@ int main(int argc, char **argv)
 		
 		for(int i=0;i<poblacion->solutions.size();i++)
 		{
-			if(!algoritmo->es_dominado_de_Pareto(poblacion->solutions[i],*poblacion))
-			{
-				archivo << poblacion->solutions[i].fo1 << " " << poblacion->solutions[i].fo2 << " " << poblacion->solutions[i].quality << endl;
-				if(i==0)
+				if(!algoritmo->es_dominado_de_Pareto(poblacion->solutions[i],*poblacion))
 				{
-					for(int j=0;j<poblacion->solutions[0].routes.size();j++)
-					{
-						for(int k=0;k<poblacion->solutions[0].routes[j].bus_stops.size();k++)
+						archivo << poblacion->solutions[i].fo1 << " " << poblacion->solutions[i].fo2 << " " << poblacion->solutions[i].quality << endl;
+						if(i==0)
 						{
-							archivo << (poblacion->solutions[0].routes[j].bus_stops[k].idi)+1;
-							if(k!=poblacion->solutions[0].routes[j].bus_stops.size()-1)
-							{
-								archivo << "-";
-							}							
+								for(int j=0;j<poblacion->solutions[0].routes.size();j++)
+								{
+										for(int k=0;k<poblacion->solutions[0].routes[j].bus_stops.size();k++)
+										{
+												archivo << (poblacion->solutions[0].routes[j].bus_stops[k].idi)+1;
+												if(k!=poblacion->solutions[0].routes[j].bus_stops.size()-1)
+												{
+														archivo << "-";
+												}                                                        
+										}
+										archivo << endl;
+								}
 						}
-						archivo << endl;
-					}
 				}
-			}
 		}
 		archivo.close();
+		
+			
+		//cout << "nueva generacion" << endl;
+		//se incorporan nuevos anticuerpos a la nueva generacion
+		algoritmo->nueva_generacion(poblacion,clones);
+		
+		
+		//st->print_solution_set();	
+		float hypervolume = hv(poblacion, p);
+		
+		
 		
 		
 		//se aumenta en uno la generacion
 		generacion++;
 		
-		//se incorporan nuevos anticuerpos a la nueva generacion
-		algoritmo->nueva_generacion(poblacion,clones);
-		
 		//se repite el proceso hasta cumplir con la condicion de termino
 	}
 	
-
-	
-	archivo2.close();
-		
 	delete p;
 	delete sr;
+	
+	
 	
 	// De-Allocate memory to prevent memory leak
 	for (int i = 0; i < size; ++i)
@@ -350,11 +352,11 @@ int main(int argc, char **argv)
 	}
 	delete [] demand;
 	delete [] travel_times;
-
+	
 	time(&fin);
 	segundos = difftime(fin,inicio);
 	
-	cout << segundos << " segundos transcurridos" << endl;
-	
+	archivo2 << segundos << " segundos transcurridos" << endl;
+	archivo2.close();
 	return 0;
 }

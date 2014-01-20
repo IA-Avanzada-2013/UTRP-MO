@@ -39,6 +39,9 @@ float Solution::setFO1(ShortestRoute *sr, int **&demand){
         }
     }    
     //std::cout << "\nFO:" << numerador/denominador << "\n";
+    //cout << "numerador " << numerador << endl;
+    //cout << "denominador " << denominador << endl;
+    //cout << "division" << numerador/denominador << endl;
     this->fo1 = (numerador/denominador);
     return (numerador/denominador);
     //this->fo1 = (numerador/denominador);

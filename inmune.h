@@ -30,12 +30,13 @@ class Inmune{
 		void afinidad(SolutionSet*&);
 		void eliminar_dominados(SolutionSet*&);
 		vector<float> ordenar_afinidad(SolutionSet*&);
-		int get_index(float&, SolutionSet);
+		int get_index(float&, SolutionSet*);
 		vector<Solution> seleccionar_mejores_anticuerpos(SolutionSet*&);
 		void clonar_anticuerpos(vector<Solution>&);
 		void mutar(Solution&);
 		void mutacion(vector<Solution>&);
 		bool valor_in_vector(float,vector<float>);
+		int get_index_solucion(float,vector<Solution>);
 		void eliminar_exceso(vector<Solution>&);
 		void nueva_generacion(SolutionSet*&,vector<Solution>&);
 

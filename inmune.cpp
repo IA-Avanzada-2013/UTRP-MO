@@ -99,49 +99,29 @@ vector<BusStop> Inmune::invertir(vector<BusStop> stops)
 
 void Inmune::movimiento_factible(Route &r)
 {
-	int opcion = rand()%2;
-	bool flag = false;
-	if(opcion==0)
+	if(r.bus_stops.size()<this->informacion[r.tipo_ruta].max_length)
 	{
-		if(r.bus_stops.size()<this->informacion[r.tipo_ruta].max_length)
+		//agregar una nueva parada
+		for(int i=0;i<this->bs.size();i++)
 		{
-			//agregar una nueva parada
-			for(int i=0;i<this->bs.size();i++)
+			int ultimo = r.bus_stops.size()-1;
+			if(!r.find_node(this->bs[i].idi) && this->travel_times[ultimo][this->bs[i].idi] != 1)
 			{
-				int ultimo = r.bus_stops.size()-1;
-				if(!r.find_node(this->bs[i].idi) && this->travel_times[ultimo][this->bs[i].idi] != 1)
-				{
-					r.bus_stops.push_back(this->bs[i]);
-					flag = true;
-					break;
-				}
+				r.bus_stops.push_back(this->bs[i]);
+				break;
 			}
-		}else
-		{
-			flag = true;
 		}
 	}
-	else if(opcion==1)
-	{
-		if(r.bus_stops.size()>this->informacion[r.tipo_ruta].min_length)
-		{
-			//eliminar la primera parada
-			r.bus_stops.erase(r.bus_stops.begin());
-		}
-		else
-		{
-			flag = true;
-		}
-
-	}
-	
-	if(flag)
+	else
 	{
 		//invertir
-		vector<BusStop> inverso = invertir(r.bus_stops);
-		r.set_bus_stops(inverso);
+		//vector<BusStop> inverso = invertir(r.bus_stops);
+		//r.set_bus_stops(inverso);
+		if(r.bus_stops.size()>this->informacion[r.tipo_ruta].min_length)
+		{
+			//r.bus_stops.pop_back();
+		}
 	}
-	
 }
 
 Solution* Inmune::generar_anticuerpo()
@@ -182,7 +162,7 @@ void Inmune::generar_poblacion(SolutionSet &poblacion)
 		//cout << cantidad << endl;
 		delete s;
 		intentos++;
-		cout << intentos << endl;
+		//cout << intentos << endl;
 		if(cantidad>intentos*1000)
 		{
 			break;
@@ -258,11 +238,11 @@ vector<float> Inmune::ordenar_afinidad(SolutionSet* &poblacion)
 	return afinidades;
 }
 
-int Inmune::get_index(float &valor, SolutionSet ss)
+int Inmune::get_index(float &valor, SolutionSet* ss)
 {
-	for(int i=0;i<ss.solutions.size();i++)
+	for(int i=0;i<ss->solutions.size();i++)
 	{
-		if(ss.solutions[i].quality==valor)
+		if(ss->solutions[i].quality==valor)
 		{
 			return i;
 		}
@@ -271,7 +251,7 @@ int Inmune::get_index(float &valor, SolutionSet ss)
 }
 
 vector<Solution> Inmune::seleccionar_mejores_anticuerpos(SolutionSet* &poblacion)
-{
+{	
 	vector<Solution> mejores;
 	//se elige un porcentaje de los mejores individuos
 	int seleccion = poblacion->solutions.size()*this->opciones.get_afinidad();
@@ -279,7 +259,7 @@ vector<Solution> Inmune::seleccionar_mejores_anticuerpos(SolutionSet* &poblacion
 	
 	for(int i=0;i<seleccion;i++)
 	{
-		int index = get_index(afinidades[i],*poblacion);
+		int index = get_index_solucion(afinidades[i],poblacion->solutions);
 		mejores.push_back(poblacion->solutions[index]);
 	}
 	return mejores;
@@ -329,11 +309,11 @@ void Inmune::mutacion(vector<Solution> &clones)
 	int posicion,clon_size,size,tipo;
 	clon_size=clones.size();
 	bool flag = true;
-	int numero =0;
 	for(int i=0;i<clon_size;i++)
 	{
 		posicion = rand()%clones[i].routes.size();
-		//movimiento_factible(clones[i].routes[posicion]);
+		
+		//movimiento_factible(clones[i].routes[posicion]);		
 	}
 }
 
@@ -366,36 +346,51 @@ void Inmune::borrar_parada(int stop,vector<int> &v)
 	}
 }
 
+int Inmune::get_index_solucion(float valor,vector<Solution> clones)
+{
+	int index = 0;
+	for(int i=0;i<clones.size();i++)
+	{
+		if(clones[i].quality==valor)
+		{
+			index = i;
+		}
+	}
+	return index;
+}
+
 void Inmune::eliminar_exceso(vector<Solution> &clones)
 {
-	cout << "clones size" << endl;
-	cout << clones.size() << endl;
 	vector<float> afinidades;
 	int clones_size = clones.size();
-	
+	vector<Solution> copia = clones;
 	//se actualizan las funciones objetivo y la calidad de los clones
 	for(int i=0;i<clones_size;i++)
 	{
 		float fo1 = clones[i].setFO1(this->sr,this->demand);
 		float fo2 = clones[i].setF02(this->size,this->travel_times);
 		clones[i].setQuality(this->opciones.get_alpha(),this->opciones.get_beta());
-		afinidades.push_back(clones[i].quality);
+		if(!valor_in_vector(clones[i].quality,afinidades))
+		{
+			afinidades.push_back(clones[i].quality);
+			//cout << clones[i].quality << endl;
+		}
+		
 	}
 	
 	sort(afinidades.begin(),afinidades.end());
-	
+	clones.clear();
 	//se escoge un porcentaje de los mejores clones
+
 	int n_clones = this->opciones.get_clonsize()*this->opciones.get_porcentajeclones();
 	afinidades.erase(afinidades.begin()+n_clones,afinidades.end());
-		
-	for(int i=clones_size-1;i>=0;i--)
-	{
-		if(!valor_in_vector(clones[i].quality,afinidades))
-		{
-			clones.erase(clones.begin()+i);
-		}
-	}
 
+	int index =0;
+	for(int i=0;i<afinidades.size();i++)
+	{
+		index = get_index_solucion(afinidades[i],copia);
+		clones.push_back(copia[index]);
+	}
 }
 		
 void Inmune::nueva_generacion(SolutionSet* &poblacion,vector<Solution> &clones)
@@ -407,27 +402,24 @@ void Inmune::nueva_generacion(SolutionSet* &poblacion,vector<Solution> &clones)
 		poblacion->solutions.push_back(clones[i]);
 	}
 	
-	
+
 	vector<float> afinidades = ordenar_afinidad(poblacion);
 	
 	afinidades.erase(afinidades.begin()+this->opciones.get_popsize(),afinidades.end());
-	
 	 
 	for(int i=0;i<afinidades.size();i++)
 	{
-		int index = get_index(afinidades[i],*poblacion);
+		int index = get_index_solucion(afinidades[i],poblacion->solutions);
 		nueva_generacion.push_back(poblacion->solutions[index]);
 	}
 	
 	poblacion->solutions = nueva_generacion;
-	
 	
 	//se reemplzan los peores anticuerpos por anticuerpos generados aleatoriamente
 	int n_reemplazo = this->opciones.get_porcentajereemplazo()*this->opciones.get_popsize();
 	
 	poblacion->solutions.erase(poblacion->solutions.end()-n_reemplazo,poblacion->solutions.end());
 	int cantidad = 0;
-	
 	while(cantidad<n_reemplazo)
 	{
 		Solution *s = generar_anticuerpo();
