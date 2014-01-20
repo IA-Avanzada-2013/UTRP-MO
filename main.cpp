@@ -55,10 +55,10 @@ void usage(void)
 int main(int argc, char **argv)
 {
 	srand(time(NULL));
-	time_t inicio;
-	time_t fin;
-	double segundos;
-	time(&inicio);
+	//time_t inicio;
+	//time_t fin;
+	//double segundos;
+	//time(&inicio);
 	
 	intro();
 
@@ -184,15 +184,15 @@ int main(int argc, char **argv)
 	p->set_bus_stops(bus_stops);	
 
 	// Show parsed data (optional)
-	if (DEBUG)
-	{
+	/*if (DEBUG)
+	/{
 		p->show_bus_stops();
 		std::cout << "..." << std::endl;
 		p->show_demand();
 		std::cout << "..." << std::endl;
 		p->show_travel_times();	
 	}
-		
+	*/	
 	//parametros del algoritmo
 	Opciones* o = new Opciones();
 	
@@ -219,7 +219,7 @@ int main(int argc, char **argv)
 	vector<Solution> sol;
 	poblacion->solutions=sol;
 	
-	vector<std::string> z = split(opt_instance_prefix, '/');
+	/*vector<std::string> z = split(opt_instance_prefix, '/');
 	stringstream sstr2;
 	
 	sstr2 << "utpmo -i " << z[1] << " -s " << opt_seed << " -r " << opt_route_type << ".txt";
@@ -229,7 +229,7 @@ int main(int argc, char **argv)
 
 	archivo2 << arch_final << endl;
 	cout << arch_final << endl;
-	
+	*/
 	//se genera la poblacion aleatoriamente
 	algoritmo->generar_poblacion(*poblacion);
 	
@@ -270,7 +270,7 @@ int main(int argc, char **argv)
 		//cout << "eliminar exceso" << endl;
 		//se elimina el exceso de anticuerpos
 		algoritmo->eliminar_exceso(clones);
-		
+		/*
 		for(int i=0;i<poblacion->solutions.size();i++)
 		{
 				archivo2 << "i " << i << " calidad " << poblacion->solutions[i].quality << endl;
@@ -321,23 +321,20 @@ int main(int argc, char **argv)
 		}
 		archivo.close();
 		
-			
+		*/
 		//cout << "nueva generacion" << endl;
 		//se incorporan nuevos anticuerpos a la nueva generacion
 		algoritmo->nueva_generacion(poblacion,clones);
 		
 		
-		//st->print_solution_set();	
-		float hypervolume = hv(poblacion, p);
 		
-		
-		
-		
+
 		//se aumenta en uno la generacion
 		generacion++;
 		
 		//se repite el proceso hasta cumplir con la condicion de termino
 	}
+	float hypervolume = hv(poblacion, p);
 	
 	delete p;
 	delete sr;
@@ -353,10 +350,12 @@ int main(int argc, char **argv)
 	delete [] demand;
 	delete [] travel_times;
 	
-	time(&fin);
-	segundos = difftime(fin,inicio);
+	cout << hypervolume << endl;
 	
-	archivo2 << segundos << " segundos transcurridos" << endl;
-	archivo2.close();
+	//time(&fin);
+	//segundos = difftime(fin,inicio);
+	
+	//archivo2 << segundos << " segundos transcurridos" << endl;
+	//archivo2.close();
 	return 0;
 }
